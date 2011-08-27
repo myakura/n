@@ -1,0 +1,298 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>スマートフォンと画面解像度・ピクセル密度</title>
+<link rel=stylesheet href="lilium.css">
+<link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
+<script>
+// word count
+if (!!addEventListener) {
+  window.addEventListener('DOMContentLoaded', function () {
+    var e = document.querySelectorAll('p, li, dd, h1, h2, h3');
+    var v;
+    var l = e.length;
+    while (l--) {
+      v += e[l].textContent;
+    }
+    v.replace(/\n|\r|\s|\v/g, '');
+    document.querySelector('h1').innerHTML += ' <span style="font-size: 70%">(' + v.length + ')</span>';
+  }, false);
+}
+</script>
+<body>
+
+<h1>スマートフォンと画面解像度・ピクセル密度</h1>
+<!-- last-modified: 2011-07-11 -->
+
+<p>iPhone 4やAndroidスマートフォンで、Webサイトの画像がぼやけて見えるという問題があります。これには、端末ごとの画面解像度とピクセル密度の違い、そしてCSSピクセルとデバイスピクセルの扱いなど、いろんなことが関わっています。
+
+<section id=>
+<h2>解像度のばらつくスマートフォン</h2>
+
+<p>スマートフォン端末の画面サイズはだいたい3.2〜4.3インチの幅に収まっていますが、ネットブックからデスクトップまであるPCに比べてばらつきは小さな方だと思います。一方、解像度のばらつきは結構なものです。
+
+<figure id=>
+<table border>
+<col class=header>
+<col class=desktop>
+<col class=mdpi span=2>
+<col class=hdpi span=4>
+<col class=xhdpi span=2>
+<tr><th>端末
+<td>iPhone 3
+<td>HTC Magic
+<td>Galaxy S
+<td>Xperia
+<td>Xperia arc
+<td>Galaxy S Ⅱ
+<td>IS03
+<td>iPhone 4
+<tr><th>画面サイズ (in)
+<td>3.5
+<td>3.2
+<td>4.0
+<td>4.0
+<td>4.2
+<td>4.3
+<td>3.5
+<td>3.5
+<tr><th>解像度 (px)
+<td>320 × 480
+<td>320 × 480
+<td>480 × 800
+<td>480 × 854
+<td>480 × 854
+<td>480 × 800
+<td>640 × 960
+<td>640 × 960
+</table>
+<figcaption>各スマートフォン端末の画面サイズと解像度</figcaption>
+</figure>
+
+<p>iPhone 4やIS03はiPhone 3と比べ4倍ものピクセルがあります。しかしながら、大きさはだいたい同じくらい。こうなると、ピクセル密度に違いがでてきます。
+
+</section>
+
+<section>
+<h2>ピクセル密度と密度グループ</h2>
+
+<p>ピクセル密度とは、主に1インチあたりのピクセル数をいうもので、DPI (dot per inch)もしくはPPI (pixel per inch)と呼ばれます。
+
+<p>ピクセル密度が高いほど、面積あたりのピクセル数が多くなります。デスクトップではだいたいピクセル密度が同じ (100〜120くらい) なので、一般的に解像度が高くなるにつれ画面が大きくなります。反対に、スマートフォンは画面サイズがだいたい同じなので、ピクセル密度が高くなるにつれ画面が細密になります。iPhone 4のRetina displayはiPhone 3の4倍のピクセルを同じサイズに詰め込んだので、フォントなどがとても綺麗に表示されます。
+
+<p>スマートフォン端末ごとのピクセル密度ですが、解像度や画面サイズがちょっとずつ違うため、ピクセル密度もちょっとずつ異なります。
+
+<figure id=>
+<table border>
+<col class=header>
+<col class=desktop>
+<col class=mdpi span=2>
+<col class=hdpi span=4>
+<col class=xhdpi span=2>
+<tr><th>端末
+<td>iPhone 3
+<td>HTC Magic
+<td>Galaxy S
+<td>Xperia
+<td>Xperia arc
+<td>Galaxy S Ⅱ
+<td>IS03
+<td>iPhone 4
+<tr><th>解像度 (px)
+<td>320 × 480
+<td>320 × 480
+<td>480 × 800
+<td>480 × 854
+<td>480 × 854
+<td>480 × 800
+<td>640 × 960
+<td>640 × 960
+<tr><th>ピクセル密度 (dpi)
+<td>163
+<td>180
+<td>233
+<td>245
+<td>233
+<td>233
+<td>326
+<td>326
+<!--
+<tr><th>密度のカテゴリ
+<td>160
+<td>240
+<td>240
+<td>240
+<td>240
+<td>320
+<td>320
+-->
+</table>
+<figcaption>各スマートフォン端末の画面解像度とピクセル密度</figcaption>
+<span class=note>ピクセル密度は端末の製造/販売企業のWebサイトから、なければ端末のWikipediaページより参照しています。</span>
+</figure>
+
+<p>さて、横幅に注目すると、320px, 480px, 640pxと3つのグループがあることが分かります。また、それぞれの区分におけるピクセル密度も160〜180, 230〜245, 320と、幅はあるものの3つに分かれていることに気づきます。
+<p>
+
+<p>Androidでは、端末のピクセル密度をldpi, mdpi, hdpi, xhdpiという4つのグループに分類しています。各グループに属する端末は、内部的にそれぞれ120dpi, 160dpi, 240dpi, 320dpiとして処理されます。主流の端末の多くがhdpiですが、IS03のxhdpiといったiPhone 4と同じクラスのピクセル密度を持つ端末も出てきました。
+
+<figure>
+<table border>
+<tr><th>グループ名
+<td>ldpi
+<td>mdpi
+<td>hdpi
+<td>xhdpi
+<tr><th>dpi
+<td>120
+<td>160
+<td>240
+<td>320
+<tr><th>viewport値
+<td>low-dpi
+<td>medium-dpi
+<td>high-dpi
+<td>n/a
+</table>
+<figcaption>Androidの密度グループ</figure>
+</figure>
+
+<p class=note>OSレベルにおいて、xhdpiはAndroid 2.2から追加されています。なのでIS03はxhdpiグループであるべきなんですが、<a href="http://sakaneya.blogspot.com/2010/11/is03-dpigalaxy-s.html">Android端末のDPIまとめ</a>によるとhdpiに属しているようです (端末のDPIは320を返しています)。また、IS05はhdpiなようですが、3.4インチの画面に480 × 854ピクセルという解像度なのでピクセル密度は290前後とxhdpiにむしろ近くなります。グループが同じであっても、その精細さにはなかなか大きな違いが出てくる可能性があります。
+
+<p class=XXX>qHD端末どうしようかな……発売されてからちょっと調べようかね……
+</section>
+
+<section>
+<h2>ピクセル密度の違いが見た目に影響する</h2>
+
+<p>さて、ピクセル密度のばらつきによって、すこし困ったことが起こります。密度の低い環境に合わせて作られたコンテンツの見た目が、密度の高い環境で良く見えない可能性が出てくるのです。
+
+<p>iPhone 4やAndroidスマートフォンでWebサイトを表示すると、画像がぼやけて見えることがあります。iPhone 4の場合は、古いアプリケーションのアイコンがぼやけることもあるでしょう。
+
+<figure>
+<img src=asahicom_retina.png style="border-radius: 6px">
+<figcaption>mini.asahi.comをRetina displayで表示した例 (シミュレータ利用)。ロゴや「トップ」「写真」といったタブの箇所は画像だが、その下の文字と比べて荒く表示されているのがわかる。</figcaption>
+</figure>
+
+<p>iPhone 4のRetina displayでは文字の綺麗さなどをうたっていますが、画像が綺麗に見えないのはどうしてでしょうか。ここで出てくるのが、デバイスピクセルとデバイス非依存なピクセルという、2種類の「ピクセル」です。ここではWeb開発について話すので、デバイスピクセルとCSSピクセルの違いになります。
+</section>
+
+<section id=dpx-vs-csspx>
+<h2>「デバイスピクセル」と「CSSピクセル」</h2>
+
+<p>Webデザインにおける「ピクセル」は、ほとんどの場合「CSSピクセル」を指します。一方、画面のもつピクセルは「デバイスピクセル」と呼ばれたりします。
+
+<p class=note>以下に出てくる「csspx」はCSSピクセルを、「dpx」はデバイスピクセルを表します。
+
+<p>iPhone 4の画面は640dpx × 960dpxです。iPhone 3が320dpx × 480dpxなので、iPhone 4はiPhone 3に比べて縦横2倍、計4倍のデバイスピクセルを持ちます。解像度が高く今までより広い範囲を表示できますが、そう表示してしまうと画面に表示される多くのものがこれまでの半分の大きさで表示されてしまいます。iPhoneの物理的な大きさを考えると、半分の大きさで表示されたものは使い物にならないでしょう。また、アプリケーションの互換性も損なわれるでしょう。
+
+<p>これを解決するために、iPhone 4のSafariではひとつのCSSピクセルを、ふたつのデバイスピクセルで表しています。1csspx = 2dpxですから、<code>border-width: 2px</code>は4dpxの線で描画されることになりますし、「100px × 100px」な画像は200dpx × 200dpxの領域に描画されます。一方、ベクターで計算されるもの (アウトラインフォント、SVGのパスなど) は計算結果の描画における分解能が高くなるため、制裁に表示されます。画像がぼやける一方でフォントが綺麗なのはこのためです。
+
+<p>Androidスマートフォンは、端末の密度グループによってデバイスピクセルとCSSピクセルのマッピングが異なります。基準はiPhoneとの互換性のためmdpi (160dpi) になります。このmdpiにおける1ピクセルは“density-independent pixel (dp, dip)” と呼ばれています。さて、hdpi (240dpi) は240/160=1.5ですから、1csspx = 1.5dpxとなります。現在販売されているAndroidスマートフォンの多くは横幅480dpxの画面を持っていますので、多くの場合Android端末では1csspx = 1.5dpxという面倒な扱いになります。
+
+<p>デバイスピクセルとCSSピクセルの対応比は、「デバイスピクセル比」(“device pixel ratio”) などと呼ばれています。WebKitやPresto <a href="http://www.opera.com/docs/specs/presto28/#m28-102">(2.8以降)</a> では、<code>window.devicePixelRatio</code>というプロパティからこの値をを知ることができます。iPhone 4では<code>2</code>を、Androidスマートフォンの多くは<code>1.5</code>を返します。
+
+<figure id=>
+<table border style="text-align: center">
+<col class=header >
+<col class=desktop>
+<col class=mdpi span=2>
+<col class=hdpi span=4>
+<col class=xhdpi span=2>
+<tr><th>端末
+<td>iPhone 3
+<td>HTC Magic
+<td>Galaxy S
+<td>Xperia
+<td>Xperia arc
+<td>Galaxy S Ⅱ
+<td>IS03
+<td>iPhone 4
+<tr><th>解像度 (px)
+<td>320 × 480
+<td>320 × 480
+<td>480 × 800
+<td>480 × 854
+<td>480 × 854
+<td>480 × 800
+<td>640 × 960
+<td>640 × 960
+<tr><th>密度のカテゴリ
+<td>160
+<td>160
+<td>240
+<td>240
+<td>240
+<td>240
+<td>320
+<td>320
+<tr><th>dpx比
+<td>1
+<td>1
+<td>1.5
+<td>1.5
+<td>1.5
+<td>1.5
+<td>2
+<td>2
+</table>
+<figcaption>各スマートフォン端末の画面解像度、ピクセル密度、デバイスピクセル比</figcaption>
+</figure>
+
+<aside>
+<h3>デバイスピクセル比はスマートフォンだけの問題でもない</h3>
+<p>デバイスピクセルとCSSピクセルが1:1でマッチしないのはモバイル固有ではなく、デスクトップでも起こりうる話です。たとえば、WindowsではディスプレイのDPI設定から「125％ (120dpi)」を選択すると、Internet Explorer上で1csspxが1.25dpxとして扱われます。DPI設定は通常96dpiになっているはずなのですが、まれに120dpiが出荷時に設定されているPCが存在します……
+<p>Macでも高解像度モードにすることでデバイスピクセル比を変更できます。ちなみに先ほど紹介した<code>window.devicePixelRatio</code>はこの高解像度モードのために実装されています。実装されたのは2006年と今から5年前、iPhone4の登場よりだいぶ前です。
+</aside>
+</section>
+<!--
+<section id=>
+<h2>解像度・ピクセル密度の違いに対処する</h2>
+
+<p class=XXX>別におこしたほうがいい気もする。タブレットも含める？
+
+<ul class=XXX>
+<li>&lt;img width>
+<li>viewport
+<li>device-pixel-ratio (bg-size)
+<li>target-densitydpi
+<li>svg
+<li>css
+</ul>
+
+
+
+</section>
+
+<section>
+<h3>width/height属性とbackground-sizeプロパティの利用</h3>
+<p><code>img</code>要素には<code>width</code>, <code>height</code>という、画像の表示幅（高さ）をピクセルで指定する属性があります。CSSにも同名のプロパティや、<code>background-size</code>など大きさを指定するプロパティがあります。
+
+<p>大きな解像度の画像を用意して、これらの属性もしくはプロパティでその表示幅（高さ）を指定すると、ブラウザはその寸法にあわせ画像を拡大縮小し表示します。
+
+<figure>
+<pre><code>&lt;img src=image_wxh.png width= height=></code></pre>
+<figcaption>大きな画像をwidth/height属性から指定して</figcaption>
+</figure>
+
+<p>ANAのiPhone, iPad用Webサイトでは、この方法が使われています。ヘッダやアイコンに表示サイズ（ピクセル）よりも大きな画像を用意し、
+
+<p>ただし、大きな画像を用意しますから、ファイルサイズが増えてしまいます。ネットワークの品質がよくないとダウンロードに時間がかかるでしょう。また、画像を縮小して描画するので、もしかするとパフォーマンスに影響するかもしれません。
+
+<p>ただ、<code>background-size</code>などは除きますが、古くからある属性・プロパティですから、変なバグに遭遇する可能性は低そうです。
+
+</section>
+
+<section>
+<h3>viewport</h3>
+
+<p>あらかじめ大きな解像度でつくったページを
+
+<p>640の幅でつくったものを縮小する
+
+<p>デスクトップでは有効にされていないので、幅が640px想定になります。見た感じがだいぶ違うでしょう。Photoshopなどのカンプ作成時も、コントロールが不自然に小さくなるなど、。。
+
+</section>
+-->
+<footer>
+<address><a rel=me href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+</footer>
