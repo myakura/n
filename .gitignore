@@ -1,0 +1,17 @@
+.DS_Store
+Icon?
+
+# Thumnails
+._*
+
+/.hg/*
+*/.hg/*
+.hgignore
+
+TAGS
+tags
+
+.*.sw[a-z]
+*.un~
+Session.vim
+
