@@ -34,12 +34,43 @@ if (!!window.addEventListener) {
   }, false);
 }
 </script>
+<style>
+.stab { color: #666 }
+</style>
 <body>
 
 <h1>CSS4セレクタ (Selectors Level 4)</h1>
 <!-- last-modified: 2011-08-30 -->
 
-<p><a href="http://www.w3.org/TR/css3-selectors/">CSS3のセレクタ仕様</a>が勧告されそうですが、CSS4のセレクタについても策定が始まっています。
+<p><a href="http://www.w3.org/TR/css3-selectors/">CSS3のセレクタ仕様</a>が勧告されそうですが、CSS4のセレクタについても策定が始まっています。このノートでは、CSS4セレクタの機能についてCSS3のセレクタと比べながら紹介します。
+
+<section id=about-selectors4>
+<h2>Selectors Level 4仕様について</h2>
+
+<p><a>セレクタ Level 4 (Selectors Level 4)</a>は、新しいレベルのセレクタ仕様です。CSS3でも数多くのセレクタが追加されましたが、Level 4ではさらに多くのセレクタが追加されています。
+
+<p>2011年8月現在、Selectors Level 4はEditor's Draftという位置づけです。Editor's Draftとは仕様のEditorがまとめた仕様の案であり、公式な草案 (Working Draft) ではありません。W3CのCSSWGは、Selectors Level 3が勧告になってから、Selectors Level 4の草案を公開する予定です（勧告される前に次のレベルが公開されたら、混乱する人がいるのではという懸念があるようです）。
+
+<p class=stab>仕様が初期の段階（WDさえ出ていない）ことから、仕様書にある機能がそのうちなくなる可能性があります。反対に、現在の仕様書にない新しいセレクタが追加される可能性もあります。
+
+<p class=stab>多くのセレクタはCSS3に存在していたものです。新しく追加されたセレクタも、ブラウザの独自拡張を標準化した、もしくはHTML5や他のCSSモジュールで定義されたものを移管したものです。
+
+<aside id=is-selectors-css>
+<h3>「CSS4セレクタ」か「セレクタ Level 4」か</h3>
+
+<p>他のCSS3モジュールはたいてい「CSS <var>Foo</var> Module Level 3」と、Level 3にあるCSSのモジュール仕様ということが分かる名前になっていますが、セレクタ仕様については「Selectors Level 3」「Selectors Level 4」と、CSSの名を冠していません。どういうことでしょうか。セレクタ仕様はCSSではないのでしょうか。
+
+<p>これは、他のCSSモジュールと違い、セレクタ仕様は他のWebプラットフォーム仕様で使われることがあるため、CSSに限定されないということを意味しています。たとえば、セレクタから要素を取得する<a href="http://www.w3.org/TR/selectors-api/">Selectors API</a>などは、CSSではありませんがセレクタを利用しています。
+
+<p>同様に、<a href="http://www.w3.org/TR/css3-mediaquries">Media Queries</a>もHTMLの<code>media</code>属性などで使われることから、CSSの名を冠していません。（一方で、URLには<b>css3-<b>と、CSS）
+
+<p>とはいえ、セレクタ仕様やメディアクエリーが「CSSでない」というわけではありません。CSSだけに限定されてはいないだけで、どちらもCSSの機能ではあります。「CSS3セレクタ」という表記がおかしいわけではありません。
+</aside>
+</section>
+
+<section>
+
+</section>
 
 <footer>
 <address><a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
