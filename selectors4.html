@@ -1,0 +1,47 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>CSS4セレクタ (Selectors Level 4)</title>
+<link rel=stylesheet href="lilium.css">
+<link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
+<script>
+// word count
+if (!!window.addEventListener) {
+  window.addEventListener('DOMContentLoaded', function () {
+    var e = document.querySelectorAll('p, li, dd, h1, h2, h3');
+    var v;
+    var l = e.length;
+    while (l--) {
+      v += e[l].textContent;
+    }
+    v.replace(/\n|\r|\s|\v/g, '');
+    document.querySelector('h1').innerHTML += ' <span style="font-size: 70%">(' + v.length + ')</span>';
+  }, false);
+}
+</script>
+<script>
+if (!!window.addEventListener) {
+  window.addEventListener('DOMContentLoaded', function () {
+    var sec = document.querySelectorAll('body > section[id]');
+    var h = document.querySelectorAll('body > section[id] > h2:first-of-type');    
+    var toc = '';
+    var l = sec.length;
+    while (l--) {
+      toc = '<li><a href="#' + sec[l].id + '">' + h[l].innerHTML + '</a>' + toc;
+    }
+    var nav = document.createElement('nav');
+    nav.innerHTML = '<h2>目次</h2><ol>' + toc + '</ol>';
+    document.body.insertBefore(nav, sec[0]);
+  }, false);
+}
+</script>
+<body>
+
+<h1>CSS4セレクタ (Selectors Level 4)</h1>
+<!-- last-modified: 2011-08-30 -->
+
+<p><a href="http://www.w3.org/TR/css3-selectors/">CSS3のセレクタ仕様</a>が勧告されそうですが、CSS4のセレクタについても策定が始まっています。
+
+<footer>
+<address><a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+</footer>
+
