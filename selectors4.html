@@ -35,7 +35,7 @@ if (!!window.addEventListener) {
 }
 </script>
 <style>
-.stab { color: #666 }
+.stab { color: #999 }
 </style>
 <body>
 
@@ -49,22 +49,22 @@ if (!!window.addEventListener) {
 
 <p><a>セレクタ Level 4 (Selectors Level 4)</a>は、新しいレベルのセレクタ仕様です。CSS3でも数多くのセレクタが追加されましたが、Level 4ではさらに多くのセレクタが追加されています。
 
-<p>2011年8月現在、Selectors Level 4はEditor's Draftという位置づけです。Editor's Draftとは仕様のEditorがまとめた仕様の案であり、公式な草案 (Working Draft) ではありません。W3CのCSSWGは、Selectors Level 3が勧告になってから、Selectors Level 4の草案を公開する予定です（勧告される前に次のレベルが公開されたら、混乱する人がいるのではという懸念があるようです）。
+<p>2011年8月現在、Selectors Level 4はEditor's Draftという位置づけです。Editor's Draftとは仕様のEditorがまとめた仕様の案であり、公式な草案 (Working Draft) ではありません。W3CのCSSWGは、Selectors Level 3が勧告になってから、Selectors Level 4の草案を公開する予定です（勧告される前に次のレベルが公開されたら、混乱する人がいるのではという懸念があるようです）。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Aug/0645.html -->
 
-<p class=stab>仕様が初期の段階（WDさえ出ていない）ことから、仕様書にある機能がそのうちなくなる可能性があります。反対に、現在の仕様書にない新しいセレクタが追加される可能性もあります。
+<p>仕様が初期の段階（WDさえ出ていない）ことから、仕様書にある機能がそのうちなくなる可能性があります。反対に、現在の仕様書にない新しいセレクタが追加される可能性もあります。
 
-<p class=stab>多くのセレクタはCSS3に存在していたものです。新しく追加されたセレクタも、ブラウザの独自拡張を標準化した、もしくはHTML5や他のCSSモジュールで定義されたものを移管したものです。
+<p>実装状況ですが、多くのセレクタはCSS3までのレベルに存在していたものです。新しく追加されたセレクタについても、ブラウザの独自拡張を標準化したもの (<code>:any-link</code>, <code>:matches()</code>) や、他の仕様から移管されたもの (<code>:valid</code>, <code>:in-range</code>) ですので、次のレベルとはいえすでに実装が進んでいるとも言えます。
 
 <aside id=is-selectors-css>
 <h3>「CSS4セレクタ」か「セレクタ Level 4」か</h3>
 
-<p>他のCSS3モジュールはたいてい「CSS <var>Foo</var> Module Level 3」と、Level 3にあるCSSのモジュール仕様ということが分かる名前になっていますが、セレクタ仕様については「Selectors Level 3」「Selectors Level 4」と、CSSの名を冠していません。どういうことでしょうか。セレクタ仕様はCSSではないのでしょうか。
+<p>他のCSS3モジュールはたいてい「CSS <var>Foo</var> Module Level 3」と、CSS3のモジュールだと分かる名前になっていますが、セレクタ仕様については「Selectors Level 3」「Selectors Level 4」と、CSSの名を冠していません。どういうことでしょうか。セレクタ仕様はCSSではないのでしょうか。
 
-<p>これは、他のCSSモジュールと違い、セレクタ仕様は他のWebプラットフォーム仕様で使われることがあるため、CSSに限定されないということを意味しています。たとえば、セレクタから要素を取得する<a href="http://www.w3.org/TR/selectors-api/">Selectors API</a>などは、CSSではありませんがセレクタを利用しています。
-
-<p>同様に、<a href="http://www.w3.org/TR/css3-mediaquries">Media Queries</a>もHTMLの<code>media</code>属性などで使われることから、CSSの名を冠していません。（一方で、URLには<b>css3-<b>と、CSS）
+<p>これは、他のCSSモジュールと違い、セレクタ仕様は他のWebプラットフォーム仕様で使われることがあるため、CSSに限定されないということを意味しています。たとえば、セレクタから要素を取得する<a href="http://www.w3.org/TR/selectors-api/">Selectors API</a>などは、CSSではありませんがセレクタを利用していますセレクタ仕様と同様に、<a href="http://www.w3.org/TR/css3-mediaquries">Media Queries</a>もHTMLの<code>media</code>属性などで使われることから、CSSの名を冠していません。（一方で、URLには<b>css3-</b>とあり、CSS3であることがわかります。）
 
 <p>とはいえ、セレクタ仕様やメディアクエリーが「CSSでない」というわけではありません。CSSだけに限定されてはいないだけで、どちらもCSSの機能ではあります。「CSS3セレクタ」という表記がおかしいわけではありません。
+
+<!-- todo: 参考情報へのURLを探す。 -->
 </aside>
 </section>
 
