@@ -1,4 +1,4 @@
-/* last-modified: 2011-05-29 */
+/* update: 2011-08-30 */
 html {
   font-size: 16px;
   line-height: 2.0;
@@ -48,6 +48,8 @@ td {
   font-weight: bold;
   font-variant: small-caps;
 }
+.stab { color: #999 }
+
 figcaption:before {
   content: "Figure: ";
   font-weight: bold;
