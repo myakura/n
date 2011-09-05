@@ -5,8 +5,8 @@
 <link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
 <script>
 // word count
-if (!!window.addEventListener) {
-  window.addEventListener('DOMContentLoaded', function () {
+if (!!document.addEventListener) {
+  document.addEventListener('DOMContentLoaded', function () {
     var e = document.querySelectorAll('p, li, dd, h1, h2, h3');
     var v;
     var l = e.length;
@@ -19,8 +19,8 @@ if (!!window.addEventListener) {
 }
 </script>
 <script>
-if (!!window.addEventListener) {
-  window.addEventListener('DOMContentLoaded', function () {
+if (!!document.addEventListener) {
+  document.addEventListener('DOMContentLoaded', function () {
     var sec = document.querySelectorAll('body > section[id]');
     var h = document.querySelectorAll('body > section[id] > h2:first-of-type');    
     var toc = '';
@@ -34,13 +34,10 @@ if (!!window.addEventListener) {
   }, false);
 }
 </script>
-<style>
-.stab { color: #999 }
-</style>
 <body>
 
 <h1>CSS4セレクタ (Selectors Level 4)</h1>
-<!-- last-modified: 2011-08-30 -->
+<!-- update: 2011-09-05 -->
 
 <p><a href="http://www.w3.org/TR/css3-selectors/">CSS3のセレクタ仕様</a>が勧告されそうですが、CSS4のセレクタについても策定が始まっています。このノートでは、CSS4セレクタの機能についてCSS3のセレクタと比べながら紹介します。
 
