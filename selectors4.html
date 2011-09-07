@@ -72,18 +72,18 @@ if (!!document.addEventListener) {
 
 </section>
 
-<section id=subject>
-<h2>セレクタの対象とCSS4の<code>$<var>selector</var></code></h2>
+<section id=subject-and-dollar-sign>
+<h2>セレクタの対象とCSS4の<code>$<var>selector</var></code>記法</h2>
 
-<p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能になっています。
+<p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の応用として使えるようになっています。
 
-<p>あるセレクタによって表される要素は、そのセレクタの「対象 (subject)」と呼ばれます。なにやら難しそうですが、要は書いたスタイルが適用される要素のことです。たとえば、<code>ul > li > a</code>というセレクタの対象は<code>a</code>要素です。
+<p>とりあえず、何かの親にスタイルを当ててみましょう。
 
-<p>CSS3までのセレクタでは、対象が常に、最後のcompound selectorが表す要素になっていました。なにやら難しそうですが、<code>ul > li > a</code>と書いたとき、それは最後の<code>a</code>を指し示していたわけです。当然、こんな構造のときの<code>li</code>は指定できませんでした。だからみんな「<code>a <strong>&lt;</strong> li</code>って書けるようにして」と言ってたわけです。
+<pre><code>ul > <strong>$</strong>li > a { list-style: none }</code></pre>
 
-<p>CSS4では、この対象を変更できるようになりました。対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで変更できます。<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
+<p>これまでのCSSでは、セレクタリストにある各セレクタのうち最後の要素が選択されていました。セレクタによって表される要素をセレクタ仕様では「対象 (subject)」と呼んでいます。CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになったのです。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
-<p class=XXX>todo: 例を書く。
+<p class=XXX>todo: もっと例を書く。
 <p class=XXX>todo: このわかりにくい説明をなんとかして、もうちょっとキャッチーな文にする。
 
 </section>
