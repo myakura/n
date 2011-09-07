@@ -81,7 +81,9 @@ if (!!document.addEventListener) {
 
 <pre><code>ul > <strong>$</strong>li > a { list-style: none }</code></pre>
 
-<p>これまでのCSSでは、セレクタリストにある各セレクタのうち最後の要素が選択されていました。セレクタによって表される要素をセレクタ仕様では「対象 (subject)」と呼んでいます。CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになったのです。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
+<p>さりげなく<code><strong>$</strong></code>とあるのがわかるでしょうか。これによって、<code>a</code>要素の親である<code>li</code>要素にスタイルが当たるようになりました。
+
+<p>これまでのCSSでは、セレクタリストにある各セレクタのうち最後の要素が選択されていました。このセレクタによって表される要素をセレクタ仕様では「対象 (subject)」と呼んでいます。CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになったのです。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
 <p class=XXX>todo: もっと例を書く。
 <p class=XXX>todo: このわかりにくい説明をなんとかして、もうちょっとキャッチーな文にする。
