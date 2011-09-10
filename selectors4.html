@@ -22,29 +22,28 @@ if (!!document.addEventListener) {
 <body>
 
 <h1>CSS4セレクタ (Selectors Level 4) の新機能</h1>
-<!-- update: 2011-09-07 -->
+<!-- update: 2011-09-10 -->
 
 <p><a href="http://www.w3.org/TR/css3-selectors/">CSS3のセレクタ仕様</a>が勧告されそうですが、CSS4のセレクタについても策定が始まっています。CSS4では誰もが考えた「親セレクタ」をはじめ、より高機能なセレクタが提案されています。このノートでは、CSS4セレクタ仕様で新しく追加された機能について紹介します。
 
 <section id=about-selectors4>
 <h2>Selectors Level 4仕様について</h2>
 
-<p><a>Selectors Level 4</a> は、<a href="http://www.w3.org/TR/css3-selectors/">Selectors Level 3</a>仕様の上位にある新しいセレクタ仕様です。Level 3では<code>:nth-of-type()</code>など便利なセレクタが数多く追加されましたが、Level 4仕様ではより便利なセレクタや、新しい仕組みが検討されています。
+<p><a>Selectors Level 4</a> は、<a href="http://www.w3.org/TR/css3-selectors/">Selectors Level 3</a>仕様の上位にある新しいセレクタ仕様です。Level 3では<code>:nth-child()</code>など便利なセレクタが数多く追加されましたが、Level 4仕様ではより便利なセレクタや、新しい仕組みが検討されています。
 
-<p class=note>2011年9月現在、Selectors Level 4は公式な草案 (Working Draft) が公開されていません。現在は非公式のEditor's Draftのみが公開されています。W3CのCSSWGは、Selectors Level 3勧告と同時にSelectors Level 4の草案を公開する予定です。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Aug/0645.html -->
+<p>2011年9月現在、Selectors Level 4は公式な草案 (Working Draft) が公開されていません。現在は非公式のEditor's Draftのみが公開されています。W3CのCSSWGは、Selectors Level 3勧告と同時にSelectors Level 4の草案を公開する予定です。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Aug/0645.html -->
 
 <p>仕様が初期の段階ですから、仕様書にある機能がそのうちなくなる可能性があります。反対に、現在の仕様書にない新しいセレクタが追加される可能性もあります。
 
-<p>そんな初期段階にある仕様ではありますが、思いのほか実装状況は良好です。これは、多くのセレクタがCSS3までのレベルに存在していたことがひとつあります。また、新しく追加されたセレクタについても、ブラウザの独自拡張を標準化したもの (<code>:any-link</code>, <code>:matches()</code>) や、他の仕様から移管されたもの (<code>:valid</code>, <code>:in-range</code>) ですので、次のレベルとはいえすでに実装が進んでいるとも言えます。
 
 <aside id=is-selectors-css>
 <h3>「CSS4セレクタ」か「セレクタ Level 4」か</h3>
 
-<p>他のCSS3モジュールはたいてい「CSS <var>Foo</var> Module Level 3」と、CSS3のモジュールだと分かる名前になっていますが、セレクタ仕様については「Selectors Level 3」「Selectors Level 4」と、CSSの名を冠していません。どういうことでしょうか。セレクタ仕様はCSSではないのでしょうか。
+<p>他のCSS3モジュールはたいてい「CSS <var>Foo</var> Module Level 3」と、CSS3のモジュールだと分かる名前になっていますが、セレクタ仕様については「Selectors Level 3」「Selectors Level 4」と、CSSの名を冠していません。いったいどういうことでしょうか。セレクタ仕様はCSSではないのでしょうか。
 
-<p>これは、他のCSSモジュールと違い、セレクタ仕様は他のWebプラットフォーム仕様で使われることがあるため、CSSに限定されないということを意味しています。たとえば、セレクタから要素を取得する<a href="http://www.w3.org/TR/selectors-api/">Selectors API</a>は、CSSの仕様ではありませんがセレクタを利用しています。セレクタと同様に、<a href="http://www.w3.org/TR/css3-mediaquries">Media Queries</a>もHTMLの<code>media</code>属性などで使われることから、CSSの名を冠していません。(一方で、URLには<b>css3-</b>とあり、CSS3でもあることがわかります。)
+<p>これは、他のCSSモジュールと違い、セレクタ仕様は他のWebプラットフォーム仕様で使われることがあるため、CSSに限定されないということを意味しています。たとえば、セレクタから要素を取得する<a href="http://www.w3.org/TR/selectors-api/">Selectors API</a>は、CSSの仕様ではありませんがセレクタを利用しています。セレクタと同様に、<a href="http://www.w3.org/TR/css3-mediaquries">Media Queries</a>もHTMLの<code>media</code>属性などで使われることから、CSSの名を冠していません。
 
-<p>とはいえ、セレクタ仕様やメディアクエリー仕様が「CSSでない」というわけではありません。CSSだけに限定されてはいないだけで、どちらもCSSの機能ではあります。「CSS4セレクタ」という表記がおかしいわけではありません。
+<p>とはいえ、セレクタ仕様やメディアクエリー仕様が「CSSでない」というわけではありません。CSSだけに限定されてはいないだけで、どちらもCSSの機能ではあります。「CSS4セレクタ」という表記は、別におかしくはないのです。
 
 <!-- todo: 参考情報へのURLを探す。 -->
 </aside>
@@ -73,22 +72,38 @@ if (!!document.addEventListener) {
 </section>
 
 <section id=subject-and-dollar-sign>
-<h2>セレクタの対象とCSS4の<code>$<var>selector</var></code>記法</h2>
+<h2>セレクタの対象と<code>$<var>selector</var></code>記法</h2>
 
-<p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の応用として使えるようになっています。
+<p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の応用例として使えるようになっています。
 
 <p>とりあえず、何かの親にスタイルを当ててみましょう。
 
 <pre><code>ul > <strong>$</strong>li > a { list-style: none }</code></pre>
 
-<p>さりげなく<code><strong>$</strong></code>とあるのがわかるでしょうか。これによって、<code>a</code>要素の親である<code>li</code>要素にスタイルが当たるようになりました。
+<p>さりげなく<code><strong>$</strong></code>とあるのがわかるでしょうか。これがCSS4で導入された新機能です。
 
-<p>これまでのCSSでは、セレクタリストにある各セレクタのうち最後の要素が選択されていました。このセレクタによって表される要素をセレクタ仕様では「対象 (subject)」と呼んでいます。CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになったのです。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
+<p>セレクタによって表される要素 (スタイルが適用される要素) を、セレクタ仕様では「<strong>対象 (subject)</strong>」と呼びます。これまでのレベルでは、各セレクタのうち最後の要素が対象となっていました。
+
+<p>CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになったのです。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
 <p class=XXX>todo: もっと例を書く。
 <p class=XXX>todo: このわかりにくい説明をなんとかして、もうちょっとキャッチーな文にする。
 
 </section>
+
+<section id=browser-support>
+<h2>ブラウザの対応状況</h2>
+
+<p>Selectors Level 4は初期段階にある仕様ですが、思いのほか実装状況は良好です。
+
+<p>理由のひとつは、仕様書にCSS3のセレクタが含まれてるからです。実装されてるセレクタが最初から多いというわけです。
+
+<p>CSS4で新しく追加されたセレクタについても、ブラウザの独自拡張を標準化したもの (<code>:any-link</code>, <code>:matches()</code>) や、他の仕様から移管されたもの (<code>:valid</code>, <code>:in-range</code>) があります。ですから次のレベルとはいえ、すでに実装が進んでいるとも言えます。
+
+<p class=XXX>新しいセレクタの対応状況を書く。
+
+</section>
+
 
 <footer>
 <address><a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
