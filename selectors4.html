@@ -22,7 +22,7 @@ if (!!document.addEventListener) {
 <body>
 
 <h1>CSS4セレクタ (Selectors Level 4) の新機能</h1>
-<!-- update: 2011-09-10 -->
+<!-- update: 2011-09-12 -->
 
 <p><a href="http://www.w3.org/TR/css3-selectors/">CSS3のセレクタ仕様</a>が勧告されそうですが、CSS4のセレクタについても策定が始まっています。CSS4では誰もが考えた「親セレクタ」をはじめ、より高機能なセレクタが提案されています。このノートでは、CSS4セレクタ仕様で新しく追加された機能について紹介します。
 
@@ -80,14 +80,21 @@ if (!!document.addEventListener) {
 
 <pre><code>ul > <strong>$</strong>li > a { list-style: none }</code></pre>
 
-<p>さりげなく<code><strong>$</strong></code>とあるのがわかるでしょうか。これがCSS4で導入された新機能です。
+<p><code>li</code>の前にさりげなく<code><strong>$</strong></code>とあるのがわかるでしょうか。これがCSS4で導入された新機能です。
 
 <p>セレクタによって表される要素 (スタイルが適用される要素) を、セレクタ仕様では「<strong>対象 (subject)</strong>」と呼びます。これまでのレベルでは、各セレクタのうち最後の要素が対象となっていました。
 
-<p>CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになったのです。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
+<p>CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
 <p class=XXX>todo: もっと例を書く。
 <p class=XXX>todo: このわかりにくい説明をなんとかして、もうちょっとキャッチーな文にする。
+
+<aside>
+<h3><code>$<var>selector</var></code>はなんと呼ぶか</h3>
+
+<p>なんて呼べばいいんでしょうねえ。とりあえず、combinatorなども「セレクタ」と呼ばれるので、「$セレクタ」（ダラーセレクタ）とか「ドルセレクタ」とかでいい気はしてます。「セレクタ」と呼べないかもしれませんが……
+
+</aside>
 
 </section>
 
