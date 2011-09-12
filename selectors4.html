@@ -98,6 +98,67 @@ if (!!document.addEventListener) {
 
 </section>
 
+<section id=matches>
+<h2>「どれか」にマッチする<code>:matches()</code></h2>
+
+<p>CSS4では、<code>:matches()</code>という擬似クラスが導入されました。引数に複数のセレクタを書くと「そのうちのどれか」にマッチします。
+
+<p>カンマと何が違うんだという話ですが、ネストした場合にとても楽です。HTML5のsectioning content (<code>section</code>, <code>article</code>, <code>aside</code>, <code>nav</code>)と<code>h1</code>の組み合わせを考えてみましょう。
+
+<pre><code>/* トップレベルの見出し */
+h1 {
+  font-size: 240%;
+  font-weight: bold;
+}
+/* セカンドレベルの見出し */
+section h1, article h1, aside h1, nav h1 {
+  font-size: 210%;
+}
+/* サードレベルの見出し */
+section section h1, section article h1, section nav h1, section aside h1,
+article section h1, article article h1, article nav h1, article aside h1,
+aside section h1, aside article h1, aside nav h1, aside aside h1,
+nav section h1, nav article h1, nav nav h1, nav aside h1 {
+  font-size: 180%;
+}
+/* もういや…… */</code></pre>
+
+<p>ひどくなります。<code>aside</code>中に<code>article</code>とか、<code>nav</code>中に<code>nav</code>とかどれだけあるんだよと思いもしますが、それはさておいて。ここで<code>:matches()</code>が力を発揮します。
+
+<pre><code>/* トップレベルの見出し */
+h1 {
+  font-size: 240%;
+  font-weight: bold;
+}
+/* セカンドレベルの見出し */
+:matches(section, article, aside, nav) h1 {
+  font-size: 210%;
+}
+/* サードレベルの見出し */
+:matches(section, article, aside, nav)
+:matches(section, article, aside, nav) h1 {
+  font-size: 180%;
+}
+/* 4th... */
+:matches(section, article, aside, nav)
+:matches(section, article, aside, nav)
+:matches(section, article, aside, nav) h1 {
+  font-size: 150%;
+}
+/* こんな感じで続く！ */</code></pre>
+
+<p>こんな風に、かなり見通しが良くなります。
+
+<p><code>:matches()</code>はもともと、MozillaがGeckoに導入した<code>:-moz-any()</code>という独自拡張のセレクタが元になっています。このセレクタによって、<code>ul</code>, <code>ol</code>, <code>dir</code>などの複雑なネストや、上記のようなHTML5のセクションと見出しのスタイル付けがとても見やすいものになりました。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=544834 --><!-- ref: http://hg.mozilla.org/mozilla-central/rev/8e552e1afa49 --><!-- ref: http://hg.mozilla.org/mozilla-central/rev/30c9289d5dad#l5.1 -->
+
+<p><code>:-moz-any()</code>はその後WebKitにも<code>:-webkit-any()</code>として導入され、UAスタイルシートでHTML5のセクションと見出しのスタイルづけに利用されています。<!-- ref: http://trac.webkit.org/changeset/81742 --><!-- ref: http://trac.webkit.org/changeset/82400 -->
+
+<p>なお、CSS4では引数内のセレクタにcombinatorが使えないという制限があります。また、<code>:matches()</code>や<code>:not()</code>をネストさせることはできないともされています。
+
+<p class=XXX>todo: もっと実用的な例がないか探す。
+
+</section>
+
 <section id=browser-support>
 <h2>ブラウザの対応状況</h2>
 
