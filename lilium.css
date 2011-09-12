@@ -65,3 +65,5 @@ footer {
 :lang(en) { line-height: 1.5 }
 
 blockquote p { margin: 1em 0; }
+
+.update { margin: 0 }
