@@ -148,7 +148,7 @@ h1 {
 
 <p>こんな風に、かなり見通しが良くなります。
 
-<p><code>:matches()</code>はもともと、MozillaがGeckoに導入した<code>:-moz-any()</code>という独自拡張のセレクタが元になっています。このセレクタによって、<code>ul</code>, <code>ol</code>, <code>dir</code>などの複雑なネストや、上記のようなHTML5のセクションと見出しのスタイル付けがとても見やすいものになりました。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=544834 --><!-- ref: http://hg.mozilla.org/mozilla-central/rev/8e552e1afa49 --><!-- ref: http://hg.mozilla.org/mozilla-central/rev/30c9289d5dad#l5.1 -->
+<p><code>:matches()</code>はもともと、MozillaがGeckoに導入した<code>:-moz-any()</code>という独自拡張のセレクタが元になっています。このセレクタによって、<code>ul</code>, <code>ol</code>, <code>dir</code>などの複雑なネストや、上記のようなHTML5のセクションと見出しのスタイル付けがとても見やすいものになりました。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=544834 --><!-- ref: http://hg.mozilla.org/mozilla-central/rev/8e552e1afa49 --><!-- ref: http://hg.mozilla.org/mozilla-central/rev/30c9289d5dad#l5.1 --><!-- ref: http://hacks.mozilla.org/2010/05/moz-any-selector-grouping/ -->
 
 <p><code>:-moz-any()</code>はその後WebKitにも<code>:-webkit-any()</code>として導入され、UAスタイルシートでHTML5のセクションと見出しのスタイルづけに利用されています。<!-- ref: http://trac.webkit.org/changeset/81742 --><!-- ref: http://trac.webkit.org/changeset/82400 -->
 
@@ -156,6 +156,18 @@ h1 {
 
 <p class=XXX>todo: もっと実用的な例がないか探す。
 
+</section>
+
+<section id=any-link>
+<h2><code>:any-link</code></h2>
+
+<p><code>:any-link</code>は「ハイパーリンクのソースアンカーとして機能する要素」にマッチします。なんのこっちゃという話ですが、、ざっくりいうと<code>:link</code>または<code>:visited</code>にマッチする擬似クラスです。<code>:link, :visited</code>と同じです。
+
+<p>「そんなの<code>a</code>でいいじゃん」という話もあるかもしれませんが、<code>href</code>属性のない (ハイパーリンクが結ばれてない) <code>a</code>要素は「リンクのプレースホルダ」を表すので、リンクではありません。ブラウザの実装も、<code>:link</code>もしくは<code>:visited</code>は<code>&lt;a><var>blah</var>&lt;/a></code>にマッチしません。リンクだけを選択したいときに、<code>a:link, a:visited</code>としなくて済むわけです。
+
+<p>この<code>:any-link</code>は、MozillaがGeckoに組み込んだ<code>:-moz-any-link</code>というセレクタがもとになっています。同じ働きをするものがWebKitでは<code>:-webkit-any-link</code>として実装されています。また、Operaでも内部的にそういったセレクタを持っているようです。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Jul/0538.html -->
+
+<p class=XXX>todo: 画像とかイメージマップとかの「リンク」にはマッチするのか？
 </section>
 
 <section id=browser-support>
