@@ -166,8 +166,33 @@ h1 {
 <p>「そんなの<code>a</code>でいいじゃん」という話もあるかもしれませんが、<code>href</code>属性のない (ハイパーリンクが結ばれてない) <code>a</code>要素は「リンクのプレースホルダ」を表すので、リンクではありません。ブラウザの実装も、<code>:link</code>もしくは<code>:visited</code>は<code>&lt;a><var>blah</var>&lt;/a></code>にマッチしません。リンクだけを選択したいときに、<code>a:link, a:visited</code>としなくて済むわけです。
 
 <p>この<code>:any-link</code>は、MozillaがGeckoに組み込んだ<code>:-moz-any-link</code>というセレクタがもとになっています。同じ働きをするものがWebKitでは<code>:-webkit-any-link</code>として実装されています。また、Operaでも内部的にそういったセレクタを持っているようです。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Jul/0538.html -->
+</section>
 
-<p class=XXX>todo: 画像とかイメージマップとかの「リンク」にはマッチするのか？
+<section id=local-link>
+<h2>リンク階層を表す<code>:local-link</code></h2>
+<p>Webサイトは階層構造をとっていることが多いですが、「現在地」のリンクや「下層」のリンクについてスタイルを変えたいということがあるかと思います。提案中の<code>:local-link</code>は、それを実現する擬似クラスです。
+
+<p>とりあえず、仕様書の例を拾ってみます。ナビゲーションにある、現在地と同じリンクの下線を無効にする場合、こう書きます。
+
+<pre><code>nav :local-link { text-decoration: none; }</code></pre>
+
+<p><code>:local-link</code>には関数表記もあります。中に数値 (0以上の自然数) を書くことで、特定階層以下のリンクにマッチさせることができます。たとえば、<code>:local-link(1)</code>と書くと、ルートディレクトリの子ディレクトリ以下へのリンクにマッチします。
+
+<pre><code>/* /product/ やら /news/ やらへのリンクにマッチする */
+:local-link(1) { ... }</code></pre>
+
+<p>注意したいのが、サブディレクトリも含めてしまうことでしょうか。<code>http://example/</code>以下に<code>:local-link(2)</code>というセレクタがあるとします。このとき、<code>http://example/foo/bar/</code>へのリンクにマッチするのは当然ですが、指定した階層以下のリンクにマッチするため、<code>http://example/foo/bar/baz/</code> (そしてそれ以下のリソース) にもマッチします。特定のディレクトリ直下へのリンクを指定したい場合は、それより下階層へのリンクにマッチするものを書いて上書きするしかありません。
+
+<p>仕様書では、<code>:not()</code>と組み合わせ、外部リンクにスタイルを当てる例も紹介されています。
+
+<pre><code>:not(:local-link(0)) { text-decoration-style: dashed; }</code></pre>
+<!-- ちなみにtext-decoration-styleはcss3-textで定義されています。 -->
+
+<p>注意としては、「内部リンク」の定義でしょうか。仕様書では“domain”とありますが、ホストでのマッチではなくoriginのマッチとして動作するようです。サブドメインなどは「外部リンク」として扱われてしまいます。
+<!-- メモ: Tantekが“subdomains are an anti-pattern; don't use them”と言ってる http://lists.w3.org/Archives/Public/www-style/2011Jul/0538.html -->
+
+<!-- 特定のパスにマッチさせることができないとちょっとな気がする -->
+<!-- History APIで書き換えられたもののパスはどう扱われるんだろう。 -->
 </section>
 
 <section id=browser-support>
