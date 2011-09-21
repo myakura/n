@@ -161,11 +161,13 @@ h1 {
 <section id=any-link>
 <h2>未訪問・既訪問を問わない<code>:any-link</code></h2>
 
-<p><code>:any-link</code>は「ハイパーリンクのソースアンカーとして機能する要素」にマッチします。なんのこっちゃという話ですが、、ざっくりいうと<code>:link</code>または<code>:visited</code>にマッチする擬似クラスです。<code>:link, :visited</code>と同じです。
+<p><code>:any-link</code>は「ハイパーリンクのソースアンカーとして機能する要素」にマッチします。なんのこっちゃという話ですが、、ざっくりいうと<code>:link</code>または<code>:visited</code>にマッチする擬似クラスです。<code>:link, :visited</code>と同じです。リンクだけを選択したいときに、<code>a:link, a:visited</code>としなくて済むわけです。
 
-<p>「そんなの<code>a</code>でいいじゃん」という話もあるかもしれませんが、<code>href</code>属性のない (ハイパーリンクが結ばれてない) <code>a</code>要素は「リンクのプレースホルダ」を表すので、リンクではありません。ブラウザの実装も、<code>:link</code>もしくは<code>:visited</code>は<code>&lt;a><var>blah</var>&lt;/a></code>にマッチしません。リンクだけを選択したいときに、<code>a:link, a:visited</code>としなくて済むわけです。
+<p>「そんなの<code>a</code>でいいじゃん」という話もあるかもしれませんが、<code>href</code>属性のない (ハイパーリンクが結ばれてない) <code>a</code>要素は「リンクになるかもしれないプレースホルダ」を表すので、ハイパーリンクのアンカーではありません。ブラウザの実装も、<code>:link</code>もしくは<code>:visited</code>は<code>&lt;a><var>blah</var>&lt;/a></code>にマッチしません。
 
 <p>この<code>:any-link</code>は、MozillaがGeckoに組み込んだ<code>:-moz-any-link</code>というセレクタがもとになっています。同じ働きをするものがWebKitでは<code>:-webkit-any-link</code>として実装されています。また、Operaでも内部的にそういったセレクタを持っているようです。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Jul/0538.html -->
+
+<p class=XXX>todo: <code>a:[href]</code>との違いや、他にマッチする要素があるか調べる。
 </section>
 
 <section id=local-link>
@@ -211,6 +213,6 @@ h1 {
 
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: September 21, 2011
+<p class=update>Update: September 22, 2011
 </footer>
 
