@@ -197,6 +197,23 @@ h1 {
 <!-- History APIで書き換えられたもののパスはどう扱われるんだろう。 -->
 </section>
 
+<section id=case-insensitive-attr-matching>
+<h2>大文字小文字を問わない属性セレクタ</h2>
+
+<p>ごくたまに、セレクタでハマることがあります。属性値が大文字と小文字の混在なのに、セレクタは全部小文字で書いていて適用されなかったケースです。
+
+<p><a href="http://whatwg.org/html#selectors">HTMLの定義</a>では、いくつかの属性を除き、基本的にセレクタは<strong>属性値の大文字小文字を区別する</strong>ようになっていますので、<code>class</code>や<code>id</code>などは大文字小文字を間違えるとマッチしないわけです。
+
+<p>ただ、大文字小文字を含めてマッチさせたいケースがあるかもしれません。Selectors 4では、属性セレクタの書式が拡張され、大文字小文字を区別しない属性値のマッチングが可能となりました。
+
+<pre><code>elem[attr="whatevercase" <strong>i</strong>] { ... }</code></pre>
+
+<p>属性セレクタの閉じ括弧の前に<strong><code>i</code></strong>と記述すると、属性値のマッチングで大文字と小文字を問わないようになります。この場合は<code>attr="whatevercase"</code>でも<code>attr="WHATEVERCASE"</code>でも<code>attr="whateverCase"</code>でもマッチします。
+
+<p>なお、ここでの「大文字と小文字」はASCIIの範囲 (<code>[a-z]</code>と<code>[A-Z]</code>) なので、その範囲外は対象外となります。
+
+</section>
+
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
 <p class=update>Update: September 27, 2011
