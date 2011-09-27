@@ -202,7 +202,7 @@ h1 {
 
 <p>ごくたまに、セレクタでハマることがあります。属性値が大文字と小文字の混在なのに、セレクタは全部小文字で書いていて適用されなかったケースです。
 
-<p><a href="http://whatwg.org/html#selectors">HTMLの定義</a>では、いくつかの属性を除き、基本的にセレクタは<strong>属性値の大文字小文字を区別する</strong>ようになっていますので、<code>class</code>や<code>id</code>などは大文字小文字を間違えるとマッチしないわけです。
+<p><a href="http://whatwg.org/html#selectors">HTMLの定義</a>では、セレクタはいくつかの属性を除いて、基本的に属性値の大文字小文字を区別します。<code>class</code>や<code>id</code>などは、大文字小文字を間違えるとマッチしないわけです (Quirksモードを除く)。
 
 <p>ただ、大文字小文字を含めてマッチさせたいケースがあるかもしれません。Selectors 4では、属性セレクタの書式が拡張され、大文字小文字を区別しない属性値のマッチングが可能となりました。
 
@@ -216,6 +216,6 @@ h1 {
 
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: September 27, 2011
+<p class=update>Update: September 28, 2011
 </footer>
 
