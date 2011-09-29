@@ -66,19 +66,18 @@ if (!!document.addEventListener) {
 
 <dl>
 <dt>セレクタ
-<dd>単体セレクタ、compound selector、complex selector、セレクタリストを総称
-<dt>単体セレクタ
+<dd>単体セレクタ、合成セレクタ、複合セレクタ、セレクタリストを総称
+<dt>単体セレクタ (simple selector)
 <dd>型セレクタ (要素型セレクタ、type selector)、ユニバーサルセレクタ、属性セレクタ、クラスセレクタ、IDセレクタ、擬似クラス
-<dt>compound selector
+<dt>合成セレクタ (compound selector)
 <dd>結合子をはさまない単体セレクタの連なり
-<dt>complex selector
-<dd>compound selectorが結合子によって連なったもの
-<dt>結合子
-<dd>compound selector同士の関係を表すもの、空白、大なり、プラス記号、チルダがあり、俗にそれぞれ「子孫セレクタ」「子セレクタ」「隣接セレクタ」「兄弟セレクタ」などと呼ばれる
+<dt>複合セレクタ (complex selector)
+<dd>合成セレクタが結合子によって連なったもの
+<dt>結合子 (combinator)
+<dd>合成セレクタ同士の関係を表すもの、空白 ( )、大なり (>)、プラス記号 (+)、チルダ (~) があり、俗にそれぞれ「子孫セレクタ」「子セレクタ」「隣接セレクタ」「兄弟セレクタ」などと呼ばれる
 </dl>
 
-<p class=XXX>compoundとcomplexってどう訳せばいいんだろう。。
-
+<p>Selectors Level 3とは用語が違っていたりしますが、これらを厳密に区別するような場合はそんなにないでしょう。
 </section>
 
 <section id=subject-and-dollar-sign>
@@ -94,7 +93,7 @@ if (!!document.addEventListener) {
 
 <p>セレクタによって表される要素 (スタイルが適用される要素) を、セレクタ仕様では「<strong>対象 (subject)</strong>」と呼びます。これまでのレベルでは、各セレクタのうち最後の要素が対象となっていました。
 
-<p>CSS4では、対象としたいcompound selectorの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
+<p>CSS4では、対象としたい合成セレクタの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
 <p class=XXX>todo: もっと例を書く。
 <p class=XXX>todo: このわかりにくい説明をなんとかして、もうちょっとキャッチーな文にする。
@@ -102,7 +101,7 @@ if (!!document.addEventListener) {
 <aside>
 <h3><code>$<var>selector</var></code>はなんと呼ぶか</h3>
 
-<p>なんて呼べばいいんでしょうねえ。とりあえず、combinatorなども「セレクタ」と呼ばれるので、「$セレクタ」（ダラーセレクタ）とか「ドルセレクタ」とかでいい気はしてます。「セレクタ」と呼べないかもしれませんが……
+<p>なんて呼べばいいんでしょうねえ。とりあえず、結合子なども「セレクタ」と呼ばれるので、「$セレクタ」（ダラーセレクタ）とか「ドルセレクタ」とかでいい気はしてます。「セレクタ」と呼べないかもしれませんが……
 
 </aside>
 
@@ -163,7 +162,7 @@ h1 {
 
 <p><code>:-moz-any()</code>はその後WebKitにも<code>:-webkit-any()</code>として導入され、UAスタイルシートでHTML5のセクションと見出しのスタイルづけに利用されています。<!-- ref: http://trac.webkit.org/changeset/81742 --><!-- ref: http://trac.webkit.org/changeset/82400 -->
 
-<p>なお、CSS4では引数内のセレクタにcombinatorが使えないという制限があります。また、<code>:matches()</code>や<code>:not()</code>をネストさせることはできないともされています。
+<p>なお、CSS4では引数内のセレクタに結合子が使えないという制限があります。また、<code>:matches()</code>や<code>:not()</code>をネストさせることはできないともされています。
 
 <p class=XXX>todo: もっと実用的な例がないか探す。
 
