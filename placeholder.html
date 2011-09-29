@@ -11,7 +11,7 @@ if (!!document.addEventListener) {
     var toc = '';
     var l = sec.length;
     while (l--) {
-      toc = '<li><a href=\"#' + sec[l].id + '\">' + h[l].innerHTML + '</a>' + toc;
+      toc = '<li><a href="#' + sec[l].id + '">' + h[l].innerHTML + '</a>' + toc;
     }
     var nav = document.createElement('nav');
     nav.innerHTML = '<h2>目次</h2><ol>' + toc + '</ol>';
@@ -19,10 +19,20 @@ if (!!document.addEventListener) {
   }, false);
 }
 </script>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26017405-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 <body>
 
 <h1>プレースホルダとHTML5の<code>placeholder</code>属性</h1>
-<!-- last-modified: 2011-07-20 -->
 
 <p>HTML5で導入された<code>placeholder</code>属性によって、フォームフィールドにプレースホルダを設定できるようになりました。さて、プレースホルダとはそもそもなんでしょうか。また、どのようなテキストを書けばよいのでしょうか。
 
@@ -172,6 +182,7 @@ if (!!document.addEventListener) {
 
 <p>ただ、2011年2月3日に、WebKit Bugzillaに<a href="https://bugs.webkit.org/show_bug.cgi?id=53740">“Allow platforms to specify if the placeholder should be visible when text controls are focused”</a>というバグがAppleのAdele Petersonによりたてられ、<a href="http://trac.webkit.org/changeset/77639">2月4日に修正</a>されました。これによって、プラットフォームごとにプレースホルダの挙動が変更可能となります。仕様の記述も若干ですが改まるかもしれません。
 <p>また、2011年7月20日にリリースされたOS X Lion上のSafari (5.1)では、フォーカス時にはプレースホルダーが消えないという挙動になっています。
+<!-- http://lists.whatwg.org/pipermail/whatwg-whatwg.org/2011-July/032555.html -->
 </section>
 
 <section id=a11y>
@@ -194,5 +205,6 @@ if (!!document.addEventListener) {
 </aside>
 
 <footer>
-<address><a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+<address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+<p class=update>Update: September 30, 2011
 </footer>
