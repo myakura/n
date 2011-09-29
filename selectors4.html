@@ -23,16 +23,14 @@ if (!!document.addEventListener) {
 
 <h1>CSS4セレクタ (Selectors Level 4) の新機能</h1>
 
-<p><a href="http://www.w3.org/TR/css3-selectors/">CSS3のセレクタ仕様</a>が勧告されそうですが、CSS4のセレクタについても策定が始まっています。CSS4では誰もが考えた「親セレクタ」をはじめ、より高機能なセレクタが提案されています。このノートでは、CSS4セレクタ仕様で新しく追加された機能について紹介します。
+<p>2011年9月29日、<a href="http://www.w3.org/TR/2011/REC-css3-selectors-20110929/">CSS3セレクタ仕様の勧告</a>と同時に、<a href="http://www.w3.org/TR/2011/WD-selectors4-20110929">Selectors Level 4のFPWD</a>が公開されました。CSS4では誰もが考えた「親セレクタ」をはじめ、より高機能なセレクタが提案されています。このノートでは、CSS4セレクタ仕様で新しく追加された機能について紹介します。
 
 <section id=about-selectors4>
 <h2>Selectors Level 4仕様について</h2>
 
-<p><a>Selectors Level 4</a> は、<a href="http://www.w3.org/TR/css3-selectors/">Selectors Level 3</a>仕様の上位にある新しいセレクタ仕様です。Level 3では<code>:nth-child()</code>など便利なセレクタが数多く追加されましたが、Level 4仕様ではより便利なセレクタや、新しい仕組みが検討されています。
+<p><a href="http://www.w3.org/TR/selectors4/">Selectors Level 4</a> は、<a href="http://www.w3.org/TR/css3-selectors/">Selectors Level 3</a>仕様の上位にある新しいセレクタ仕様です。Level 3では<code>:nth-child()</code>など便利なセレクタが数多く追加されましたが、Level 4仕様ではより便利なセレクタや、新しい仕組みが検討されています。
 
-<p>2011年9月現在、Selectors Level 4は公式な草案 (Working Draft) が公開されていません。現在は非公式のEditor's Draftのみが公開されています。W3CのCSSWGは、Selectors Level 3勧告と同時にSelectors Level 4の草案を公開する予定です。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Aug/0645.html -->
-
-<p>仕様が初期の段階ですから、仕様書にある機能がそのうちなくなる可能性があります。反対に、現在の仕様書にない新しいセレクタが追加される可能性もあります。
+<p>仕様が初期の段階ですから、現在の仕様書にある機能がそのうちなくなる可能性があります。反対に、現在の仕様書にない新しいセレクタが追加される可能性もあります。
 
 
 <aside id=is-selectors-css>
@@ -63,7 +61,7 @@ if (!!document.addEventListener) {
 <dt>complex selector
 <dd>compound selectorが結合子によって連なったもの
 <dt>結合子
-<dd>compound selector同士の関係を表すもの、空白、大なり、プラス記号、チルダがあり、俗にそれぞれ「子孫セレクタ」「子セレクタ」「隣接セレクタ」「◯◯セレクタ」などと呼ばれる
+<dd>compound selector同士の関係を表すもの、空白、大なり、プラス記号、チルダがあり、俗にそれぞれ「子孫セレクタ」「子セレクタ」「隣接セレクタ」「兄弟セレクタ」などと呼ばれる
 </dl>
 
 <p class=XXX>compoundとcomplexってどう訳せばいいんだろう。。
