@@ -222,7 +222,7 @@ h1 {
 </section>
 
 <section id=nth-match-and-nth-last-match>
-<h2>更に細かい順番を指定する<code>:nth-match()</code>と<code>:nth-last-match()</code></h2>
+<h2>要素以外の状態にもマッチさせられる<code>:nth-match()</code></h2>
 <p><code>:nth-child()</code>や<code>:nth-of-type()</code>は強力な擬似クラスですが、これらは要素にしかかかりません。「<code>class=foo</code>が与えられた<code>&lt;li></code>のうち3番目」を選択しようと<code>li.foo:nth-child(3)</code>なんて書いてもマッチしませんし、マッチしたとしても間違っています。これは、「3番目の<code>&lt;li></code>要素が<code>class=foo</code>を持っているか」という条件を示しているからです。
 
 <p>そんな小難しいことはおいといて、やっぱり要素以外でももっと細かい条件を指定したい場合があります。Selectors 4では<code>:nth-match()</code>と<code>:nth-last-match()</code>という擬似クラスが導入され、これに対応しました。
