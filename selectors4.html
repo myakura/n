@@ -34,7 +34,7 @@ if (!!document.addEventListener) {
 
 <h1>CSS4セレクタ (Selectors Level 4) の新機能</h1>
 
-<p>2011年9月29日、<a href="http://www.w3.org/TR/2011/REC-css3-selectors-20110929/">CSS3セレクタ仕様の勧告</a>と同時に、<a href="http://www.w3.org/TR/2011/WD-selectors4-20110929">Selectors Level 4のFPWD</a>が公開されました。CSS4では誰もが考えた「親セレクタ」をはじめ、より高機能なセレクタが提案されています。このノートでは、CSS4セレクタ仕様で新しく追加された機能について紹介します。
+<p>2011年9月29日、<a href="http://www.w3.org/TR/2011/REC-css3-selectors-20110929/">CSS3セレクタ仕様の勧告</a>と同時に、<a href="http://www.w3.org/TR/2011/WD-selectors4-20110929/">Selectors Level 4のFPWD</a>が公開されました。CSS4では誰もが考えた「親セレクタ」をはじめ、より高機能なセレクタが提案されています。このノートでは、CSS4セレクタ仕様で新しく追加された機能について紹介します。
 
 <p class=note>まだ書いている途中だったりします。このノートの変更は<a href="https://github.com/myakura/n/commits/gh-pages/selectors4.html">GitHubのレポジトリ</a>からたどってください。
 
@@ -88,7 +88,7 @@ if (!!document.addEventListener) {
 
 <p>とりあえず、何かの親にスタイルを当ててみましょう。
 
-<pre><code>ul > <strong>$</strong>li > a { list-style: none }</code></pre>
+<pre><code>ul > <strong>$</strong>li > a { list-style: none; }</code></pre>
 
 <p><code>li</code>の前にさりげなく<code><strong>$</strong></code>とあるのがわかるでしょうか。これがCSS4で導入された新機能です。
 
@@ -243,7 +243,7 @@ h1 {
 </section>
 
 <section class=XXX>
-<h2>まだここでカバーできてない機能</h2>
+<h2>まだ紹介してない新機能</h2>
 
 <ul>
 <li><code>/<var>for</var>/</code> combinator
