@@ -45,7 +45,6 @@ if (!!document.addEventListener) {
 
 <p>仕様が初期の段階ですから、現在の仕様書にある機能がそのうちなくなる可能性があります。反対に、現在の仕様書にない新しいセレクタが追加される可能性もあります。
 
-
 <aside id=is-selectors-css>
 <h3>「CSS4セレクタ」か「セレクタ Level 4」か</h3>
 
@@ -56,8 +55,6 @@ if (!!document.addEventListener) {
 <p>また、<code>:scope</code>など、CSSではない仕様で使われるセレクタも定義されていることからも、CSSだけのものではないことが分かるでしょう。
 
 <p>とはいえ、セレクタ仕様やメディアクエリー仕様が「CSSでない」というわけではありません。CSSだけに限定されてはいないだけで、どちらもCSSで多く使われる機能ではあります。「CSS4セレクタ」という表記は、別におかしくはないのです。
-
-<!-- todo: 参考情報へのURLを探す。 -->
 </aside>
 </section>
 
@@ -85,7 +82,7 @@ if (!!document.addEventListener) {
 <section id=subject-and-dollar-sign>
 <h2>セレクタの対象と<code>$<var>selector</var></code>記法</h2>
 
-<p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の応用例として使えるようになっています。
+<p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の、ひとつの応用例として使えるようになっています。
 
 <p>とりあえず、何かの親にスタイルを当ててみましょう。
 
@@ -97,14 +94,12 @@ if (!!document.addEventListener) {
 
 <p>CSS4では、対象としたい合成セレクタの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
-<p class=XXX>todo: もっと例を書く。
-<p class=XXX>todo: このわかりにくい説明をなんとかして、もうちょっとキャッチーな文にする。
-
 <aside>
 <h3><code>$<var>selector</var></code>はなんと呼ぶか</h3>
 
 <p>なんて呼べばいいんでしょうねえ。とりあえず、結合子なども「セレクタ」と呼ばれるので、「$セレクタ」（ダラーセレクタ）とか「ドルセレクタ」とかでいい気はしてます。「セレクタ」と呼べないかもしれませんが……
 
+<p>親だけを指定するものではないので「親セレクタ」とは呼びたくないものですね。
 </aside>
 
 </section>
@@ -178,8 +173,6 @@ h1 {
 <p>「そんなの<code>a</code>でいいじゃん」という話もあるかもしれませんが、<code>href</code>属性のない (ハイパーリンクが結ばれてない) <code>a</code>要素は「リンクになるかもしれないプレースホルダ」を表すので、ハイパーリンクのアンカーではありません。ブラウザの実装も、<code>:link</code>もしくは<code>:visited</code>は<code>&lt;a><var>blah</var>&lt;/a></code>にマッチしません。
 
 <p>この<code>:any-link</code>は、MozillaがGeckoに組み込んだ<code>:-moz-any-link</code>というセレクタがもとになっています。同じ働きをするものがWebKitでは<code>:-webkit-any-link</code>として実装されています。また、Operaでも内部的にそういったセレクタを持っているようです。<!-- ref: http://lists.w3.org/Archives/Public/www-style/2011Jul/0538.html -->
-
-<p class=XXX>todo: <code>a:[href]</code>との違いや、他にマッチする要素があるか調べる。
 </section>
 
 <section id=local-link>
@@ -195,7 +188,9 @@ h1 {
 <pre><code>/* /product/ やら /news/ やらへのリンクにマッチする */
 :local-link(1) { ... }</code></pre>
 
-<p>注意したいのが、サブディレクトリも含めてしまうことでしょうか。<code>http://example/</code>以下に<code>:local-link(2)</code>というセレクタがあるとします。このとき、<code>http://example/foo/bar/</code>へのリンクにマッチするのは当然ですが、指定した階層以下のリンクにマッチするため、<code>http://example/foo/bar/baz/</code> (そしてそれ以下のリソース) にもマッチします。特定のディレクトリ直下へのリンクを指定したい場合は、それより下階層へのリンクにマッチするものを書いて上書きするしかありません。
+<p>注意したいのが、サブディレクトリも含めてしまうことでしょうか。
+
+<p><code>http://example/</code>以下に<code>:local-link(2)</code>というセレクタがあるとします。このとき、<code>http://example/foo/bar/</code>へのリンクにマッチするのは当然ですが、前方マッチですから、指定した階層以下のリンクにもマッチしてしまいす。特定のディレクトリ直下のみへのリンクを指定したい場合は、それより下階層へのリンクにマッチするセレクタを書き、宣言を上書きするしかありません。
 
 <p>仕様書では、<code>:not()</code>と組み合わせ、外部リンクにスタイルを当てる例も紹介されています。
 
@@ -240,7 +235,6 @@ h1 {
 
 <p>関数表記なのにやたらと記述的で面白いですね。<!-- 追加された頃は :nth-match(selector, an+b) だったのに… -->
 
-<p class=XXX>日本語！
 </section>
 
 <section class=XXX>
@@ -257,6 +251,6 @@ h1 {
 
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: September 29, 2011
+<p class=update>Update: September 30, 2011
 </footer>
 
