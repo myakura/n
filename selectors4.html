@@ -237,6 +237,35 @@ h1 {
 
 </section>
 
+<section id=scope>
+<h2>Selectors API 2でコンテキストを記す<code>:scope</code></h2>
+
+<p>セレクタ仕様はCSSだけに限定されないと最初に書きましたが、この<code>:scope</code>セレクタはそれをよく示す例で、今のところ<a href="http://www.w3.org/TR/selectors-api2/">Selectors API Level 2</a>での利用のみが仕様書に記されています。<!-- HTML5のscoped stylesheets でも検討されてるらしいけど、よく知らない。 -->
+
+<p>Selectors API (Level 1)では、ある要素を基点に、その子孫要素を取得することができなかったのです。さらに、<code>querySelector()</code>や<code>querySelectorAll()</code>は、メソッドの呼び出し元が<code>Element</code>であったとしても、セレクタの評価は<code>document</code>からと、理解しがたい仕様でもありました。
+
+<pre><code>&lt;ul>
+  &lt;li>&lt;a>text&lt;/a>
+&lt;/ul>
+&lt;script>
+  var li = document.querySelector('li');
+  var re = li.querySelectorAll('ul a');
+  console.log(re) // &lt;a>が返ってくる
+&lt;/script></code></pre>
+
+<p>これについて、Selectors API Level 2では、<code>querySelector()</code>, <code>querySelectorAll()</code>から文脈を限定したマッチングを行えるようにするために<code>:scope</code>という擬似クラスを導入しました。Selectors Level 4で定義されている<code>:scope</code>は、これが移管されたものです。
+
+<pre><code>// jQuery
+$(<var>elem</var>).find('.section .box')
+// Selectors API Level 2
+<var>elem</var>.querySelectorAll('<strong>:scope</strong> .section .box')
+</code></pre>
+
+<p>
+
+<!-- webkit: https://bugs.webkit.org/show_bug.cgi?id=29704 --><!-- gecko: https://bugzilla.mozilla.org/show_bug.cgi?id=648722 --><!-- https://bugs.webkit.org/show_bug.cgi?id=68093 -->
+</section>
+
 <section class=XXX>
 <h2>まだ紹介してない新機能</h2>
 
