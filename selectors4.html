@@ -79,27 +79,29 @@ if (!!document.addEventListener) {
 <p>Selectors Level 3とは用語が違っていたりしますが、これらを厳密に区別するような場合はそんなにないでしょう。
 </section>
 
-<section id=subject-and-dollar-sign>
-<h2>セレクタの対象と<code>$<var>selector</var></code>記法</h2>
+<section id=subject-indicator>
+<h2>セレクタの対象と<code>?<var>selector</var></code>記法</h2>
 
 <p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の、ひとつの応用例として使えるようになっています。
 
 <p>とりあえず、何かの親にスタイルを当ててみましょう。
 
-<pre><code>ul > <strong>$</strong>li > a { list-style: none; }</code></pre>
+<pre><code>ul > <strong>?</strong>li > a { list-style: none; }</code></pre>
 
-<p><code>li</code>の前にさりげなく<code><strong>$</strong></code>とあるのがわかるでしょうか。これがCSS4で導入された新機能です。
+<p><code>li</code>の前にさりげなく<code><strong>?</strong></code>とあるのがわかるでしょうか。これがCSS4で導入された新機能です。
 
 <p>セレクタによって表される要素 (スタイルが適用される要素) を、セレクタ仕様では「<strong>対象 (subject)</strong>」と呼びます。これまでのレベルでは、各セレクタのうち最後の要素が対象となっていました。
 
-<p>CSS4では、対象としたい合成セレクタの前にドル記号（<code>$</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>$</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
+<p>CSS4では、対象としたい合成セレクタの前にドル記号（<code>?</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>?</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
 <aside>
-<h3><code>$<var>selector</var></code>はなんと呼ぶか</h3>
+<h3><code>?<var>selector</var></code>はなんと呼ぶか</h3>
 
-<p>なんて呼べばいいんでしょうねえ。とりあえず、結合子なども「セレクタ」と呼ばれるので、「$セレクタ」（ダラーセレクタ）とか「ドルセレクタ」とかでいい気はしてます。「セレクタ」と呼べないかもしれませんが……
+<p>なんて呼べばいいんでしょうねえ。とりあえず、結合子なども「セレクタ」と呼ばれるので、「?セレクタ」「はてなセレクタ」とかでいい気はしてます。「セレクタ」と呼べないかもしれませんが……
 
 <p>親だけを指定するものではないので「親セレクタ」とは呼びたくないものですね。
+
+<!-- $から?へ http://lists.w3.org/Archives/Public/www-style/2011Sep/0552.html -->
 </aside>
 
 </section>
