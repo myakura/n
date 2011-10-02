@@ -38,7 +38,7 @@ if (!!document.addEventListener) {
 
 <div class=XXX>
 <p>まだ書いている途中だったりします。このノートの変更は<a href="https://github.com/myakura/n/commits/gh-pages/selectors4.html">GitHubのレポジトリ</a>からたどってください。
-<p>一部公式な草案にリンクしてはいますが、このノートで取り上げる機能は、<a href="http://dev.w3.org/csswg/selectors4/">Editor's Draft</a>の情報を反映しています。Editor's Draftの情報は非公式ではありますが、公式な草案よりもWGの立場や実装を反映する利点があります。</p>
+<p>公式な草案にリンクしている部分はあるものの、このノートが参照する仕様書は<a href="http://dev.w3.org/csswg/selectors4/">Editor's Draft</a>の情報になります。このため、WDと記述が食い違っている可能性があります。</p>
 </div>
 
 <section id=about-selectors4>
@@ -51,11 +51,9 @@ if (!!document.addEventListener) {
 <aside id=is-selectors-css>
 <h3>「CSS4セレクタ」か「セレクタ Level 4」か</h3>
 
-<p>他のCSS3モジュールはたいてい「CSS <var>Foo</var> Module Level 3」と、CSS3のモジュールだと分かる名前になっていますが、セレクタ仕様については「Selectors Level 3」「Selectors Level 4」と、CSSの名を冠していません。いったいどういうことでしょうか。セレクタ仕様はCSSではないのでしょうか。
+<p>セレクタ仕様は「Selectors Level 3」「Selectors Level 4」と、CSSの名を冠していません。他のCSSモジュールはたいてい「CSS <var>Foo</var> Module Level <var>3</var>」などと、CSSのモジュールと分かる名前ですが、いったいどういうことでしょうか。セレクタ仕様はCSSではないのでしょうか。
 
-<p>これは、他のCSSモジュールと違い、セレクタ仕様は他のWebプラットフォーム仕様で使われることがあるため、CSSに限定されないということを意味しています。たとえば、セレクタから要素を取得する<a href="http://www.w3.org/TR/selectors-api/">Selectors API</a>は、CSSの仕様ではありませんがセレクタを利用しています。セレクタと同様に、<a href="http://www.w3.org/TR/css3-mediaquries">Media Queries</a>もHTMLの<code>media</code>属性などで使われることから、CSSの名を冠していません。
-
-<p>また、<code>:scope</code>など、CSSではない仕様で使われるセレクタも定義されていることからも、CSSだけのものではないことが分かるでしょう。
+<p>これは、セレクタが他ので使われることがあるため、CSSだけのものではないことから来ています。たとえば、セレクタから要素を取得する<a href="http://www.w3.org/TR/selectors-api/">Selectors API</a>は、CSSの仕様ではありませんがセレクタを利用しています。セレクタと同様に、<a href="http://www.w3.org/TR/css3-mediaquries">Media Queries</a>もHTMLの<code>media</code>属性などで使われることから、CSSとついていません。Selectors Level 4では、<code>:scope</code>というCSS以外の仕様で使われるセレクタも定義されていることからも、セレクタ仕様がCSSだけのものではないことが分かるでしょう。
 
 <p>とはいえ、セレクタ仕様やメディアクエリー仕様が「CSSでない」というわけではありません。CSSだけに限定されてはいないだけで、どちらもCSSで多く使われる機能ではあります。「CSS4セレクタ」という表記は、別におかしくはないのです。
 </aside>
@@ -85,6 +83,8 @@ if (!!document.addEventListener) {
 <section id=subject-indicator>
 <h2>セレクタの対象と<code>?<var>selector</var></code>記法</h2>
 
+<!-- WDが出てすぐ、$から?になりました。 http://lists.w3.org/Archives/Public/www-style/2011Sep/0552.html -->
+
 <p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の、ひとつの応用例として使えるようになっています。
 
 <p>とりあえず、何かの親にスタイルを当ててみましょう。
@@ -97,14 +97,13 @@ if (!!document.addEventListener) {
 
 <p>CSS4では、対象としたい合成セレクタの前にドル記号（<code>?</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>?</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
-<aside>
+<aside id=how-to-call-this>
 <h3><code>?<var>selector</var></code>はなんと呼ぶか</h3>
 
 <p>なんて呼べばいいんでしょうねえ。とりあえず、結合子なども「セレクタ」と呼ばれるので、「?セレクタ」「はてなセレクタ」とかでいい気はしてます。「セレクタ」と呼べないかもしれませんが……
 
 <p>親だけを指定するものではないので「親セレクタ」とは呼びたくないものですね。
 
-<!-- $から?へ http://lists.w3.org/Archives/Public/www-style/2011Sep/0552.html -->
 </aside>
 
 </section>
@@ -266,8 +265,6 @@ $(<var>elem</var>).find('.section .box')
 <var>elem</var>.querySelectorAll('<strong>:scope</strong> .section .box')
 </code></pre>
 
-<p>
-
 <!-- webkit: https://bugs.webkit.org/show_bug.cgi?id=29704 --><!-- gecko: https://bugzilla.mozilla.org/show_bug.cgi?id=648722 --><!-- https://bugs.webkit.org/show_bug.cgi?id=68093 -->
 </section>
 
@@ -285,6 +282,6 @@ $(<var>elem</var>).find('.section .box')
 
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: September 30, 2011
+<p class=update>Update: October 2, 2011
 </footer>
 
