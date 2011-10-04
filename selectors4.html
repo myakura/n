@@ -63,7 +63,7 @@ if (!!document.addEventListener) {
 <section id=terminology>
 <h2>セレクタの構造と用語</h2>
 
-<p>ふだん「セレクタ」と読んでいるものですが、仕様書ではけっこう細かくその種類が分けられています。
+<p>ふだん「セレクタ」と読んでいるものですが、仕様書ではその<a href="http://dev.w3.org/csswg/selectors4/#structure">種類や用語</a>が細かく定義されています。
 
 <dl>
 <dt>セレクタ
@@ -75,7 +75,8 @@ if (!!document.addEventListener) {
 <dt>複合セレクタ (complex selector)
 <dd>合成セレクタが結合子によって連なったもの
 <dt>結合子 (combinator)
-<dd>合成セレクタ同士の関係を表すもの、空白 ( )、大なり (>)、プラス記号 (+)、チルダ (~) があり、俗にそれぞれ「子孫セレクタ」「子セレクタ」「隣接セレクタ」「兄弟セレクタ」などと呼ばれる
+<dd>合成セレクタ同士の関係を表すもの、空白 ( )、大なり (>)、プラス記号 (+)、チルダ (~) がある
+<dd>(日本語では俗にそれぞれ「子孫セレクタ」「子セレクタ」「隣接セレクタ」「兄弟セレクタ」などと呼ばれる)
 </dl>
 
 <p>これらを厳密に区別して使う機会はあまりないと思いますが、覚えておくと仕様書を読むときに便利です。
@@ -94,7 +95,7 @@ if (!!document.addEventListener) {
 
 <p><code>li</code>の前にさりげなく<code><strong>?</strong></code>とあるのがわかるでしょうか。これがCSS4で導入された新機能です。
 
-<p>セレクタによって表される要素 (スタイルが適用される要素) を、セレクタ仕様では「<strong>対象 (subject)</strong>」と呼びます。これまでのレベルでは、各セレクタのうち最後の要素が対象となっていました。
+<p>セレクタによって表される要素 (スタイルが適用される要素) を、セレクタ仕様では「<a href="http://dev.w3.org/csswg/selectors4/#subjects"><strong>対象 (subject)</strong></a>」と呼びます。これまでのレベルでは、各セレクタのうち最後の要素が対象となっていました。
 
 <p>CSS4では、対象としたい合成セレクタの前にドル記号（<code>?</code>）をつけることで、この対象を変更できるようになりました。ですので、<code>ul > <strong>?</strong>li > a</code>とすると、「子に<code>a</code>を持つ<code>li</code>要素」にスタイルを当てられるわけです。
 
@@ -112,7 +113,7 @@ if (!!document.addEventListener) {
 <section id=matches>
 <h2>「どれか」にマッチする<code>:matches()</code></h2>
 
-<p>CSS4では、<code>:matches()</code>という擬似クラスが導入されました。引数に複数のセレクタを書くと「そのうちのどれか」にマッチします。
+<p>CSS4では、<a href="http://dev.w3.org/csswg/selectors4/#matches"><code>:matches()</code></a>という擬似クラスが導入されました。引数に複数のセレクタを書くと「そのうちのどれか」にマッチします。
 
 <p>カンマと何が違うんだという話ですが、ネストした場合にとても楽です。HTML5のsectioning content (<code>section</code>, <code>article</code>, <code>aside</code>, <code>nav</code>)と<code>h1</code>の組み合わせを考えてみましょう。
 
@@ -170,10 +171,16 @@ h1 {
 
 </section>
 
+<section id=not-and-selector-list>
+<h2><code>:not()</code>の引数とセレクタリスト</h2>
+<p><a href="http://www.w3.org/TR/css3-selectors/#negation">CSS3の<code>:not()</code></a>は、ひとつのセレクタしか指定できませんでした。また、擬似クラスや結合子を指定することもできませんでした。<a http="http://dev.w3.org/csswg/selectors4/#negation">CSS4の<code>:not()</code></a>では、<code>:matches()</code>に合わせ、引数に複数のセレクタをとれるようになりました。また、結合子は使えないものの、擬似クラスの利用が可能になっています。
+<!-- todo compound selectorを含めてはっていうOjanだったかのメールがあるはずなので探す -->
+</section>
+
 <section id=any-link>
 <h2>未訪問・既訪問を問わない<code>:any-link</code></h2>
 
-<p><code>:any-link</code>は「ハイパーリンクのソースアンカーとして機能する要素」にマッチします。なんのこっちゃという話ですが、、ざっくりいうと<code>:link</code>または<code>:visited</code>にマッチする擬似クラスです。<code>:link, :visited</code>と同じです。リンクだけを選択したいときに、<code>a:link, a:visited</code>としなくて済むわけです。
+<p><a href="http://dev.w3.org/csswg/selectors4/#any-link-pseudo"><code>:any-link</code></a>は「ハイパーリンクのソースアンカーとして機能する要素」にマッチします。なんのこっちゃという話ですが、、ざっくりいうと<code>:link</code>または<code>:visited</code>にマッチする擬似クラスです。<code>:link, :visited</code>と同じです。リンクだけを選択したいときに、<code>a:link, a:visited</code>としなくて済むわけです。
 
 <p>「そんなの<code>a</code>でいいじゃん」という話もあるかもしれませんが、<code>href</code>属性のない (ハイパーリンクが結ばれてない) <code>a</code>要素は「リンクになるかもしれないプレースホルダ」を表すので、ハイパーリンクのアンカーではありません。ブラウザの実装も、<code>:link</code>もしくは<code>:visited</code>は<code>&lt;a><var>blah</var>&lt;/a></code>にマッチしません。
 
@@ -182,7 +189,7 @@ h1 {
 
 <section id=local-link>
 <h2>リンク階層を表す<code>:local-link</code></h2>
-<p>Webサイトは階層構造をとっていることが多いですが、「現在地」のリンクや「下層」のリンクについてスタイルを変えたいということがあるかと思います。提案中の<code>:local-link</code>は、それを実現する擬似クラスです。
+<p>Webサイトは階層構造をとっていることが多いですが、「現在地」のリンクや「下層」のリンクについてスタイルを変えたいということがあるかと思います。提案中の<a href="http://dev.w3.org/csswg/selectors4/#local-link-pseudo"><code>:local-link</code></a>は、それを実現する擬似クラスです。
 
 <p>とりあえず、仕様書の例を拾ってみます。ナビゲーションにある、現在地と同じリンクの下線を無効にする場合、こう書きます。
 
@@ -216,7 +223,7 @@ h1 {
 
 <p><a href="http://whatwg.org/html#selectors">HTMLの定義</a>では、セレクタはいくつかの属性を除いて、基本的に属性値の大文字小文字を区別します。<code>class</code>や<code>id</code>などは、大文字小文字を間違えるとマッチしないわけです (Quirksモードを除く)。
 
-<p>ただ、大文字小文字を含めてマッチさせたいケースがあるかもしれません。Selectors 4では、属性セレクタの書式が拡張され、大文字小文字を区別しない属性値のマッチングが可能となりました。
+<p>ただ、大文字小文字を含めてマッチさせたいケースがあるかもしれません。Selectors 4では、属性セレクタの書式が拡張され、<a href="http://dev.w3.org/csswg/selectors4/#attribute-case">大文字小文字を区別しない属性値のマッチング</a>が可能となりました。
 
 <pre><code>elem[attr="whatevercase" <strong>i</strong>] { ... }</code></pre>
 
@@ -230,7 +237,7 @@ h1 {
 <h2>要素以外の状態にもマッチさせられる<code>:nth-match()</code></h2>
 <p><code>:nth-child()</code>や<code>:nth-of-type()</code>は強力な擬似クラスですが、これらは要素にしかかかりません。「<code>class=foo</code>が与えられた<code>&lt;li></code>のうち3番目」を選択しようと<code>li.foo:nth-child(3)</code>なんて書いてもマッチしませんし、マッチしたとしても間違っています。これは、「3番目の<code>&lt;li></code>要素が<code>class=foo</code>を持っているか」という条件を示しているからです。
 
-<p>そんな小難しいことはおいといて、やっぱり要素以外でももっと細かい条件を指定したい場合があります。Selectors 4では<code>:nth-match()</code>と<code>:nth-last-match()</code>という擬似クラスが導入され、これに対応しました。
+<p>そんな小難しいことはおいといて、やっぱり要素以外でももっと細かい条件を指定したい場合があります。Selectors 4では<a href="http://dev.w3.org/csswg/selectors4/#nth-match"><code>:nth-match()</code></a>と<a href="http://dev.w3.org/csswg/selectors4/#nth-last-match"><code>:nth-last-match()</code></a>という擬似クラスが導入され、これに対応しました。
 
 <p>構文は<code>:nth-match(<var>a<var>n</var>+b</var> of <var>selector-list</var>)</code>となっています。
 <pre><code>/* 3番目のli.fooにスタイルをつける */
@@ -245,7 +252,7 @@ h1 {
 <section id=scope>
 <h2>Selectors API 2でコンテキストを記す<code>:scope</code></h2>
 
-<p>セレクタ仕様はCSSだけに限定されないと最初に書きましたが、この<code>:scope</code>セレクタはそれをよく示す例で、今のところ<a href="http://www.w3.org/TR/selectors-api2/">Selectors API Level 2</a>での利用のみが仕様書に記されています。<!-- HTML5のscoped stylesheets でも検討されてるらしいけど、よく知らない。 --><!-- コンテキスト参照がない場合は :root() と同じ -->
+<p>セレクタ仕様はCSSだけに限定されないと最初に書きましたが、この<a href="http://dev.w3.org/csswg/selectors4/#scope-pseudo"><code>:scope</code>擬似クラス</a>はそれをよく示す例で、今のところ<a href="http://www.w3.org/TR/selectors-api2/">Selectors API Level 2</a>での利用のみが仕様書に記されています。<!-- HTML5のscoped stylesheets でも検討されてるらしいけど、よく知らない。 --><!-- コンテキスト参照がない場合は :root() と同じ -->
 
 <p>Selectors API (Level 1)では、ある要素を基点に、その子孫要素を取得することができなかったのです。さらに、<code>querySelector()</code>や<code>querySelectorAll()</code>は、メソッドの呼び出し元が<code>Element</code>であったとしても、セレクタの評価は<code>document</code>からと、理解しがたい仕様でもありました。
 
@@ -267,12 +274,6 @@ $(<var>elem</var>).find('.section .box')
 </code></pre>
 
 <!-- webkit: https://bugs.webkit.org/show_bug.cgi?id=29704 --><!-- gecko: https://bugzilla.mozilla.org/show_bug.cgi?id=648722 --><!-- https://bugs.webkit.org/show_bug.cgi?id=68093 -->
-</section>
-
-<section id=not-and-selector-list>
-<h2><code>:not()</code>の引数とセレクタリスト</h2>
-<p><a href="http://www.w3.org/TR/css3-selectors/#negation">CSS3の<code>:not()</code></a>は、ひとつのセレクタしか指定できませんでした。また、擬似クラスや結合子を指定することもできませんでした。<a http="http://dev.w3.org/csswg/selectors4/#negation">CSS4の<code>:not()</code></a>では、<code>:matches()</code>に合わせ、引数に複数のセレクタをとれるようになりました。また、結合子は使えないものの、擬似クラスの利用が可能になっています。
-<!-- todo compound selectorを含めてはっていうOjanだったかのメールがあるはずなので探す -->
 </section>
 
 <section class=XXX>
