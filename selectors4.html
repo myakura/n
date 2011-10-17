@@ -85,7 +85,7 @@ if (!!document.addEventListener) {
 <section id=subject-indicator>
 <h2>セレクタの対象と<code>?<var>selector</var></code>記法</h2>
 
-<!-- WDが出てすぐ、$から?になりました。 http://lists.w3.org/Archives/Public/www-style/2011Sep/0552.html -->
+<p class="note XXX">FPWDが出てすぐ、<code>$</code>から<code>?</code>になりました。(<a href="http://lists.w3.org/Archives/Public/www-style/2011Sep/0552.html">参照</a>)
 
 <p>CSS4セレクタでは、念願かなって要素の「親」を指定できるようになりました。<br>ただし、「親セレクタ」が導入されたわけではありません。むしろ、もっと便利な機能の、ひとつの応用例として使えるようになっています。
 
@@ -281,7 +281,6 @@ $(<var>elem</var>).find('.section .box')
 
 <ul>
 <li><code>/<var>for</var>/</code> combinator
-<li><code>:not(<var>s1</var>, <var>s2</var>)</code>
 <li><code>:current</code>, <code>:past</code>, <code>:future</code>
 <li>HTML5 Forms
 <li><code>:column()</code>, <code>:nth-column()</code>, <code>:nth-last-column()</code>
