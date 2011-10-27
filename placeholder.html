@@ -7,7 +7,7 @@
 if (!!document.addEventListener) {
   document.addEventListener('DOMContentLoaded', function () {
     var sec = document.querySelectorAll('body > section[id]');
-    var h = document.querySelectorAll('body > section[id] > h2:first-of-type');    
+    var h = document.querySelectorAll('body > section[id] > h2:first-of-type');
     var toc = '';
     var l = sec.length;
     while (l--) {
@@ -34,34 +34,36 @@ if (!!document.addEventListener) {
 
 <h1>プレースホルダとHTML5の<code>placeholder</code>属性</h1>
 
-<p>HTML5で導入された<code>placeholder</code>属性によって、フォームフィールドにプレースホルダを設定できるようになりました。さて、プレースホルダとはそもそもなんでしょうか。また、どのようなテキストを書けばよいのでしょうか。
+<p>HTML5で導入された<code>placeholder</code>属性によって、フォームフィールドにプレースホルダを設定できるようになりました。さて、「プレースホルダ」とはそもそもなんでしょうか。また、どのようなテキストを書けばよいのでしょうか。
 
 <section id=whatis>
 <h2>プレースホルダとは</h2>
 
 <p>フォームフィールドに薄い灰色のテキストが表示されているものを見かけます。あのテキストや、その仕組みはプレースホルダと呼ばれています。
 
-<p class=note>“placeholder”は実際のものに変わって表示されるものを意味するので、たとえばダミーテキストなども「プレースホルダ」と呼ばれます。ここでは<code>input</code>や<code>textarea</code>に表示されるプレースホルダとしてこの言葉を使っています。
-
 <figure>
 <img src=placeholder/safari.png>
 <figcaption>Safariはアドレスバーに“Go to this address”、検索バーに“Google”というプレースホルダが設定されている。</figcaption>
 </figure>
 
-<p>プレースホルダのついたフォームフィールドは、次のような挙動をとります。
+<p class=note>“placeholder”は実際のものに変わって表示されるものを意味するものです。たとえばダミーテキストなどもplaceholder textなどと呼ばれます。このノートでは、<code>input</code>や<code>textarea</code>などフォームフィールドに表示されるものに限定してこの「プレースホルダ」という言葉を使っています。
+
+<p>プレースホルダのついたフォームフィールドは、こんな動作をします。
 
 <ul>
-<li>フォーカスが当たっておらず、かつ値が何も入力されていない場合にプレースホルダをフィールド内に表示する。
+<li><!-- フォーカスが当たっておらず、かつ-->値が何も入力されていない時、フィールド内にプレースホルダを表示する。
 <li>フォーカスが当たりフィールドが入力を受け付けると、プレースホルダは消える。
 </ul>
 
 <p>これらの挙動から、プレースホルダには「入力前にそのフィールドに関し何かしら情報を提示する」目的があると推測されます。
+
+<p class=note>プレースホルダが消える挙動については、OSやソフトウェアの実装によって異なります。詳しくは<a>＠＠＠＠＠</a>をお読みください。
 </section>
 
 <section id=html5>
 <h2>HTML5の<code>placeholder</code>属性</h2>
 
-<p>Webサイトがアプリケーション化しているからなのか、OSのUIでなくWebサイトでもプレースホルダを見ることも増えてきました。以前はJavaScriptによって実装されていましたが、HTML5では<code>placeholder</code>というそのままの名前の属性が<code>input</code>および<code>textarea</code>要素に導入されています。
+<p>Webサイトがアプリケーション化しているからなのか、Webサイトでもプレースホルダを見ることも増えてきました。このプレースホルダの多くはJavaScriptによって実装されていますが、HTML5では<code>placeholder</code>というそのままの名前の属性が<code>input</code>および<code>textarea</code>要素に導入されています。
 
 <ul>
 <li><a href="http://whatwg.org/html#the-placeholder-attribute">The <code>placeholder</code> attribute</a>
@@ -70,9 +72,9 @@ if (!!document.addEventListener) {
 <!--<p>仕様の定義はこうなっています。
 
 <blockquote cite="http://whatwg.org/html#the-placeholder-attribute" lang=en>
-<p>The <dfn><code>placeholder</code></dfn> attribute represents a <em>short</em> hint (a word or short phrase) intended to aid the user with data entry. A hint could be a sample value or a brief description of the expected format. The attribute, if specified, must have a value that contains no U+000A LINE FEED (LF) or U+000D CARRIAGE RETURN (CR) characters.</p> 
-<p class="note">For a longer hint or other advisory text, the <code><a href="http://whatwg.org/html#the-title-attribute">title</a></code> attribute is more appropriate.</p> 
-<p>The <code><a>placeholder</a></code> attribute should not be used as an alternative to a <code><a href="http://whatwg.org/html#the-label-element">label</a></code>.</p> 
+<p>The <dfn><code>placeholder</code></dfn> attribute represents a <em>short</em> hint (a word or short phrase) intended to aid the user with data entry. A hint could be a sample value or a brief description of the expected format. The attribute, if specified, must have a value that contains no U+000A LINE FEED (LF) or U+000D CARRIAGE RETURN (CR) characters.</p>
+<p class="note">For a longer hint or other advisory text, the <code><a href="http://whatwg.org/html#the-title-attribute">title</a></code> attribute is more appropriate.</p>
+<p>The <code><a>placeholder</a></code> attribute should not be used as an alternative to a <code><a href="http://whatwg.org/html#the-label-element">label</a></code>.</p>
 <p>User agents should present this hint to the user, after having <a href="http://whatwg.org/html#strip-line-breaks">stripped line breaks</a> from it, when the element's <a href="http://whatwg.org/html#concept-fe-value">value</a> is the empty string and the control is not focused (e.g. by displaying it inside a blank unfocused control).</p>
 </blockquote>-->
 
@@ -80,16 +82,16 @@ if (!!document.addEventListener) {
 
 <blockquote>
 <div class=trans>
-<p><code>placeholder</code>属性はユーザーがデータを入力する際に彼らを手助けする目的で提示される<em>短い</em>ヒント（単語や短いフレーズなど）を表す。ヒントには入力例や望まれる入力形式の説明が当てはまるだろう。属性が指定された場合、その値にU+000A LINE FEED (LF) や U+000D CARRIAGE RETURN (CR)が含まれてはならない。
+<p><dfn><code>placeholder</code></dfn>属性は、ユーザーがデータを入力する際に彼らを手助けする目的で提示される<em>短い</em>ヒント（単語や短いフレーズなど）を表す。ヒントには入力例や望まれる入力形式の説明が当てはまるだろう。属性が指定された場合、その値にはU+000A LINE FEED (LF) や U+000D CARRIAGE RETURN (CR)が含まれてはならない。
 <p class=note>長いヒントやその他の補足情報については、<a href="http://whatwg.org/html#the-title-attribute"><code>title</code></a>属性がより適切である。
 <p><code>placeholder</code>属性は<a href="http://whatwg.org/html#the-label-element"><code>label</code></a>の代わりに使うべきではない。
-<p>UAはこのヒントを、要素の値が空文字列でありかつフォーカスされていない場合に、<a href="http://whatwg.org/html#strip-line-breaks">改行を取り除いた</a>あとでユーザーに提示するべきだ。
+<p>UAはこのヒントを、要素の<a href="http://whatwg.org/html#concept-fe-value">値</a>が空文字列であり、かつフォーカスされていない場合に、<a href="http://whatwg.org/html#strip-line-breaks">改行を取り除いた</a>うえでユーザーに提示するべきだ。
 </div>
 </blockquote>
 
 <p class=note>改行文字を含んではならないとあるのに、その後UAは改行を取り除き表示すると書かれているので矛盾しているようにも読めますが、前者は製作者の要件、後者はUAの要件になります。
 
-<p>使い方ですが、値にプレースホルダのテキストを書くだけです。
+<p>使い方ですが、値にプレースホルダのテキストを書くだけです。改行を含められないので、<code>textarea</code>で複数行のプレースホルダを表示することはできません。
 
 <figure>
 <pre><code>&lt;input placeholder="<var>プレースホルダ</var>">
@@ -102,14 +104,48 @@ if (!!document.addEventListener) {
 <p>これだけ。便利な世の中になりました。
 </section>
 
+
+<section id=platform>
+<h2>プラットフォーム実装との挙動の差異</h2>
+
+<p>HTML5仕様書の現在の定義は、フォーカスが当たるとプレースホルダが消えることになっています。しかし、これがすべてのプレースホルダに共通した挙動というわけではありません。
+
+<p>たとえば、iOSのUIが持つプレースホルダを見てみましょう。iOSのプレースホルダはアドレスブックの検索バーや登録画面に見ることができます。<br>
+iOSネイティブのプレースホルダの挙動は<code>placeholder</code>属性の定義と異なり、フォーカス時にプレースホルダが消えません。フォーカス時点ではプレースホルダが表示されたまま、入力状態であることを示すIビームが表示されます。そして、プレースホルダが消えるのは、テキストの入力時になります。
+
+<figure>
+<!-- TODO: キャプチャ貼りつけただけなんでそのうち画像加工する -->
+<p><img src=placeholder/contact1.png width=240><img src=placeholder/contact2.png width=240><img src=placeholder/contact3.png width=240><!--<img src=placeholder/contact4.png width=240><img src=placeholder/contact5.png width=240><img src=placeholder/contact6.png width=240>-->
+<figcaption>iOSではフォーカス時ではなく入力時にプレースホルダが消える。</figcaption>
+</figure>
+
+<p>さて、iOS 4のSafariまでは<code>placeholder</code>属性の実装がHTML5仕様通りになっていたため、iOSネイティブのプレースホルダ実装との挙動に一貫性がありませんでした。これを問題視したのか、AppleはSafariのエンジンであるWebKitに<a href="http://trac.webkit.org/changeset/77639">変更を加え</a>、プラットフォームがフォーカス時のプレースホルダの表示状態について選択できるようにしました。iOS 5のSafariは、ネイティブのプレースホルダと同じ挙動をとっています。
+
+<p>さて、Mac OS X Snow Leopardでは、ネイティブのプレースホルダはHTML5と同じ挙動をとります。しかし、“Back to the Mac”というスローガンを掲げたからなのか、OS X Lionでは、ネイティブのプレースホルダもSafari (5.1) のプレースホルダも、フォーカス時に消えないという挙動に変更されました。(Snow LeopardにもSafari 5.1が提供されていますが、そちらには変化がありません。)
+
+<p>ですので、OS X LionやiOS5のSafariは、仕様書の定義を意図的に無視した実装になっています。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。HTML5の定義も、柔軟になる必要があるのではないでしょうか。
+
+<p class=XXX>TODO: Chromeもそんな実装にしたがってた痕跡を探す
+<p class=XXX>TODO: OperaのUIもそうなってるのでスクリーンショットをはろうか？
+
+<!-- http://lists.whatwg.org/pipermail/whatwg-whatwg.org/2011-July/032555.html -->
+</section>
+
 <section id=hint>
 <h2>何が「ヒント」となりうるか</h2>
 
-<p>仕様の定義から、<code>placeholder</code>属性は入力する内容に関し「ヒントを与える」という役割を持つことが分かりました。では、どういったテキストがその「ヒント」として適切なのかを、ちまたのWebサイトも含めて考えてみましょう。
+<p><code>placeholder</code>属性やその挙動についてわかったところで、ここからはその属性の使い方について考えていきましょう。
 
+<p>仕様の定義から、<code>placeholder</code>属性は入力する内容に関し「ヒントを与える」という役割を持つことが分かりました。では、どういったテキストがその「ヒント」として適切なのでしょうか。
+
+<section id=long>
+<h3>長い文は不適当</h3>
 <p>まず、長いヒントは<code>placeholder</code>属性の値として想定されていないことが分かります。どれくらいが長いヒントなのかは分かりませんが、長い文でしか伝わらないようなヒントを、入力時に消えてしまうプレースホルダとして設定するのは、あまり賢いやり方ではないでしょう。
+</section>
 
-<p>次に、<code>label</code>代わりに使うべきではないとあります。これが何故いけないかというと、<code>placeholder</code>だけではそのフィールドが何のためのものか、視覚的にしか伝わらないからです。
+<section id=label>
+<h3>ラベル代わりの利用はダメ</h3>
+<p>次に、<code>label</code>代わりに使うべきではないとあります。これが何故いけないかというと、<code>placeholder</code>だけではそのフィールドが何のためのものか、視覚的にしか伝わらないことが多いからです。
 
 <figure>
 <pre><code>&lt;input type=email placeholder="メールアドレス"></code></pre>
@@ -117,9 +153,31 @@ if (!!document.addEventListener) {
 <figcaption><code>label</code>を関連づけず、プレースホルダをラベルとして利用する例。</figcaption>
 </figure>
 
-<p><code>placeholder</code>の情報が支援技術に渡るように一部のUAで実装されていても、<code>placeholder</code>に対応しない環境ではそのフィールドが何であるかが分かりません。<code>placeholder</code>をラベル代わりに使うのが問題というわけではなく、ラベルを与えないフォームフィールドがそもそも問題と考えてください。
+<article id=a11y>
+<h1 hidden><code>placeholder</code>属性の読み上げ</h1>
+<p><code>placeholder</code>属性の情報が支援技術に渡されるかは、実装次第となっています。Firefoxでは<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=545817">Bug 545817 - Tracker for placeholder accessibility</a>によって<code>placeholder</code>属性の読み上げがサポートされています。また、Safariも読み上げに対応しているようです。
 
+<p>しかし、<a href="http://html5accessibility.com/">HTML5 accessibility</a>の<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げには違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。さらに、<code>label</code>でラベルとコントロールを囲む（<code>for</code>で参照しない）場合、Firefoxはラベルとプレースホルダをどちらも読み上げてしまいます。
+
+<figure>
+<pre><code>&lt;label>メールアドレス &lt;input type=email placeholder="メールアドレス">&lt;/label></code></pre>
+<p><label>メールアドレス <input type=email placeholder="メールアドレス"></label>
+<figcaption><code>placeholder</code>をラベルがわりに使うのはいけないので、<code>label</code>で囲った例。しかしFirefoxでは、ラベルとプレースホルダどちらも読み上げられてしまう。</figcaption>
+</figure>
+
+<p>この挙動の違いについては<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=631591">Bug 631591 - different accessible name depending on the label element association method used</a>というバグが登録されています。
+</article>
+
+<p><code>placeholder</code>の情報が支援技術に渡るように一部のUAで実装されていても、<code>placeholder</code>に対応しない環境では引き続きそのフィールドが何であるかが分かりません。<code>placeholder</code>をラベル代わりに使うのが問題というわけではなく、ラベルを与えないフォームフィールドがそもそも問題と考えてください。
+
+<section id=example>
+<h3>入力内容の例示は効果的な例もある?</h3>
 <p>次に、入力例です。メールアドレスのフィールドに「例: placeholder@example.com」などが書かれているケースがありますが、そういうものを想定しているのでしょう。
+
+<figure>
+<pre><code>&lt;input type=email placeholder="placeholder@example.com"></code></pre>
+<p><label>メールアドレス: <input type=email placeholder="例: placeholder@example.com"></label>
+</figure>
 
 <p>ほとんどの場合、入力例が有用になるケースや、そもそもヒントになるケースはまれなように感じます。しかし、入力する情報が特定のカテゴリに限定されないフィールドの場合、プレースホルダが有用なヒントとなる可能性はありそうです。
 
@@ -130,6 +188,10 @@ if (!!document.addEventListener) {
 </figure>
 
 <p>検索フォームが幅広いキーワードを受け付けられることを示すことで、ユーザーが目的の情報にありつきやすくなる効果が期待できるかもしれません。しかし、こういった情報も入力時に消えてしまうプレースホルダではなく、フィールドのそばに併記する方がよいかもしれません。プレースホルダの情報が助けになると判断された場合は、フォームのUIを見直すのがよいでしょう。
+</section>
+
+<section id=format>
+<h3>入力形式の表示はフォームのUI再考を</h3>
 
 <p>最後に、入力形式ですが、これは電話番号や郵便番号などを入力する際の書き方を指すものと推測されます。しかし、これをプレースホルダとして表示することは考えたほうがよいかもしれません。特定の書き方をユーザーに求めるのに、テキストを入力するとプレースホルダは消えてしまうので、どういう書き方をすればよいのかが分からなくなってしまいます。
 
@@ -156,55 +218,14 @@ if (!!document.addEventListener) {
 </section>
 
 <section id=summary>
-<h2>おわりに</h2>
+<h2>まとめ</h2>
 
 <p>プレースホルダはフィールドに入力する情報に関し何らかの「ヒント」をユーザーに伝える役割があります。ヒントはプレースホルダの使われる文脈に依存しますが、ちまたにあるプレースホルダ多くはあまり役目を果たしていないと感じます。「Search」など飾り程度でしかないものが多いからです。
 
 <p>プレースホルダは場合によって、良いヒントを提供してくれるかもしれません。しかし、プレースホルダの情報はあくまでヒントです。プレースホルダがなくなると目的が分からなくなるようなフォームであってはいけないわけです。ですから、まず問題なく機能するフォームを作ったうえで、必要あらばプレースホルダでヒントを与えるという設計フローがよいでしょう。
 </section>
 
-<aside id=postface>
-<h2>おまけ</h2>
-
-<p>プレースホルダに適切なテキストはなんだろうという疑問から書き始めたのですが、調べてるうちに色々脱線したり、まだ記事の中に含めるには情報が足りないなあと思いながら書いたものがここに入ります。
-
-<section id=ios>
-<h3>iOSにおけるプレースホルダ</h3>
-<p>プレースホルダはiOSにも存在しており、たとえばアドレスブックの検索バーや登録画面に見ることができます。挙動はすこし異なっており、フォーカス時にはプレースホルダが消えずインジケータが重なって表示されます。プレースホルダが消えるのは、テキストの入力時になります。（Windows 7のスタートメニューにある検索ボックスも、同じ挙動をとります。）
-
-<figure>
-<!-- TODO: キャプチャ貼りつけただけなんでそのうち画像加工する -->
-<p><img src=placeholder/contact1.png width=240><img src=placeholder/contact2.png width=240><img src=placeholder/contact3.png width=240><!--<img src=placeholder/contact4.png width=240><img src=placeholder/contact5.png width=240><img src=placeholder/contact6.png width=240>-->
-<figcaption>iOSではフォーカス時ではなく入力時にプレースホルダが消える。</figcaption>
-</figure>
-
-<p>しかし、iOS 4 Safariの<code>placeholder</code>実装はデスクトップのものと同じで、フォーカス時にプレースホルダが消えます。WebKitの実装はプラットフォームの挙動を反映していないようです。HTML5仕様ではフォーカス時には消えるという要件が書かれているので、それに忠実にしたがっていたのかもしれません。
-
-<p>ただ、2011年2月3日に、WebKit Bugzillaに<a href="https://bugs.webkit.org/show_bug.cgi?id=53740">“Allow platforms to specify if the placeholder should be visible when text controls are focused”</a>というバグがAppleのAdele Petersonによりたてられ、<a href="http://trac.webkit.org/changeset/77639">2月4日に修正</a>されました。これによって、プラットフォームごとにプレースホルダの挙動が変更可能となります。仕様の記述も若干ですが改まるかもしれません。
-<p>また、2011年7月20日にリリースされたOS X Lion上のSafari (5.1)では、フォーカス時にはプレースホルダーが消えないという挙動になっています。
-<!-- http://lists.whatwg.org/pipermail/whatwg-whatwg.org/2011-July/032555.html -->
-</section>
-
-<section id=a11y>
-<h3>プレースホルダの読み上げ</h3>
-
-<p>仕様にはラベルの代わりに使わない旨が書かれていますが、これはスクリーンリーダーが<code>placeholder</code>属性の内容を読み上げないからという理由ではありません。Firefoxでは<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=545817">Bug 545817 - Tracker for placeholder accessibility</a>によって<code>placeholder</code>属性の読み上げがサポートされています。また、Safariも読み上げに対応しているようです。
-
-<p>しかし、<a href="http://html5accessibility.com/">HTML5 accessibility</a>の<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げには違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。さらに、<code>label</code>でラベルとコントロールを囲む（<code>for</code>で参照しない）場合、Firefoxはラベルとプレースホルダをどちらも読み上げてしまいます。
-
-<figure>
-<pre><code>&lt;label>名前 &lt;input placeholder="名前">&lt;/label></code></pre>
-<p><label>名前 <input placeholder="名前"></label>
-<figcaption><code>placeholder</code>をラベルがわりに使うのはいけないので、<code>label</code>で囲った例。今のFirefoxでは、ラベルとプレースホルダどちらも読み上げられてしまう。</figcaption>
-</figure>
-
-<p>この挙動の違いについては<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=631591">Bug 631591 - different accessible name depending on the label element association method used</a>というバグが登録されています。
-
-<p>読み上げは行われるようですが、ラベルのないフィールド自体が問題ですから、<code>placeholder</code>に依存しないようにしましょう。
-</section>
-</aside>
-
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: September 30, 2011
+<p class=update>Update: October 27, 2011
 </footer>
