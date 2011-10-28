@@ -41,7 +41,7 @@ if (!!document.addEventListener) {
 
 <p>フォームフィールドに薄い灰色のテキストが表示されているものを見かけます。あのテキストや、その仕組みはプレースホルダと呼ばれています。
 
-<figure>
+<figure id=fig-safari>
 <img src=placeholder/safari.png>
 <figcaption>Safariはアドレスバーに“Go to this address”、検索バーに“Google”というプレースホルダが設定されている。</figcaption>
 </figure>
@@ -52,7 +52,7 @@ if (!!document.addEventListener) {
 
 <ul>
 <li><!-- フォーカスが当たっておらず、かつ-->値が何も入力されていない時、フィールド内にプレースホルダを表示する。
-<li>フォーカスが当たりフィールドが入力を受け付けると、プレースホルダは消える。
+<li><!-- フォーカスが当たり-->フィールドが入力を受け付けると、プレースホルダが消える。
 </ul>
 
 <p>これらの挙動から、プレースホルダには「入力前にそのフィールドに関し何かしら情報を提示する」目的があると推測されます。
@@ -115,15 +115,17 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <figure>
 <!-- TODO: キャプチャ貼りつけただけなんでそのうち画像加工する -->
-<p><img src=placeholder/contact1.png width=240><img src=placeholder/contact2.png width=240><img src=placeholder/contact3.png width=240><!--<img src=placeholder/contact4.png width=240><img src=placeholder/contact5.png width=240><img src=placeholder/contact6.png width=240>-->
+<p><img src=placeholder/contact1.png width=480><br><img src=placeholder/contact2.png width=480><br><img src=placeholder/contact3.png width=480>
 <figcaption>iOSではフォーカス時ではなく入力時にプレースホルダが消える。</figcaption>
 </figure>
 
 <p>さて、iOS 4のSafariまでは<code>placeholder</code>属性の実装がHTML5仕様通りになっていたため、iOSネイティブのプレースホルダ実装との挙動に一貫性がありませんでした。これを問題視したのか、AppleはSafariのエンジンであるWebKitに<a href="http://trac.webkit.org/changeset/77639">変更を加え</a>、プラットフォームがフォーカス時のプレースホルダの表示状態について選択できるようにしました。iOS 5のSafariは、ネイティブのプレースホルダと同じ挙動をとっています。
 
-<p>さて、Mac OS X Snow Leopardでは、ネイティブのプレースホルダはHTML5と同じ挙動をとります。しかし、“Back to the Mac”というスローガンを掲げたからなのか、OS X Lionでは、ネイティブのプレースホルダもSafari (5.1) のプレースホルダも、フォーカス時に消えないという挙動に変更されました。(Snow LeopardにもSafari 5.1が提供されていますが、そちらには変化がありません。)
+<p>さて、Mac OS X Snow Leopardでは、ネイティブのプレースホルダはHTML5と同じ挙動をとります。しかし、“Back to the Mac”というスローガンを掲げたからなのか、OS X Lionでは、ネイティブのプレースホルダもSafari (5.1) のプレースホルダも、フォーカス時に消えないという挙動に変更されました。<a href="#fig-safari">冒頭のスクリーンショット</a>はLionのSafari 5.1ですが、アドレスバーにフォーカスが当たっているにもかかわらず“Go to this address”というプレースホルダが表示されているのがわかります。
 
-<p>ですので、OS X LionやiOS5のSafariは、仕様書の定義を意図的に無視した実装になっています。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。HTML5の定義も、柔軟になる必要があるのではないでしょうか。
+<p class=note>Snow LeopardにもSafari 5.1が提供されていますが、そちらには変化がありません。
+
+<p>ですので、OS X LionやiOS5のSafariは、仕様書の定義に意図的に反した実装になっています。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。HTML5の定義も、柔軟になる必要があるのではないでしょうか。
 
 <p class=XXX>TODO: Chromeもそんな実装にしたがってた痕跡を探す
 <p class=XXX>TODO: OperaのUIもそうなってるのでスクリーンショットをはろうか？
