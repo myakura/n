@@ -140,11 +140,15 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <section id=long>
 <h3>長い文は不適当</h3>
+
+<!-- TODO: perhaps to add an example? -->
+
 <p>まず、長いヒントは<code>placeholder</code>属性の値として想定されていないことが分かります。どれくらいが長いヒントなのかは分かりませんが、長い文でしか伝わらないようなヒントを、入力時に消えてしまうプレースホルダとして設定するのは、あまり賢いやり方ではないでしょう。
 </section>
 
 <section id=label>
 <h3>ラベル代わりの利用はダメ</h3>
+
 <p>次に、<code>label</code>代わりに使うべきではないとあります。これが何故いけないかというと、<code>placeholder</code>だけではそのフィールドが何のためのものか、視覚的にしか伝わらないことが多いからです。
 
 <figure>
@@ -155,6 +159,7 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <article id=a11y>
 <h1 hidden><code>placeholder</code>属性の読み上げ</h1>
+
 <p><code>placeholder</code>属性のアクセシビリティ対応状況ですが、今のところFirefoxとSafariで属性の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。さらに、<code>label</code>でラベルとコントロールを囲む（<code>for</code>で参照しない）場合、Firefoxはラベルとプレースホルダをどちらも読み上げてしまうようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
 
 <!--
@@ -170,6 +175,7 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <section id=example>
 <h3>入力内容の例示は効果的な例もある?</h3>
+
 <p>次に、入力例です。メールアドレスのフィールドに「例: placeholder@example.com」などが書かれているケースがありますが、そういうものを想定しているのでしょう。
 
 <figure>
@@ -182,7 +188,7 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 <p>たとえば、<a href="http://map.yahoo.co.jp/">Yahoo!地図</a>の検索フィールドには「入力例：東京都港区赤坂9-7-1、東京ミッドタウン、大阪駅 居酒屋」というプレースホルダがあります。どちらも位置に関係する情報ですが、「東京都港区赤坂9-7-1」は住所ですが、「東京ミッドタウン」はランドマークの名称と、その性質はそれぞれ異なるのがわかります。
 
 <figure>
-<img src=placeholder/mapyahoo.png alt="">
+<img src=placeholder/mapyahoo.png alt=""><!-- TODO: think about a better textalt. -->
 </figure>
 
 <p>検索フォームが幅広いキーワードを受け付けられることを示すことで、ユーザーが目的の情報にありつきやすくなる効果が期待できるかもしれません。しかし、こういった情報も入力時に消えてしまうプレースホルダではなく、フィールドのそばに併記する方がよいかもしれません。プレースホルダの情報が助けになると判断された場合は、フォームのUIを見直すのがよいでしょう。
@@ -190,6 +196,8 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <section id=format>
 <h3>入力形式の表示はフォームのUI再考を</h3>
+
+<!-- TODO: add examples. -->
 
 <p>最後に、入力形式ですが、これは電話番号や郵便番号などを入力する際の書き方を指すものと推測されます。しかし、これをプレースホルダとして表示することは考えたほうがよいかもしれません。特定の書き方をユーザーに求めるのに、テキストを入力するとプレースホルダは消えてしまうので、どういう書き方をすればよいのかが分からなくなってしまいます。
 
@@ -200,6 +208,8 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <section id=polyfilling>
 <h2>JavaScriptによるプレースホルダの実装は必要か</h2>
+
+<!-- TODO: revise -->
 
 <p>プレースホルダをJavaScriptで実装するものがあります。<code>placeholder</code>属性が導入される前から存在していたものや、古いブラウザでもプレースホルダが欲しいという要求に答えたのでしょう。
 
