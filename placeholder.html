@@ -155,17 +155,15 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <article id=a11y>
 <h1 hidden><code>placeholder</code>属性の読み上げ</h1>
-<p><code>placeholder</code>属性の情報が支援技術に渡されるかは、実装次第となっています。Firefoxでは<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=545817">Bug 545817 - Tracker for placeholder accessibility</a>によって<code>placeholder</code>属性の読み上げがサポートされています。また、Safariも読み上げに対応しているようです。
+<p><code>placeholder</code>属性のアクセシビリティ対応状況ですが、今のところFirefoxとSafariで属性の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。さらに、<code>label</code>でラベルとコントロールを囲む（<code>for</code>で参照しない）場合、Firefoxはラベルとプレースホルダをどちらも読み上げてしまうようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
 
-<p>しかし、<a href="http://html5accessibility.com/">HTML5 accessibility</a>の<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げには違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。さらに、<code>label</code>でラベルとコントロールを囲む（<code>for</code>で参照しない）場合、Firefoxはラベルとプレースホルダをどちらも読み上げてしまいます。
-
+<!--
 <figure>
 <pre><code>&lt;label>メールアドレス &lt;input type=email placeholder="メールアドレス">&lt;/label></code></pre>
 <p><label>メールアドレス <input type=email placeholder="メールアドレス"></label>
 <figcaption><code>placeholder</code>をラベルがわりに使うのはいけないので、<code>label</code>で囲った例。しかしFirefoxでは、ラベルとプレースホルダどちらも読み上げられてしまう。</figcaption>
 </figure>
-
-<p>この挙動の違いについては<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=631591">Bug 631591 - different accessible name depending on the label element association method used</a>というバグが登録されています。
+-->
 </article>
 
 <p><code>placeholder</code>の情報が支援技術に渡るように一部のUAで実装されていても、<code>placeholder</code>に対応しない環境では引き続きそのフィールドが何であるかが分かりません。<code>placeholder</code>をラベル代わりに使うのが問題というわけではなく、ラベルを与えないフォームフィールドがそもそも問題と考えてください。
