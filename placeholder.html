@@ -72,20 +72,39 @@ if (!!document.addEventListener) {
 <!--<p>仕様の定義はこうなっています。
 
 <blockquote cite="http://whatwg.org/html#the-placeholder-attribute" lang=en>
-<p>The <dfn><code>placeholder</code></dfn> attribute represents a <em>short</em> hint (a word or short phrase) intended to aid the user with data entry. A hint could be a sample value or a brief description of the expected format. The attribute, if specified, must have a value that contains no U+000A LINE FEED (LF) or U+000D CARRIAGE RETURN (CR) characters.</p>
-<p class="note">For a longer hint or other advisory text, the <code><a href="http://whatwg.org/html#the-title-attribute">title</a></code> attribute is more appropriate.</p>
-<p>The <code><a>placeholder</a></code> attribute should not be used as an alternative to a <code><a href="http://whatwg.org/html#the-label-element">label</a></code>.</p>
-<p>User agents should present this hint to the user, after having <a href="http://whatwg.org/html#strip-line-breaks">stripped line breaks</a> from it, when the element's <a href="http://whatwg.org/html#concept-fe-value">value</a> is the empty string and the control is not focused (e.g. by displaying it inside a blank unfocused control).</p>
+  <p>The <dfn id="attr-input-placeholder" title="attr-input-placeholder"><code>placeholder</code></dfn>
+  attribute represents a <em>short</em> hint (a word or short phrase)
+  intended to aid the user with data entry. A hint could be a sample
+  value or a brief description of the expected format. The attribute,
+  if specified, must have a value that contains no U+000A LINE FEED
+  (LF) or U+000D CARRIAGE RETURN (CR) characters.</p>
+
+  <p class="note">For a longer hint or other advisory text, the <code title="attr-title"><a href="http://whatwg.org/html#the-title-attribute">title</a></code> attribute is more appropriate.</p>
+
+  <p>The <code title="attr-input-placeholder"><a href="#attr-input-placeholder">placeholder</a></code>
+  attribute should not be used as an alternative to a
+  <code><a href="http://whatwg.org/html#the-label-element">label</a></code>.</p>
+
+  <div class="impl">
+
+  <p>User agents should present this hint to the user, after having
+  <a href="http://whatwg.org/html#strip-line-breaks" title="strip line breaks">stripped line breaks</a> from it,
+  when the element's <a href="http://whatwg.org/html#concept-fe-value" title="concept-fe-value">value</a> is
+  the empty string and/or the control is not focused (e.g. by
+  displaying it inside a blank unfocused control and hiding it
+  otherwise).</p>
+
+  </div>
 </blockquote>-->
 
 <p>仕様書の説明を大雑把に訳すとこんな感じでしょうか。
 
 <blockquote>
 <div class=trans>
-<p><dfn><code>placeholder</code></dfn>属性は、ユーザーがデータを入力する際に彼らを手助けする目的で提示される<em>短い</em>ヒント（単語や短いフレーズなど）を表す。ヒントには入力例や望まれる入力形式の説明が当てはまるだろう。属性が指定された場合、その値にはU+000A LINE FEED (LF) や U+000D CARRIAGE RETURN (CR)が含まれてはならない。
+<p><dfn><code>placeholder</code></dfn>属性は、ユーザーがデータを入力する際に彼らを手助けする目的で提示される<em>短い</em>ヒント（単語や短いフレーズなど）を表す。ヒントには入力例や望まれる入力形式の説明が当てはまるだろう。この属性が指定された場合、その値にはU+000A LINE FEED (LF)やU+000D CARRIAGE RETURN (CR)が含まれてはならない。
 <p class=note>長いヒントやその他の補足情報については、<a href="http://whatwg.org/html#the-title-attribute"><code>title</code></a>属性がより適切である。
 <p><code>placeholder</code>属性は<a href="http://whatwg.org/html#the-label-element"><code>label</code></a>の代わりに使うべきではない。
-<p>UAはこのヒントを、要素の<a href="http://whatwg.org/html#concept-fe-value">値</a>が空文字列であり、かつフォーカスされていない場合に、<a href="http://whatwg.org/html#strip-line-breaks">改行を取り除いた</a>うえでユーザーに提示するべきだ。
+<p>UAはこのヒントを、要素の<a href="http://whatwg.org/html#concept-fe-value">値</a>が空文字列である場合に<a href="http://whatwg.org/html#strip-line-breaks">改行を取り除いた</a>うえでユーザーに提示するべきだ。このとき、コントロールはフォーカスされてない状態であってもよいし、フォーカスされていてもよい。
 </div>
 </blockquote>
 
@@ -106,9 +125,9 @@ if (!!document.addEventListener) {
 
 
 <section id=platform>
-<h2>プラットフォーム実装との差異</h2>
+<h2>プラットフォーム実装の差異</h2>
 
-<p>HTML5仕様書の現在の定義は、フォーカスが当たるとプレースホルダが消えることになっています。しかし、これがすべてのプレースホルダに共通した挙動というわけではありません。
+<p>すこし前まで、HTML5仕様書の定義は、フォーカスが当たるとプレースホルダが消えることになっていました。しかし、これがすべてのプレースホルダに共通した挙動というわけではありません。
 
 <p>たとえば、iOSのUIが持つプレースホルダを見てみましょう。iOSのプレースホルダはアドレスブックの検索バーや登録画面に見ることができます。<br>
 iOSネイティブのプレースホルダの挙動は<code>placeholder</code>属性の定義と異なり、フォーカス時にプレースホルダが消えません。フォーカス時点ではプレースホルダが表示されたまま、入力状態であることを示すIビームが表示されます。そして、プレースホルダが消えるのは、テキストの入力時になります。
@@ -124,7 +143,9 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <p class=note>Snow LeopardにもSafari 5.1が提供されていますが、そちらには変化がありません。
 
-<p>ですので、OS X LionやiOS5のSafariは、仕様書の定義に意図的に反した実装になっています。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。HTML5の定義も、柔軟になる必要があるのではないでしょうか。
+<p>ですので、OS X LionやiOS5のSafariは、仕様書の定義に意図的に反した実装になっていました。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。
+
+<p>というわけで、2011年10月末にHTML WGのBugillaに課題が立ち、それが受け入れられ<a href="http://html5.org/r/6782">要件が緩和</a>されました。
 
 <!-- http://lists.whatwg.org/pipermail/whatwg-whatwg.org/2011-July/032555.html -->
 <!-- http://trac.webkit.org/changeset/93146 -->
