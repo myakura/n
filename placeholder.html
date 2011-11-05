@@ -180,7 +180,7 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 <article id=a11y>
 <h1 hidden><code>placeholder</code>属性の読み上げ</h1>
 
-<p><code>placeholder</code>属性のアクセシビリティ対応状況ですが、今のところFirefoxとSafariで属性の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。さらに、<code>label</code>でラベルとコントロールを囲む（<code>for</code>で参照しない）場合、Firefoxはラベルとプレースホルダをどちらも読み上げてしまうようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
+<p><code>placeholder</code>属性のアクセシビリティ対応状況ですが、今のところFirefoxとSafariで属性の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。また、Firefoxでは、<code>label</code>でラベルとコントロールを囲った場合（<code>for</code>で参照しない場合)、ラベルとプレースホルダがどちらも読み上げられてしまうようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
 
 <!--
 <figure>

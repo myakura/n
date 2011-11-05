@@ -6,114 +6,108 @@
 <body>
 
 <h1>スマートフォンと画面解像度・ピクセル密度</h1>
-<!-- last-modified: 2011-07-11 -->
 
-<p>iPhone 4やAndroidスマートフォンで、Webサイトの画像がぼやけて見えるという問題があります。これには、端末ごとの画面解像度とピクセル密度の違い、そしてCSSピクセルとデバイスピクセルの扱いなど、いろんなことが関わっています。
+<p>iPhone 4やAndroidスマートフォンで、Webサイトの画像がぼやけて見えるという問題があります。これには、端末の画面解像度、ピクセル密度、そしてCSSピクセルとデバイスピクセルの扱いといった、いくつかの要因が絡んでいます。
 
-<section id=>
+<section id=resolution-varies>
 <h2>解像度のばらつくスマートフォン</h2>
 
-<p>スマートフォン端末の画面サイズはだいたい3.2〜4.3インチの幅に収まっていますが、ネットブックからデスクトップまであるPCに比べてばらつきは小さな方だと思います。一方、解像度のばらつきは結構なものです。
+<p>スマートフォン端末の画面サイズは端末により様々で、小さなものは3.2インチ、iPhoneは3.5インチ、Androidスマートフォンの多くは4インチちょっとで、大きなものになると4.7インチあたりになります。
+<p>画面サイズのばらつきも結構なものですが、解像度はそれよりも相当ばらついています。
 
-<figure id=>
+<figure id=fig-table-size-resolution>
 <table border>
-<col class=header>
-<col class=desktop>
-<col class=mdpi span=2>
-<col class=hdpi span=4>
-<col class=xhdpi span=2>
 <tr><th>端末
 <td>iPhone 3
-<td>HTC Magic
 <td>Galaxy S
-<td>Xperia
 <td>Xperia arc
 <td>Galaxy S Ⅱ
+<td>INFOBAR
 <td>IS03
 <td>iPhone 4
+<td>Galaxy Nexus
 <tr><th>画面サイズ (in)
 <td>3.5
-<td>3.2
-<td>4.0
 <td>4.0
 <td>4.2
 <td>4.3
+<td>3.7
 <td>3.5
 <td>3.5
+<td>4.7
 <tr><th>解像度 (px)
 <td>320 × 480
-<td>320 × 480
 <td>480 × 800
 <td>480 × 854
-<td>480 × 854
 <td>480 × 800
+<td>560 × 960
 <td>640 × 960
 <td>640 × 960
+<td>720 × 1280
 </table>
 <figcaption>各スマートフォン端末の画面サイズと解像度</figcaption>
 </figure>
 
-<p>iPhone 4やIS03はiPhone 3と比べ4倍ものピクセルがあります。しかしながら、大きさはだいたい同じくらい。こうなると、ピクセル密度に違いがでてきます。
+<p>iPhone 4やIS03にはiPhone 3と比べ、縦横それぞれ2倍、計4倍ものピクセル数があります。Galaxy Nexusを始め、2011年秋に発売されたAndroidスマートフォンはネットブックとほぼ同じ解像度をもつ画面を売りにしています。
+
+<p>これだけ解像度に開きがありながら、端末の大きさは (けっこうばらつきもありますが) 手のひらサイズとだいたい同じです。こうなると、ピクセル密度に大きな違いがでてきます。
 
 </section>
 
 <section>
 <h2>ピクセル密度と密度グループ</h2>
 
-<p>ピクセル密度とは、主に1インチあたりのピクセル数をいうもので、DPI (dot per inch)もしくはPPI (pixel per inch)と呼ばれます。
+<p>ピクセル密度とは、主に1インチあたりのピクセル数をいうもので、DPI (dot per inch) もしくはPPI (pixel per inch) と呼ばれます。
 
-<p>ピクセル密度が高いほど、面積あたりのピクセル数が多くなります。デスクトップではだいたいピクセル密度が同じ (100〜120くらい) なので、一般的に解像度が高くなるにつれ画面が大きくなります。反対に、スマートフォンは画面サイズがだいたい同じなので、ピクセル密度が高くなるにつれ画面が細密になります。iPhone 4のRetina displayはiPhone 3の4倍のピクセルを同じサイズに詰め込んだので、フォントなどがとても綺麗に表示されます。
+<p>ピクセル密度が高いほど、面積あたりの解像度が高くなります。デスクトップではだいたいピクセル密度が同じ (100〜120くらい) なので、一般的に解像度が高くなるにつれ画面も大きくなります。反対に、スマートフォンは画面サイズが手のひらサイズでだいたい同じなので、解像度が高くなるにつれ1ピクセルの大きさが小さくなり、画面が細密になります。<br>iPhone 4のRetina displayはiPhone 3の4倍の解像度 (縦横2倍) ですが、画面の大きさは同じ3.5インチです。iPhone 4のピクセル密度はiPhone 3の2倍になります。
 
-<p>スマートフォン端末ごとのピクセル密度ですが、解像度や画面サイズがちょっとずつ違うため、ピクセル密度もちょっとずつ異なります。
 
-<figure id=>
+<p>次の表は、いくつかの端末の解像度とピクセル密度を並べたものです。<!--<a href="#fig-table-size-resolution">画面サイズと解像度のばらつき</a>により、ピクセル密度も少々ばらついています。-->
+
+<figure id=fig-table-density>
 <table border>
-<col class=header>
-<col class=desktop>
-<col class=mdpi span=2>
-<col class=hdpi span=4>
-<col class=xhdpi span=2>
 <tr><th>端末
 <td>iPhone 3
-<td>HTC Magic
 <td>Galaxy S
-<td>Xperia
 <td>Xperia arc
 <td>Galaxy S Ⅱ
+<td>INFOBAR
 <td>IS03
 <td>iPhone 4
+<td>Galaxy Nexus
+<tr><th>画面サイズ (in)
+<td>3.5
+<td>4.0
+<td>4.2
+<td>4.3
+<td>3.7
+<td>3.5
+<td>3.5
+<td>4.7
 <tr><th>解像度 (px)
 <td>320 × 480
-<td>320 × 480
 <td>480 × 800
 <td>480 × 854
-<td>480 × 854
 <td>480 × 800
+<td>560 × 960
 <td>640 × 960
 <td>640 × 960
+<td>720 × 1280
 <tr><th>ピクセル密度 (dpi)
 <td>163
-<td>180
-<td>233
-<td>245
 <td>233
 <td>233
+<td>217
+<td>298
 <td>326
 <td>326
-<!--
-<tr><th>密度のカテゴリ
-<td>160
-<td>240
-<td>240
-<td>240
-<td>240
-<td>320
-<td>320
--->
+<td>312
 </table>
 <figcaption>各スマートフォン端末の画面解像度とピクセル密度</figcaption>
-<span class=note>ピクセル密度は端末の製造/販売企業のWebサイトから、なければ端末のWikipediaページより参照しています。</span>
+<span class=note>ピクセル密度は端末の製造/販売企業のWebサイトから、なければ端末のスペックから算出しています。</span>
 </figure>
+
+<!--
 
 <p>さて、横幅に注目すると、320px, 480px, 640pxと3つのグループがあることが分かります。また、それぞれの区分におけるピクセル密度も160〜180, 230〜245, 320と、幅はあるものの3つに分かれていることに気づきます。
 <p>
@@ -142,8 +136,7 @@
 </figure>
 
 <p class=note>OSレベルにおいて、xhdpiはAndroid 2.2から追加されています。なのでIS03はxhdpiグループであるべきなんですが、<a href="http://sakaneya.blogspot.com/2010/11/is03-dpigalaxy-s.html">Android端末のDPIまとめ</a>によるとhdpiに属しているようです (端末のDPIは320を返しています)。また、IS05はhdpiなようですが、3.4インチの画面に480 × 854ピクセルという解像度なのでピクセル密度は290前後とxhdpiにむしろ近くなります。グループが同じであっても、その精細さにはなかなか大きな違いが出てくる可能性があります。
-
-<p class=XXX>qHD端末どうしようかな……発売されてからちょっと調べようかね……
+-->
 </section>
 
 <section>
@@ -278,6 +271,8 @@
 
 </section>
 -->
+
 <footer>
-<address><a rel=me href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+<address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+<p class=update>Update: October 30, 2011
 </footer>
