@@ -1,6 +1,7 @@
 <!doctype html>
 <meta charset=utf-8>
 <title>プレースホルダとHTML5のplaceholder属性</title>
+<meta name=description content="HTML5のplaceholder属性について、その定義や適切なプレースホルダテキストについて考察しています。">
 <link rel=stylesheet href="lilium.css">
 <link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
 <script>
@@ -42,7 +43,7 @@ if (!!document.addEventListener) {
 <p>フォームフィールドに薄い灰色のテキストが表示されているものを見かけます。あのテキストや、その仕組みはプレースホルダと呼ばれています。
 
 <figure id=fig-safari>
-<img src=placeholder/safari.png>
+<img src="placeholder/safari.png">
 <figcaption>Safariはアドレスバーに“Go to this address”、検索バーに“Google”というプレースホルダが設定されている。</figcaption>
 </figure>
 
@@ -127,28 +128,26 @@ if (!!document.addEventListener) {
 <section id=platform>
 <h2>プラットフォーム実装の差異</h2>
 
-<p>すこし前まで、HTML5仕様書の定義は、フォーカスが当たるとプレースホルダが消えることになっていました。しかし、これがすべてのプレースホルダに共通した挙動というわけではありません。
+<p>すこし前のHTML5仕様書では、プレースホルダはフォーム要素にフォーカスが当たると消えることになっていました。しかし、この挙動はすべてのプラットフォームに共通したものではありません。
 
-<p>たとえば、iOSのUIが持つプレースホルダを見てみましょう。iOSのプレースホルダはアドレスブックの検索バーや登録画面に見ることができます。<br>
-iOSネイティブのプレースホルダの挙動は<code>placeholder</code>属性の定義と異なり、フォーカス時にプレースホルダが消えません。フォーカス時点ではプレースホルダが表示されたまま、入力状態であることを示すIビームが表示されます。そして、プレースホルダが消えるのは、テキストの入力時になります。
+<p>たとえば、iOSのプレースホルダはフォーカス時には消えません。フォーカス時は入力状態であることを示すIビームがプレースホルダに重なって表示されます。プレースホルダが消えるのは、テキストの入力時になります。
 
 <figure>
-<img src=placeholder/contact1.png width=480><br><img src=placeholder/contact2.png width=480><br><img src=placeholder/contact3.png width=480>
+<img src="placeholder/contact1.png" width=480><br><img src="placeholder/contact2.png" width=480><br><img src="placeholder/contact3.png" width=480>
 <figcaption>iOSではフォーカス時ではなく入力時にプレースホルダが消える。</figcaption>
 </figure>
 
-<p>さて、iOS 4のSafariまでは<code>placeholder</code>属性の実装がHTML5仕様通りになっていたため、iOSネイティブのプレースホルダ実装との挙動に一貫性がありませんでした。これを問題視したのか、AppleはSafariのエンジンであるWebKitに<a href="http://trac.webkit.org/changeset/77639">変更を加え</a>、プラットフォームがフォーカス時のプレースホルダの表示状態について選択できるようにしました。iOS 5のSafariは、ネイティブのプレースホルダと同じ挙動をとっています。
+<p>ところが、iOS 4までのSafariでは<code>placeholder</code>属性の実装が当時の仕様通り、フォーカス時に消えるようになっていたため、iOSネイティブ実装と一貫性がありませんでした。これを問題視したのか、AppleはSafariのエンジンであるWebKitに<a href="http://trac.webkit.org/changeset/77639">変更を加え</a>、プラットフォームがフォーカス時のプレースホルダの表示状態について選択できるようにしました。この変更のためか、iOS 5のSafariはネイティブのプレースホルダと同じ挙動をとるようになりました。
 
-<p>さて、Mac OS X Snow Leopardでは、ネイティブのプレースホルダはHTML5と同じ挙動をとります。しかし、“Back to the Mac”というスローガンを掲げたからなのか、OS X Lionでは、ネイティブのプレースホルダもSafari (5.1) のプレースホルダも、フォーカス時に消えないという挙動に変更されました。<a href="#fig-safari">冒頭のスクリーンショット</a>はLionのSafari 5.1ですが、アドレスバーにフォーカスが当たっているにもかかわらず“Go to this address”というプレースホルダが表示されているのがわかります。
+<p>Mac OS X Snow Leopardにおいても、Safariのプレースホルダはフォーカス時に消える実装でした。しかし、OS X Lionでは、ネイティブのプレースホルダもSafari (5.1) のプレースホルダも、フォーカス時に消えないという挙動に変更されました。<a href="#fig-safari">冒頭のスクリーンショット</a>はLionのSafari 5.1ですが、アドレスバーにフォーカスが当たっているにもかかわらず“Go to this address”というプレースホルダが表示されているのがわかります。いっぽう、Snow LeopardのSafari 5.1ではフォーカス時に消えるという挙動をとっています。
 
-<p class=note>Snow LeopardにもSafari 5.1が提供されていますが、そちらには変化がありません。
+<p>こうした経緯から、OS X LionやiOS5のSafariは、仕様書の定義に意図的に反した実装になっていました。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。というわけで、仕様の変更が提案され、その結果<a href="http://html5.org/r/6782">要件が緩和</a>されました。
 
-<p>ですので、OS X LionやiOS5のSafariは、仕様書の定義に意図的に反した実装になっていました。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。
-
-<p>というわけで、2011年10月末にHTML WGのBugillaに課題が立ち、それが受け入れられ<a href="http://html5.org/r/6782">要件が緩和</a>されました。
+<p>仕様の変更を受け、<a href="http://trac.webkit.org/changeset/101848">ChromiumのWebKitでも変更が反映</a>されました。確認している範囲では、Chrome 17より、Windows, MacどちらのChromeにおいても、入力時にプレースホルダが消えるようになっています。
 
 <!-- http://lists.whatwg.org/pipermail/whatwg-whatwg.org/2011-July/032555.html -->
 <!-- http://trac.webkit.org/changeset/93146 -->
+<!-- http://trac.webkit.org/changeset/101848 -->
 </section>
 
 <section id=hint>
@@ -180,7 +179,7 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 <article id=a11y>
 <h1 hidden><code>placeholder</code>属性の読み上げ</h1>
 
-<p><code>placeholder</code>属性のアクセシビリティ対応状況ですが、今のところFirefoxとSafariで属性の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。また、Firefoxでは、<code>label</code>でラベルとコントロールを囲った場合（<code>for</code>で参照しない場合)、ラベルとプレースホルダがどちらも読み上げられてしまうようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
+<p><code>placeholder</code>属性のアクセシビリティについては、FirefoxとSafariで属性値の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。また、Firefoxでは、<code>label</code>でラベルとコントロールを囲った場合（<code>for</code>で参照しない場合)、ラベルとプレースホルダがどちらも読み上げられてしまうようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
 
 <!--
 <figure>
@@ -210,7 +209,7 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 <p>たとえば、<a href="http://maps.loco.yahoo.co.jp/">Yahoo!ロコ地図</a>の検索フィールドには「入力例：東京都港区赤坂9-7-1、東京ミッドタウン」「大阪駅 居酒屋」というプレースホルダがあります。どれも位置に関係する情報ですが、「東京都港区赤坂9-7-1」は住所、「東京ミッドタウン」はランドマーク、「大阪駅 居酒屋」はあるランドマーク周辺の情報検索と、性質はそれぞれ異なるのがわかります。
 
 <figure>
-<img src=placeholder/mapyahoo.png alt=""><!-- TODO: think about a better textalt. -->
+<img src="placeholder/mapyahoo.png" alt=""><!-- TODO: think about a better textalt. -->
 </figure>
 
 <p>検索フォームが幅広いキーワードを受け付けられることを示すことで、ユーザーが目的の情報にありつきやすくなる効果が期待できるかもしれません。しかし、こういった情報も入力時に消えてしまうプレースホルダではなく、フィールドのそばに併記する方がよいかもしれません。プレースホルダの情報が助けになると判断された場合は、フォームのUIを見直すのがよいでしょう。
@@ -258,5 +257,5 @@ iOSネイティブのプレースホルダの挙動は<code>placeholder</code>�
 
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: October 28, 2011
+<p class=update>Update: December 20, 2011
 </footer>
