@@ -1,23 +1,9 @@
 <!doctype html>
 <meta charset=utf-8>
-<title>インラインSVG</title>
+<title>HTML5とインラインSVG</title>
+<meta name=description content"HTML5から、HTML文書に直接SVGの要素を記述できるようになりました。「インラインSVG」などと呼ばれているこの機能について簡単に紹介します。">
 <link rel=stylesheet href="lilium.css">
 <link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
-<script>
-// word count
-if (!!window.addEventListener) {
-  window.addEventListener('DOMContentLoaded', function () {
-    var e = document.querySelectorAll('p, li, dd, h1, h2, h3');
-    var v;
-    var l = e.length;
-    while (l--) {
-      v += e[l].textContent;
-    }
-    v.replace(/\n|\r|\s|\v/g, '');
-    document.querySelector('h1').innerHTML += ' <span style="font-size: 70%">(' + v.length + ')</span>';
-  }, false);
-}
-</script>
 <script>
 if (!!window.addEventListener) {
   window.addEventListener('DOMContentLoaded', function () {
@@ -36,8 +22,7 @@ if (!!window.addEventListener) {
 </script>
 <body>
 
-<h1>インラインSVG</h1>
-<!-- last-modified: 2011-08-27 -->
+<h1>HTML5とインラインSVG</h1>
 
 <p>HTML5では、HTML文書中に直接SVGを書けるようになりました。これは「インラインSVG」や“SVG in HTML”, “SVG in text/html”などと呼ばれています。
 
@@ -68,19 +53,15 @@ if (!!window.addEventListener) {
 
 <section id=browser-support>
 <h2>ブラウザの対応状況</h2>
-<p>インラインSVGはHTML5パーサを搭載するブラウザで表示できます。HTML5パーサは、<a href="http://www.google.com/chrome">Chrome 7</a>以降、<a href="http://mozilla.com/firefox/">Firefox 4</a>以降、<a href="http://www.apple.com/safari/">Safari 5.1</a>以降のバージョンに搭載されています。Operaは2011年10月現在、最新版ではHTML5パーサを搭載していませんが、<a href="http://my.opera.com/ODIN/blog/2011/10/13/opera-12-alpha-released">開発中のOpera 12.00でHTML5パーサを搭載</a>しています。
-<p><a href="http://www.microsoft.com/ie9">IE9</a>はHTML5パーサを搭載していないものの、インラインSVGの表示に対応しています。なお現在開発中のIE10では、<a href="http://blogs.msdn.com/b/ie/archive/2011/07/06/html5-parsing-in-ie10.aspx">HTML5パーサのアルゴリズムにより近づける</a>ようです。
-</section>
+<p>インラインSVGはHTML5パーサを搭載するブラウザで表示できます。HTML5パーサは、<a href="http://www.google.com/chrome">Chrome 7</a>、<a href="http://mozilla.com/firefox/">Firefox 4</a>、<a href="http://www.apple.com/safari/">Safari 5.1</a>、<a href="http://www.opera.com/browser/">Opera 11.60</a>以降のバージョンで対応しています。
+<p><a href="http://www.microsoft.com/ie9">IE9</a>はHTML5パーサを搭載していないものの、インラインSVGの表示に対応しています。なお現在開発中のIE10では、<a href="http://msdn.microsoft.com/library/ie/hh673554">HTML5パーサを搭載予定</a>のようです。
 
-<section id=forcesvg>
-<h2>Force SVGで擬似対応</h2>
-<p>インラインSVGに対応していないブラウザでも、SVGに対応していれば<a href="http://berjon.com/hacks/force-svg/">Force SVG</a>というライブラリを利用することで擬似的に対応できます。
-
-<p class=XXX>todo: Modernizrと組み合わせた説明を書く。
+<p>モバイルについては、Android 3.0以降のブラウザ、iOS5 SafariがHTML5パーサを搭載しています。Windows Phone 7.5以降も、IE9ベースのエンジンを搭載しているので、インラインSVGに対応しているものと考えられます。
 </section>
 
 <p class=XXX>issue: xlink:hrefと書かないとダメとか、IE9ではなぜかOKとか、SVG2では可能になるはずとか、そういうのは書く？
 
 <footer>
 <address><a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+<p class=update>Update: April 27, 2012
 </footer>
