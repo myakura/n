@@ -7,12 +7,12 @@
 
 <h1>スマートフォンと画面解像度・ピクセル密度</h1>
 
-<p>iPhone 4やAndroidスマートフォンで、Webサイトの画像がぼやけて見えるという問題があります。これには、端末の画面解像度、ピクセル密度、そしてCSSピクセルとデバイスピクセルの扱いといった、いくつかの要因が絡んでいます。
+<p>iPhone 4やAndroidスマートフォンで、Webサイトの画像がぼやけて見えることがあります。これには、端末の画面解像度、ピクセル密度、そしてCSSピクセルとデバイスピクセルの扱いといった、いくつかの要因が絡んでいます。
 
 <section id=resolution-varies>
 <h2>解像度のばらつくスマートフォン</h2>
 
-<p>スマートフォン端末の画面サイズは端末により様々で、小さなものは3.2インチ、iPhoneは3.5インチ、Androidスマートフォンの多くは4インチちょっとで、大きなものになると4.7インチあたりになります。
+<p>スマートフォン端末の画面サイズは端末により様々です。iPhoneは3.5インチですが、Androidスマートフォンは3インチ前半から4インチ後半まで、幅広く分布しています。
 <p>画面サイズのばらつきも結構なものですが、解像度はそれよりも相当ばらついています。
 
 <figure id=fig-table-size-resolution>
@@ -22,8 +22,7 @@
 <td>Galaxy S
 <td>Xperia arc
 <td>Galaxy S Ⅱ
-<td>INFOBAR
-<td>IS03
+<td>INFOBAR A01
 <td>iPhone 4
 <td>Galaxy Nexus
 <tr><th>画面サイズ (in)
@@ -33,7 +32,6 @@
 <td>4.3
 <td>3.7
 <td>3.5
-<td>3.5
 <td>4.7
 <tr><th>解像度 (px)
 <td>320 × 480
@@ -42,27 +40,25 @@
 <td>480 × 800
 <td>560 × 960
 <td>640 × 960
-<td>640 × 960
 <td>720 × 1280
 </table>
-<figcaption>各スマートフォン端末の画面サイズと解像度</figcaption>
+<figcaption>各スマートフォンの画面サイズと解像度</figcaption>
 </figure>
 
-<p>iPhone 4やIS03にはiPhone 3と比べ、縦横それぞれ2倍、計4倍ものピクセル数があります。Galaxy Nexusを始め、2011年秋に発売されたAndroidスマートフォンはネットブックとほぼ同じ解像度をもつ画面を売りにしています。
+<p>iPhone 4はiPhone 3と比べ、縦横それぞれ2倍、計4倍ものピクセル数があります。Galaxy Nexusを始め、2011年秋以降に発売されたハイエンドのAndroidスマートフォンは720 × 1280と、一昔まえのネットブックほどの解像度を備えています。
 
-<p>これだけ解像度に開きがありながら、端末の大きさは (けっこうばらつきもありますが) 手のひらサイズとだいたい同じです。こうなると、ピクセル密度に大きな違いがでてきます。
+<p>これだけ解像度に開きがありながら、端末の大きさは (ばらつきもあるものの) 手でつかめるサイズに収まっています。こうなると、ピクセル密度に大きな違いがでてきます。
 
 </section>
 
 <section>
 <h2>ピクセル密度と密度グループ</h2>
 
-<p>ピクセル密度とは、主に1インチあたりのピクセル数をいうもので、DPI (dot per inch) もしくはPPI (pixel per inch) と呼ばれます。
+<p>ピクセル密度とは、主に1インチあたりのピクセル数をいうもので、DPI (dot per inch) やPPI (pixel per inch) などと呼ばれています。
 
-<p>ピクセル密度が高いほど、面積あたりの解像度が高くなります。デスクトップではだいたいピクセル密度が同じ (100〜120くらい) なので、一般的に解像度が高くなるにつれ画面も大きくなります。反対に、スマートフォンは画面サイズが手のひらサイズでだいたい同じなので、解像度が高くなるにつれ1ピクセルの大きさが小さくなり、画面が細密になります。<br>iPhone 4のRetina displayはiPhone 3の4倍の解像度 (縦横2倍) ですが、画面の大きさは同じ3.5インチです。iPhone 4のピクセル密度はiPhone 3の2倍になります。
+<p>ピクセル密度が高いほど、面積あたりの解像度が高くなります。デスクトップではだいたいピクセル密度が同じ (100〜120くらい) なので、一般的に解像度が高くなるにつれ画面も大きくなります。反対に、スマートフォンは画面サイズが (だいたい) 同じなので、解像度が高くなるにつれ1ピクセルの大きさが小さくなり、画面が細密になります。<br>iPhone 4のRetina displayはiPhone 3の4倍の解像度 (縦横2倍) ですが、画面の大きさは同じ3.5インチです。ですので、iPhone 4のピクセル密度はiPhone 3の2倍になります。
 
-
-<p>次の表は、いくつかの端末の解像度とピクセル密度を並べたものです。<!--<a href="#fig-table-size-resolution">画面サイズと解像度のばらつき</a>により、ピクセル密度も少々ばらついています。-->
+<p>次の表は、いくつかの端末の解像度とピクセル密度を並べたものです。
 
 <figure id=fig-table-density>
 <table border>
@@ -71,8 +67,7 @@
 <td>Galaxy S
 <td>Xperia arc
 <td>Galaxy S Ⅱ
-<td>INFOBAR
-<td>IS03
+<td>INFOBAR A01
 <td>iPhone 4
 <td>Galaxy Nexus
 <tr><th>画面サイズ (in)
@@ -82,7 +77,6 @@
 <td>4.3
 <td>3.7
 <td>3.5
-<td>3.5
 <td>4.7
 <tr><th>解像度 (px)
 <td>320 × 480
@@ -90,7 +84,6 @@
 <td>480 × 854
 <td>480 × 800
 <td>560 × 960
-<td>640 × 960
 <td>640 × 960
 <td>720 × 1280
 <tr><th>ピクセル密度 (dpi)
@@ -100,21 +93,17 @@
 <td>217
 <td>298
 <td>326
-<td>326
 <td>312
 </table>
-<figcaption>各スマートフォン端末の画面解像度とピクセル密度</figcaption>
+<figcaption>各スマートフォンの解像度とピクセル密度</figcaption>
 <span class=note>ピクセル密度は端末の製造/販売企業のWebサイトから、なければ端末のスペックから算出しています。</span>
 </figure>
 
-<!--
+<p>表を見ていると、ピクセル密度が160前後, 210〜240, 300〜320と、すこしふれ幅はあるものの、おおよそ3つに分かれていることに気づきます。
 
-<p>さて、横幅に注目すると、320px, 480px, 640pxと3つのグループがあることが分かります。また、それぞれの区分におけるピクセル密度も160〜180, 230〜245, 320と、幅はあるものの3つに分かれていることに気づきます。
-<p>
+<p>Androidでは、<a href="http://developer.android.com/guide/practices/screens_support.html#qualifiers">画面の性質でグループ分け</a>がされており、端末のピクセル密度についてもいくつかのグループに分かれています。
 
-<p>Androidでは、端末のピクセル密度をldpi, mdpi, hdpi, xhdpiという4つのグループに分類しています。各グループに属する端末は、内部的にそれぞれ120dpi, 160dpi, 240dpi, 320dpiとして処理されます。主流の端末の多くがhdpiですが、IS03のxhdpiといったiPhone 4と同じクラスのピクセル密度を持つ端末も出てきました。
-
-<figure>
+<figure id=fig-table-density-groups>
 <table border>
 <tr><th>グループ名
 <td>ldpi
@@ -122,21 +111,18 @@
 <td>hdpi
 <td>xhdpi
 <tr><th>dpi
-<td>120
-<td>160
-<td>240
-<td>320
-<tr><th>viewport値
-<td>low-dpi
-<td>medium-dpi
-<td>high-dpi
-<td>n/a
+<td>~120
+<td>~160
+<td>~240
+<td>~320
 </table>
 <figcaption>Androidの密度グループ</figure>
 </figure>
 
-<p class=note>OSレベルにおいて、xhdpiはAndroid 2.2から追加されています。なのでIS03はxhdpiグループであるべきなんですが、<a href="http://sakaneya.blogspot.com/2010/11/is03-dpigalaxy-s.html">Android端末のDPIまとめ</a>によるとhdpiに属しているようです (端末のDPIは320を返しています)。また、IS05はhdpiなようですが、3.4インチの画面に480 × 854ピクセルという解像度なのでピクセル密度は290前後とxhdpiにむしろ近くなります。グループが同じであっても、その精細さにはなかなか大きな違いが出てくる可能性があります。
--->
+<p>iPhoneを当てはめると、iPhone 3までがmdpiで、iPhone 4からはxhdpiに相当します。日本で流通しているAndroidスマートフォンの多くはhdpiに属するでしょうが、最近のHD解像度の端末はxhdpiに属しそうです。
+
+<p class=note>xhdpiはAndroid 2.2から追加されているため、2.1を搭載したIS03はxhdpiではなくhdpiに属しているようです (しかし、端末のDPIは320を返しています)。また、IS05はhdpiなようですが、ピクセル密度は290前後とxhdpiにむしろ近くなります。同じグループの端末でも、精細さに違いが出てくる可能性はありそうです。
+
 </section>
 
 <section>
@@ -148,54 +134,48 @@
 
 <figure>
 <img src=density/asahicom_retina.png style="border-radius: 6px">
-<figcaption>mini.asahi.comをRetina displayで表示した例 (シミュレータ利用)。ロゴや「トップ」「写真」といったタブの箇所は画像だが、その下の文字と比べて荒く表示されているのがわかる。</figcaption>
+<figcaption>mini.asahi.comをRetina displayで表示した例 (シミュレータ利用)。ロゴや「トップ」「写真」といった画像の文字が、その下にある「ニュース」などのテキストと比べて荒く表示されているのがわかる。</figcaption>
 </figure>
 
-<p>iPhone 4のRetina displayでは文字の綺麗さなどをうたっていますが、画像が綺麗に見えないのはどうしてでしょうか。ここで出てくるのが、デバイスピクセルとデバイス非依存なピクセルという、2種類の「ピクセル」です。ここではWeb開発について話すので、デバイスピクセルとCSSピクセルの違いになります。
+<p>iPhone 4のRetina displayでは文字の綺麗さなどをうたっていますが、画像が綺麗に見えないのはどうしてでしょうか。ここで出てくるのが、デバイスピクセルとCSSピクセルという、2種類の「ピクセル」です。
 </section>
 
 <section id=dpx-vs-csspx>
 <h2>「デバイスピクセル」と「CSSピクセル」</h2>
 
-<p>Webデザインにおける「ピクセル」は、ほとんどの場合「CSSピクセル」を指します。一方、画面のもつピクセルは「デバイスピクセル」と呼ばれたりします。
+<p>Webデザインにおける「ピクセル」は、ほとんどの場合「CSSピクセル」を指します。一方、画面のピクセルは「デバイスピクセル」と呼ばれたりします。
 
 <p class=note>以下に出てくる「csspx」はCSSピクセルを、「dpx」はデバイスピクセルを表します。
 
-<p>iPhone 4の画面は640dpx × 960dpxです。iPhone 3が320dpx × 480dpxなので、iPhone 4はiPhone 3に比べて縦横2倍、計4倍のデバイスピクセルを持ちます。解像度が高く今までより広い範囲を表示できますが、そう表示してしまうと画面に表示される多くのものがこれまでの半分の大きさで表示されてしまいます。iPhoneの物理的な大きさを考えると、半分の大きさで表示されたものは使い物にならないでしょう。また、アプリケーションの互換性も損なわれるでしょう。
+<p>iPhone 4の画面は640dpx × 960dpxです。iPhone 3が320dpx × 480dpxなので、iPhone 4はiPhone 3に比べて縦横2倍、計4倍のデバイスピクセルを持ちます。解像度が高く今までより広い範囲を表示できますが、実際にそう表示してしまうと、画面に表示される多くのものがこれまでの半分の大きさで表示されてしまいます。iPhoneの物理的な大きさを考えると、半分の大きさで表示されたWebサイトは読めたものではないでしょう。また、アプリケーションなども操作できたものではないでしょう。
 
-<p>これを解決するために、iPhone 4のSafariではひとつのCSSピクセルを、ふたつのデバイスピクセルで表しています。1csspx = 2dpxですから、<code>border-width: 2px</code>は4dpxの線で描画されることになりますし、「100px × 100px」な画像は200dpx × 200dpxの領域に描画されます。一方、ベクターで計算されるもの (アウトラインフォント、SVGのパスなど) は計算結果の描画における分解能が高くなるため、制裁に表示されます。画像がぼやける一方でフォントが綺麗なのはこのためです。
+<p>これを解決するために、iPhone 4のSafariではひとつのCSSピクセルをふたつのデバイスピクセルで表しています。1csspx = 2dpxですから、<code>border-width: 2px</code>は4dpxの線で描画されることになりますし、「100px × 100px」な画像は200dpx × 200dpxの領域に描画されます。<br>一方、ベクターで計算されるもの (アウトラインフォント、SVGのパスなど) は描画される箇所のデバイスピクセルが細かいので、精細に表示されます。画像がぼやける一方でフォントが綺麗なのはこのためです。
 
-<p>Androidスマートフォンは、端末の密度グループによってデバイスピクセルとCSSピクセルのマッピングが異なります。基準はiPhoneとの互換性のためmdpi (160dpi) になります。このmdpiにおける1ピクセルは“density-independent pixel (dp, dip)” と呼ばれています。さて、hdpi (240dpi) は240/160=1.5ですから、1csspx = 1.5dpxとなります。現在販売されているAndroidスマートフォンの多くは横幅480dpxの画面を持っていますので、多くの場合Android端末では1csspx = 1.5dpxという面倒な扱いになります。
+<p>Androidスマートフォンは、端末の密度グループによってデバイスピクセルとCSSピクセルのマッピングが異なります。ひとつのデバイスピクセルをひとつのCSSピクセルで表示するのは、iPhoneにあわせてmdpi (160dpi) の端末です。このmdpiにおける1ピクセルは“density-independent pixel (dp, dip)” と呼ばれています。さて、hdpi (240dpi) は160dpiの1.5倍ですから、1csspx = 1.5dpxとなります。
 
-<p>デバイスピクセルとCSSピクセルの対応比は、「デバイスピクセル比」(“device pixel ratio”) などと呼ばれています。WebKitやPresto <a href="http://www.opera.com/docs/specs/presto28/#m28-102">(2.8以降)</a> では、<code>window.devicePixelRatio</code>というプロパティからこの値をを知ることができます。iPhone 4では<code>2</code>を、Androidスマートフォンの多くは<code>1.5</code>を返します。
+<p>現在使われているAndroidスマートフォンの多くはhdpiに属すので、<code>border-width: 2px</code>は3dpxで表されることになります。そして、1csspxは1.5dpxと整数値で割り切れないため値が丸められ、1csspxで指定された線が消える・細く見えることがあります。
 
-<figure id=>
+<p>デバイスピクセルとCSSピクセルの対応比は、「デバイスピクセル比」(“device pixel ratio”) などと呼ばれています。Chrome, Safari, Operaでは、<code>window.devicePixelRatio</code>というプロパティからこの値を取得できます。
+
+<figure id=fig-table-dpxratio>
 <table border style="text-align: center">
-<col class=header >
-<col class=desktop>
-<col class=mdpi span=2>
-<col class=hdpi span=4>
-<col class=xhdpi span=2>
 <tr><th>端末
 <td>iPhone 3
-<td>HTC Magic
 <td>Galaxy S
-<td>Xperia
 <td>Xperia arc
 <td>Galaxy S Ⅱ
-<td>IS03
+<td>INFOBAR A01
 <td>iPhone 4
+<td>Galaxy Nexus
 <tr><th>解像度 (px)
 <td>320 × 480
-<td>320 × 480
 <td>480 × 800
 <td>480 × 854
-<td>480 × 854
 <td>480 × 800
+<td>560 × 960
 <td>640 × 960
-<td>640 × 960
+<td>720 × 1280
 <tr><th>密度のカテゴリ
-<td>160
 <td>160
 <td>240
 <td>240
@@ -204,7 +184,6 @@
 <td>320
 <td>320
 <tr><th>dpx比
-<td>1
 <td>1
 <td>1.5
 <td>1.5
@@ -274,5 +253,5 @@
 
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: October 30, 2011
+<p class=update>Update: April 27, 2012
 </footer>
