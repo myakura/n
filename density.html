@@ -38,7 +38,7 @@ if (!!document.addEventListener) {
 
 <p>iPhone 4やAndroidスマートフォンで、Webサイトの画像がぼやけて見えることがあります。これには、端末の画面解像度、ピクセル密度、そしてCSSピクセルとデバイスピクセルの扱いといった、いくつかの要因が絡んでいます。
 
-<section id=resolution-varies>
+<section id=screen-resolution-varies>
 <h2>解像度のばらつくスマートフォン</h2>
 
 <p>スマートフォン端末の画面サイズは端末により様々です。iPhoneは3.5インチですが、Androidスマートフォンは3インチ前半から4インチ後半まで、幅広く分布しています。
@@ -80,7 +80,7 @@ if (!!document.addEventListener) {
 
 </section>
 
-<section>
+<section id=pixel-density-and-density-groups>
 <h2>ピクセル密度と密度グループ</h2>
 
 <p>ピクセル密度とは、主に1インチあたりのピクセル数をいうもので、DPI (dot per inch) やPPI (pixel per inch) などと呼ばれています。
@@ -153,7 +153,7 @@ if (!!document.addEventListener) {
 <p class=note>IS05やXperia ray, INFOBAR A01/C01など、グループ上はhdpiに属していますが、画面サイズが小さいためピクセル密度が300dpi近くと、xhdpiに近いピクセル密度となっています。こういった小型の端末が増えると、所属するグループだけでは画面の精細さやピクセルの大きさを判断するのは難しくなるでしょう。
 </section>
 
-<section>
+<section id=websites-in-high-dpi-screen>
 <h2>ピクセル密度の違いが見た目に影響する</h2>
 
 <p>さて、ピクセル密度のばらつきによって、すこし困ったことが起こります。密度の低い環境に合わせて作られたコンテンツの見た目が、密度の高い環境で良く見えない可能性が出てくるのです。
@@ -168,7 +168,7 @@ if (!!document.addEventListener) {
 <p>iPhone 4のRetina displayでは文字の綺麗さなどをうたっていますが、画像が綺麗に見えないのはどうしてでしょうか。ここで出てくるのが、デバイスピクセルとCSSピクセルという、2種類の「ピクセル」です。
 </section>
 
-<section id=dpx-vs-csspx>
+<section id=device-pixels-and-css-pixels>
 <h2>「デバイスピクセル」と「CSSピクセル」</h2>
 
 <p>Webデザインにおける「ピクセル」は、ほとんどの場合「CSSピクセル」を指します。一方、画面のピクセルは「デバイスピクセル」と呼ばれたりします。
