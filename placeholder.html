@@ -1,7 +1,7 @@
 <!doctype html>
 <meta charset=utf-8>
 <title>プレースホルダとHTML5のplaceholder属性</title>
-<meta name=description content="HTML5のplaceholder属性について、その定義や適切なプレースホルダテキストについて考察しています。">
+<meta name=description content="HTML5のplaceholder属性についての説明です。適切なプレースホルダテキストのつけ方についても考えています。">
 <link rel=stylesheet href="lilium.css">
 <link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
 <link rel=alternate href="https://github.com/myakura/n/commits/gh-pages.atom" type="application/atom+xml">
@@ -36,44 +36,34 @@ if (!!document.addEventListener) {
 
 <h1>プレースホルダとHTML5の<code>placeholder</code>属性</h1>
 
-<p>HTML5で導入された<code>placeholder</code>属性によって、フォームフィールドにプレースホルダを設定できるようになりました。さて、「プレースホルダ」とはそもそもなんでしょうか。また、どのようなテキストを書けばよいのでしょうか。
+<p>HTML5で導入された<code>placeholder</code>属性によって、フォームの入力欄にプレースホルダを設定できるようになりました。さて、この「プレースホルダ」とはそもそもなんなのでしょうか。また、プレースホルダにはどのようなテキストを書けばよいのでしょうか。
 
 <section id=intro>
-<h2>プレースホルダとは</h2>
+<h2>プレースホルダってなに?</h2>
 
-<p>フォームフィールドに薄い灰色のテキストが表示されているものを見かけます。あのテキストや、その仕組みはプレースホルダと呼ばれています。
+<p>フォームの入力欄に、薄い灰色のテキストが表示されているものを見かけます。あのテキストや、テキストを提供する仕組みは、プレースホルダと呼ばれています。
 
-<figure id=fig-safari>
-<img src="placeholder/safari.png">
-<figcaption>Safariはアドレスバーに“Go to this address”、検索バーに“Google”というプレースホルダが設定されている。</figcaption>
+<figure>
+<img src="placeholder/safari.png" width=480>
+<figcaption>Safariではアドレスバーに“Go to this address”、検索バーに“Google”というプレースホルダが設定されている。</figcaption>
 </figure>
 
-<p class=note>“placeholder”は実際のものに変わって表示されるものを意味するものです。たとえばダミーテキストなどもplaceholder textなどと呼ばれます。このノートでは、<code>input</code>や<code>textarea</code>などフォームフィールドに表示されるものに限定してこの「プレースホルダ」という言葉を使っています。
+<p class=note>「プレースホルダ (“placeholder”)」
+ とは、「実際のものに代わって現れるもの」を意味します。たとえば、Webサイトのテンプレートを作る際に、実際のページにはないテキストを入れることがあります。日本語では「ダミーテキスト」などと呼ばれますが、英語では “placeholder text” と呼ばれることがあります。ですので、「プレースホルダ」はフォーム関連の専門用語というわけではありません。
 
-<p>プレースホルダのついたフォームフィールドは、こんな動作をします。
+<p>プレースホルダは、フォーム入力欄に値がなにも入力されていない時に表示されます。そしてフォームになにか入力されると、プレースホルダは消えてしまいます。
 
-<ul>
-<li><!-- フォーカスが当たっておらず、かつ-->値が何も入力されていない時、フィールド内にプレースホルダを表示する。
-<li><!-- フォーカスが当たり-->フィールドが入力を受け付けると、プレースホルダが消える。
-</ul>
-
-<p>これらの挙動から、プレースホルダには「入力前にそのフィールドに関し何かしら情報を提示する」目的があると推測されます。
-
-<p class=note>プレースホルダが消える挙動については、OSやソフトウェアの実装によって異なります。詳しくは<a href="#platform">プラットフォーム実装との差異</a>をお読みください。
+<p>ですので、プレースホルダには「フォームの入力前に、その入力欄に関する何らかの情報を示す」目的があると考えられます。
 </section>
 
 <section id=html5>
 <h2>HTML5の<code>placeholder</code>属性</h2>
 
-<p>Webサイトがアプリケーション化しているからなのか、Webサイトでもプレースホルダを見ることも増えてきました。このプレースホルダの多くはJavaScriptによって実装されていますが、HTML5では<code>placeholder</code>というそのままの名前の属性が<code>input</code>および<code>textarea</code>要素に導入されています。
+<p>冒頭ではプレースホルダの採用例としてSafariのアドレスバーを紹介しましたが、プレースホルダはOSネイティブのソフトウェアだけのものではありません。近年、Webサイトでも、フォーム入力欄にプレースホルダがあるものを見るようになりました。
 
-<ul>
-<li><a href="http://whatwg.org/html#the-placeholder-attribute">The <code>placeholder</code> attribute</a>
-</ul>
+<p>Webサイト上のプレースホルダは、これまでJavaScriptによって実装されていました。これはHTMLのフォームにプレースホルダをつける機能がなかったためです。しかし、HTML5では<code>placeholder</code>というそのままの名前の属性が、<code>&lt;input></code>と<code>&lt;textarea></code>に導入されました。この属性を使えば、JavaScriptなしでプレースホルダを設定できます。
 
-<!--<p>仕様の定義はこうなっています。
-
-<blockquote cite="http://whatwg.org/html#the-placeholder-attribute" lang=en>
+<!--<blockquote cite="http://whatwg.org/html#the-placeholder-attribute" lang=en>
   <p>The <dfn id="attr-input-placeholder" title="attr-input-placeholder"><code>placeholder</code></dfn>
   attribute represents a <em>short</em> hint (a word or short phrase)
   intended to aid the user with data entry. A hint could be a sample
@@ -99,164 +89,187 @@ if (!!document.addEventListener) {
   </div>
 </blockquote>-->
 
-<p>仕様書の説明を大雑把に訳すとこんな感じでしょうか。
+<p>仕様書にある<a href="http://whatwg.org/html#the-placeholder-attribute"><code>placeholder</code>属性の定義</a>を簡単に訳してみました。
 
 <blockquote>
 <div class=trans>
-<p><dfn><code>placeholder</code></dfn>属性は、ユーザーがデータを入力する際に彼らを手助けする目的で提示される<em>短い</em>ヒント（単語や短いフレーズなど）を表す。ヒントには入力例や望まれる入力形式の説明が当てはまるだろう。この属性が指定された場合、その値にはU+000A LINE FEED (LF)やU+000D CARRIAGE RETURN (CR)が含まれてはならない。
+<p><dfn><code>placeholder</code></dfn>属性は、ユーザーがデータを入力する際に、彼らを手助けする目的で提示される<em>短い</em>ヒント（単語や短いフレーズなど）を表す。ヒントには、入力例や望まれるフォーマットの説明が当てはまるだろう。この属性を指定する場合、値にU+000A LINE FEED (LF)やU+000D CARRIAGE RETURN (CR)を含めてはならない。
 <p class=note>長いヒントやその他の補足情報については、<a href="http://whatwg.org/html#the-title-attribute"><code>title</code></a>属性がより適切である。
 <p><code>placeholder</code>属性は<a href="http://whatwg.org/html#the-label-element"><code>label</code></a>の代わりに使うべきではない。
 <p>UAはこのヒントを、要素の<a href="http://whatwg.org/html#concept-fe-value">値</a>が空文字列である場合に<a href="http://whatwg.org/html#strip-line-breaks">改行を取り除いた</a>うえでユーザーに提示するべきだ。このとき、コントロールはフォーカスされてない状態であってもよいし、フォーカスされていてもよい。
 </div>
 </blockquote>
 
-<p class=note>改行文字を含んではならないとあるのに、その後UAは改行を取り除き表示すると書かれているので矛盾しているようにも読めますが、前者は製作者の要件、後者はUAの要件になります。
+<!--<p class=note>改行文字を含んではならないとあるのに、その後UAは改行を取り除き表示すると書かれているので矛盾しているようにも読めますが、前者は製作者の要件、後者はUAの要件になります。-->
 
-<p>使い方ですが、値にプレースホルダのテキストを書くだけです。改行を含められないので、<code>textarea</code>で複数行のプレースホルダを表示することはできません。
+<section id=markup>
+<h3><code>placeholder</code>属性の使い方</h3>
+
+<p>使い方ですが、表示したいヒントを<code>&lt;input></code>, <code>&lt;textarea></code>要素の<code>placeholder</code>属性に書くだけです。
 
 <figure>
 <pre><code>&lt;input placeholder="<var>プレースホルダ</var>">
 &lt;textarea placeholder="<var>プレースホルダ</var>">&lt;/textarea></code></pre>
-<p><input placeholder="プレースホルダ"><br>
-<textarea placeholder="プレースホルダ"></textarea>
-<figcaption><code>placeholder</code>のマークアップ。</figcaption>
 </figure>
 
 <p>これだけ。便利な世の中になりました。
+
+<p>なお、改行を含められない仕様なので、複数行のプレースホルダを<code>&lt;textarea></code>に表示することはできません。
+</section>
 </section>
 
 
-<section id=platform>
-<h2>プラットフォーム実装の差異</h2>
+<section id=onfocus-or-oninput>
+<h2>プレースホルダの消えるタイミング</h2>
 
-<p>すこし前のHTML5仕様書では、プレースホルダはフォーム要素にフォーカスが当たると消えることになっていました。しかし、この挙動はすべてのプラットフォームに共通したものではありません。
+<p>プレースホルダが消えるタイミングについて、仕様書は「コントロールはフォーカスされてない状態であってもよいし、フォーカスされていてもよい」と、曖昧に書いています。ですので、OSやブラウザによって、プレースホルダが消えるタイミングが違います。なぜこのようなことになったのでしょう。
 
-<p>たとえば、iOSのプレースホルダはフォーカス時には消えません。フォーカス時は入力状態であることを示すIビームがプレースホルダに重なって表示されます。プレースホルダが消えるのは、テキストの入力時になります。
+<p>もともとHTML5仕様書では、プレースホルダはフォーカスが当たったときに消えるものと定義されていました。しかし、OSが提供しているネイティブUIのプレースホルダが、必ず同じ挙動をとるかというとそうではありません。
+
+<p>たとえば、iOSのアドレス帳。検索欄にプレースホルダが指定されているのですが、このプレースホルダはフォーカスした際には消えません。フォーカス時は入力状態であることを示すIビームが、プレースホルダに重なって表示されます。プレースホルダが消えるのは、テキストが入力されたときになります。
 
 <figure>
 <img src="placeholder/contact.png" width=480>
-<figcaption>iOSではフォーカス時ではなく入力時にプレースホルダが消える。</figcaption>
+<figcaption>iOSのプレースホルダは、フォーカス時ではなく入力時に消える。</figcaption>
 </figure>
 
-<p>ところが、iOS 4までのSafariでは<code>placeholder</code>属性の実装が当時の仕様通り、フォーカス時に消えるようになっていたため、iOSネイティブ実装と一貫性がありませんでした。これを問題視したのか、AppleはSafariのエンジンであるWebKitに<a href="http://trac.webkit.org/changeset/77639">変更を加え</a>、プラットフォームがフォーカス時のプレースホルダの表示状態について選択できるようにしました。この変更のためか、iOS 5のSafariはネイティブのプレースホルダと同じ挙動をとるようになりました。
+<p>ところがiOS4までのSafariは、当時のHTML仕様の規定どおり、プレースホルダがフォーカス時に消えるようになっていました。しかし、OS側で提供されているものと違う挙動をわざわざ求めることに理由はありません。むしろ、OSの挙動を尊重する方が筋でしょう。こうして、SafariのレンダリングエンジンWebKitに変更が加わり、<code>placeholder</code>属性の挙動をカスタマイズできるようになりました。
 
-<p>Mac OS X Snow Leopardにおいても、Safariのプレースホルダはフォーカス時に消える実装でした。しかし、OS X Lionでは、ネイティブのプレースホルダもSafari (5.1) のプレースホルダも、フォーカス時に消えないという挙動に変更されました。<a href="#fig-safari">冒頭のスクリーンショット</a>はLionのSafari 5.1ですが、アドレスバーにフォーカスが当たっているにもかかわらず“Go to this address”というプレースホルダが表示されているのがわかります。いっぽう、Snow LeopardのSafari 5.1ではフォーカス時に消えるという挙動をとっています。
+<p>iOS5のSafariでは、プレースホルダが入力時に消えるように改められました。また、OS X LionのSafari 5.1も同様の挙動をとるようになりました。こうした実装の変更を受け、HTML仕様書も定義を改めたという経緯があります。
 
-<p>こうした経緯から、OS X LionやiOS5のSafariは、仕様書の定義に意図的に反した実装になっていました。しかしこうしたUIコンポーネントの表現は、プラットフォームのもつ挙動に合わせることが正でしょう。というわけで、仕様の変更が提案され、その結果<a href="http://html5.org/r/6782">要件が緩和</a>されました。
+<p>なお、プレースホルダが入力時に消えるのはiOSやOS X LionのSafariに限りません。Chrome 17以降やFirefox 15以降でも、プレースホルダは入力時に消えるようになっています。
 
-<p>仕様の変更を受け、<a href="http://trac.webkit.org/changeset/101848">ChromiumのWebKitでも変更が反映</a>されました。確認している範囲では、Chrome 17より、Windows, MacどちらのChromeにおいても、入力時にプレースホルダが消えるようになっています。
-
-<!-- http://lists.whatwg.org/pipermail/whatwg-whatwg.org/2011-July/032555.html -->
-<!-- http://trac.webkit.org/changeset/93146 -->
-<!-- http://trac.webkit.org/changeset/101848 -->
+<!--
+http://trac.webkit.org/changeset/77639
+http://html5.org/r/6782
+http://trac.webkit.org/changeset/101848
+http://lists.whatwg.org/pipermail/whatwg-whatwg.org/2011-July/032555.html
+http://trac.webkit.org/changeset/93146
+-->
 </section>
 
 <section id=hint>
-<h2>何が「ヒント」となりうるか</h2>
+<h2>どんなテキストが「ヒント」になるか?</h2>
 
-<p><code>placeholder</code>属性やその挙動についてわかったところで、ここからはその属性の使い方について考えていきましょう。
+<p>さて、<code>placeholder</code>属性やその挙動についてひと通りわかったところで、ここからは属性のよい使い方について考えます。
 
-<p>仕様の定義から、<code>placeholder</code>属性は入力する内容に関し「ヒントを与える」という役割を持つことが分かりました。では、どういったテキストがその「ヒント」として適切なのでしょうか。
+<p><code>placeholder</code>属性の目的は、入力する内容について「ヒントを与える」ことです。では、どういったテキストが適切な「ヒント」になるのでしょうか。仕様書の定義をもとに考えましょう。
 
 <section id=long>
 <h3>長い文は不適当</h3>
 
-<!-- TODO: perhaps to add an example? -->
+<!-- TODO: example? -->
 
-<p>まず、長いヒントは<code>placeholder</code>属性の値として想定されていないことが分かります。どれくらいが長いヒントなのかは分かりませんが、長い文でしか伝わらないようなヒントを、入力時に消えてしまうプレースホルダとして設定するのは、あまり賢いやり方ではないでしょう。
+<p>仕様書で「<em>短い</em>ヒント」と短さが強調されていること、長いヒントは<code>title</code>属性でと促していることもあり、長いヒントは不適当なようです。ただ、どれくらいのテキストが「長い」と判断されるのか、具体的な数値はでてきません。
+
+<p>ここで思い出してほしいのが、プレースホルダの挙動です。プレースホルダはフォーカス時、もしくは入力時に消えてしまいます。つまり、入力しているときにプレースホルダの「ヒント」を見ることはできません。ここから、入力している最中に忘れてしまうような長さ、入力前にパッと見られない長さのテキストは<code>placeholder</code>属性の値として不適切と判断できます。
 </section>
 
 <section id=label>
 <h3>ラベル代わりの利用はダメ</h3>
 
-<p>次に、<code>label</code>代わりに使うべきではないとあります。これが何故いけないかというと、<code>placeholder</code>だけではそのフィールドが何のためのものか、視覚的にしか伝わらないことが多いからです。
+<p>仕様書では、<code>&lt;label></code>要素の代わりに使うべきではないと書いています。何故いけないかというと、<code>placeholder</code>属性だけではそのフィールドが何のためのものか、視覚的にしか伝わらないことがあるからです。
+
+<p>たとえば、次のように<code>&lt;label></code>をつけず、その代わりに<code>placeholder</code>属性をつかったフォームがあるとします。
 
 <figure>
-<pre><code>&lt;input type=email placeholder="メールアドレス"></code></pre>
-<p><input type=email placeholder="メールアドレス">
+<pre><code>&lt;input placeholder="名前">
+&lt;input type=email placeholder="メールアドレス">
+&lt;button>送信&lt;/button></code></pre>
+<p><input placeholder="名前"><br><input type=email placeholder="メールアドレス"><br><button type=button>送信</button>
 <figcaption><code>label</code>を関連づけず、プレースホルダをラベルとして利用する例。</figcaption>
 </figure>
 
-<article id=a11y>
-<h1 hidden><code>placeholder</code>属性の読み上げ</h1>
+<p><code>placeholder</code>属性をサポートしているブラウザでは「名前」「メールアドレス」という文字が見えます。ラベルを表示する場所を別にとらずにすむため、フォームをコンパクトにしたい場合、プレースホルダはとても魅力的なアイデアに思えます。
 
-<p><code>placeholder</code>属性のアクセシビリティについては、FirefoxとSafariで属性値の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。また、Firefoxでは、<code>label</code>でラベルとコントロールを囲った場合（<code>for</code>で参照しない場合)、ラベルとプレースホルダがどちらも読み上げられてしまうようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
+<p>しかし、<code>placeholder</code>属性をサポートしていないブラウザではなにも表示されず、何を入力すればよいのかわかりません。また、スクリーンリーダーなど支援技術についても、対応していない場合は何を入力すればよいのかが分かりません。また、入力欄が数多くある場合、入力中に何を入力すればいいかがわからなくなるケースも想定されます。
 
-<!--
-<figure>
-<pre><code>&lt;label>メールアドレス &lt;input type=email placeholder="メールアドレス">&lt;/label></code></pre>
-<p><label>メールアドレス <input type=email placeholder="メールアドレス"></label>
-<figcaption><code>placeholder</code>をラベルがわりに使うのはいけないので、<code>label</code>で囲った例。しかしFirefoxでは、ラベルとプレースホルダどちらも読み上げられてしまう。</figcaption>
-</figure>
--->
-</article>
+<p>これは、<code>placeholder</code>をラベル代わりに使うというよりも、ラベルを与えていないフォームがそもそも問題という話です。フォームにはまずラベルをつけましょう。その上で、どうしてもプレースホルダのUIをラベルとして利用したい場合、支援技術や非対応ブラウザで支障が出ないように対応することが必要です。
 
-<p><code>placeholder</code>の情報が支援技術に渡るように一部のUAで実装されていても、<code>placeholder</code>に対応しない環境では引き続きそのフィールドが何であるかが分かりません。<code>placeholder</code>をラベル代わりに使うのが問題というわけではなく、ラベルを与えないフォームフィールドがそもそも問題と考えてください。
+<aside id=a11y>
+<h4>参考: <code>placeholder</code>属性の読み上げ</h4>
+
+<p><code>placeholder</code>属性のアクセシビリティ対応ですが、FirefoxとSafariで属性値の読み上げがサポートされているようです。<!-- ref: https://bugzilla.mozilla.org/show_bug.cgi?id=545817 -->しかし、<a href="http://html5accessibility.com/tests/placeholder-labelling.html">HTML5 placeholder attribute tests</a>によると、両者の読み上げ方には違いがあります。Firefoxでは<code>label</code>が優先されますが、Safariでは<code>placeholder</code>が優先されてしまうようです。また、Firefoxでは、<code>label</code>でラベルとコントロールを囲った場合（<code>for</code>で参照しない場合)、ラベルとプレースホルダがどちらも読み上げられてしまうようです。
+<!-- https://bugzilla.mozilla.org/show_bug.cgi?id=631591 -->
+</aside>
 </section>
 
 
 <section id=example>
-<h3>入力内容の例示は効果的な例もある?</h3>
+<h3>入力内容の例示は効果的な場合もある?</h3>
 
-<p>次に、入力例です。メールアドレスのフィールドに「例: placeholder@example.com」などが書かれているケースがありますが、そういうものを想定しているのでしょう。
+<p>仕様では、ヒントとして入力例が考えられると書かれています。この例とは、いったいどういったものでしょうか。
+
+<p>会員登録フォームなどで、「山田 太郎」「placeholder@example.com」など、名前やメールアドレスの例を書いているものがあります。
 
 <figure>
 <pre><code>&lt;input type=email placeholder="placeholder@example.com"></code></pre>
-<p><label>メールアドレス: <input type=email placeholder="例: placeholder@example.com"></label>
+<p><label>メールアドレス: <input type=email placeholder="placeholder@example.com" size=40></label>
 </figure>
 
-<p>ほとんどの場合、入力例が有用になるケースや、そもそもヒントになるケースはまれなように感じます。しかし、入力する情報が特定のカテゴリに限定されないフィールドの場合、プレースホルダが有用なヒントとなる可能性はありそうです。
+<p>こうした例は、入力するデータの書式を示すために使われていることが多く、ヒントとして機能しているかどうかは微妙なところです。
 
-<p>たとえば、<a href="http://maps.loco.yahoo.co.jp/">Yahoo!ロコ地図</a>の検索フィールドには「入力例：東京都港区赤坂9-7-1、東京ミッドタウン」「大阪駅 居酒屋」というプレースホルダがあります。どれも位置に関係する情報ですが、「東京都港区赤坂9-7-1」は住所、「東京ミッドタウン」はランドマーク、「大阪駅 居酒屋」はあるランドマーク周辺の情報検索と、性質はそれぞれ異なるのがわかります。
+<p>しかし、入力する情報が特定のカテゴリに限定されない場合、プレースホルダが有用なヒントとなる可能性があります。
+
+<p>たとえば、<a href="http://maps.loco.yahoo.co.jp/">Yahoo!ロコ地図</a>です。Yahoo!ロコ地図の検索フォームには、「入力例：東京都港区赤坂9-7-1、東京ミッドタウン」「大阪駅 居酒屋」というプレースホルダがあります。どれも場所に関係する情報ですが、「東京都港区赤坂9-7-1」は住所、「東京ミッドタウン」はランドマーク、「大阪駅 居酒屋」はランドマーク周辺の情報と、性質がそれぞれ異なっています。
 
 <figure>
-<img src="placeholder/mapyahoo.png" alt=""><!-- TODO: think about a better textalt. -->
+<img src="placeholder/mapyahoo.png" alt=""><!-- TODO: alt -->
 </figure>
 
-<p>検索フォームが幅広いキーワードを受け付けられることを示すことで、ユーザーが目的の情報にありつきやすくなる効果が期待できるかもしれません。しかし、こういった情報も入力時に消えてしまうプレースホルダではなく、フィールドのそばに併記する方がよいかもしれません。プレースホルダの情報が助けになると判断された場合は、フォームのUIを見直すのがよいでしょう。
+<p>このプレースホルダによって、検索フォームが少なくとも3タイプの情報を受け付けられることを示せます。これは「ヒント」として適切な情報ではないでしょうか。
+
+<p>しかし、入力例が多すぎる、もしくはテキストが長すぎると、「長いヒント」の項で挙げた「入力時に消えてしまう」ことが問題になってくるでしょう。そういう場合はプレースホルダを使うのではなく、フィールドのそばに併記する方がよいかもしれません。
 </section>
 
 <section id=format>
-<h3>入力形式の表示はフォームのUI再考を</h3>
+<h3>入力書式の表示はフォームそのものの再考を</h3>
 
-<!-- TODO: add examples. -->
+<p>最後に、入力書式です。郵便番号や電話番号は一定の桁数で区切るなど、慣習として使われている形式があります。また、入力する文字について「全角英数」や「カタカナ」など、種類を指示するフォームなどがあります。これらの書式を指示する際に、<code>placeholder</code>属性が使えるのでしょう。
 
-<p>最後に、入力形式ですが、これは電話番号や郵便番号などを入力する際の書き方を指すものと推測されます。しかし、これをプレースホルダとして表示することは考えたほうがよいかもしれません。特定の書き方をユーザーに求めるのに、テキストを入力するとプレースホルダは消えてしまうので、どういう書き方をすればよいのかが分からなくなってしまいます。
+<figure>
+<pre><code>&lt;label>電話番号: &lt;input size=25 placeholder="半角数字、ハイフン無し">&lt;/label></code></pre>
+<p><label>電話番号: <input size=25 placeholder="半角数字、ハイフン無し"></label>
+</figure>
 
-<p>そもそも、こういった入力する値を制限するフォームは不便なものです。住所の数字やハイフンが全角でなかったばっかりにエラー画面が出たといった経験はないでしょうか。入力された情報に表記のぶれが生じ処理に問題がでるケースは、クライアント側でははくサーバー側で処理するといった設計を考えたほうがよいでしょう。
+<p>このようなプレースホルダの使い方は、避けたほうがよいでしょう。なぜなら、テキストを入力するとプレースホルダは消え、書式がわからなくなるからです。フォームが特定の書式を求める場合は、入力欄のそばに常に表示しておくほうがよいでしょう。
 
-<p>それができない場合でも、<code>pattern</code>属性を始めとする検証機能を利用する、JavaScriptで検証をしてそのステータスをフィールドの横に表示する、書き方をフォームの横に書くといった方法があります。プレースホルダで表示するよりももっとよい情報の提示方法があるはずです。
+<p>もっとも、特定の書式を強制するフォームは不便なものです。住所の数字やハイフンが全角でなかったのでエラーが出た、スペースが半角に変換されてしまい何がエラーなのかわからなかったという経験はないでしょうか。
+
+<p>振り仮名のひらがな/カタカナ表記、全角/半角英数、電話番号や郵便番号の区切りなどは、プログラムで比較的簡単に変換できます。利用者に入力させ直すよりは、サーバサイドプログラムで変換し、その内容を確認させるほうがよいでしょう。
+
+<p>それができない場合でも、<code>pattern</code>属性を始めとする検証機能を利用する、JavaScriptで検証し、適切な書式であるか否かをフィールドの横に表示するといった方法も考えられます。プレースホルダで表示するよりも、もっとよい情報の提示方法があるはずです。
 </section>
 </section>
 
 <section id=polyfilling>
 <h2>JavaScriptによるプレースホルダの実装は必要か</h2>
 
-<!-- TODO: revise -->
+<p>Webサイトのプレースホルダの中には、JavaScriptが使われているものが数多くあります。<code>placeholder</code>属性が導入される前から存在していたものや、古いブラウザでもプレースホルダを表示したいという要求に答えたのでしょう。
 
-<p>プレースホルダをJavaScriptで実装するものがあります。<code>placeholder</code>属性が導入される前から存在していたものや、古いブラウザでもプレースホルダが欲しいという要求に答えたのでしょう。
-
-<p>実装方法ですが、だいたい2パターンかと思います。
+<p>JavaScriptでのプレースホルダ実装は、大きく分けて2つのパターンがあります。
 
 <ul>
-<li>フォーカスに応じて<code>value</code>属性の値とそのスタイルをを書き換える。
-<li><code>label</code>や<code>title</code>にプレースホルダを記述し、スタイルシートで重ねフォーカス制御を実装する。
+<li><code>value</code>属性にプレースホルダテキストを書き、入力欄のフォーカス・入力に応じて属性値を書き換える
+<li><code>label</code>や<code>title</code>属性にプレースホルダを記述し、スタイルシートで入力欄の上に重ね、フォーカスに応じて表示・非表示を切り替える
 </ul>
 
-<p>さて、<code>placeholder</code>と同じ挙動をスクリプトからで行う意義について考えてみましょう。プレースホルダはヒントを与えるもので、それがなくてもフィールドに何を入力するかは、プレースホルダなしでも理解できなければいけません。
+<p>すでに有志によって、多くのライブラリやjQueryプラグインが公開されているので、古いブラウザにプレースホルダをつけるのは簡単です。
 
-<p>そして、与えるプレースホルダは多くの場合「検索ワードを入力」や「Search」といった、ヒントにもならないテキストです。大した行数ではないでしょうが、スクリプトを実装してまでこうしたプレースホルダを<code>placeholder</code>に対応しないブラウザでも表示させる必要はあるのでしょうか。
+<p>ですがここで、その意義についてちょっと考えてみましょう。プレースホルダはヒントを与えるもので、それがなくてもフィールドに何を入力するかは、プレースホルダなしでも理解できなければいけません。
+
+<p>ちまたにあるプレースホルダつきフォームを調べてみると、「検索ワードを入力」や「Search」といったものが多いことに気づきます。しかしこれらの情報は、フォームのデザインやラベルから自明であり、「ヒント」として有用かどうかは疑問が残ります。こうした情報のために、小規模ではありますがJavaScriptを書くこと、ライブラリを読み込む必要性はあるのでしょうか。
 </section>
 
 <section id=summary>
 <h2>まとめ</h2>
 
-<p>プレースホルダはフィールドに入力する情報に関し何らかの「ヒント」をユーザーに伝える役割があります。ヒントはプレースホルダの使われる文脈に依存しますが、ちまたにあるプレースホルダ多くはあまり役目を果たしていないと感じます。「Search」など飾り程度でしかないものが多いからです。
+<p>プレースホルダはフィールドに入力する情報に関し何らかの「ヒント」をユーザーに伝える役割があります。ヒントはプレースホルダの使われる文脈に依存するので、利用する際にはフォームや入力欄について考える必要があります。
 
-<p>プレースホルダは場合によって、良いヒントを提供してくれるかもしれません。しかし、プレースホルダの情報はあくまでヒントです。プレースホルダがなくなると目的が分からなくなるようなフォームであってはいけないわけです。ですから、まず問題なく機能するフォームを作ったうえで、必要あらばプレースホルダでヒントを与えるという設計フローがよいでしょう。
+<p>プレースホルダは場合によって、良いヒントを提供してくれるかもしれません。しかし、プレースホルダの情報はあくまでヒントです。プレースホルダがなくなると目的が分からなくなるようなフォームであってはいけません。ですから、まず問題なく機能するフォームを作ったうえで、必要あらばプレースホルダでヒントを与えるという設計フローがよいでしょう。
 </section>
 
 <footer>
-<address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: March 9, 2012
+<address>by <a rel=author href="http://profiles.google.com/117261322300109492957">Masataka Yakura</a></address>
+<p class=update>Update: June 2, 2012
 </footer>
