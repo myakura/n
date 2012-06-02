@@ -41,7 +41,7 @@ if (!!document.addEventListener) {
 <section id=screen-resolution-varies>
 <h2>解像度のばらつくスマートフォン</h2>
 
-<p>スマートフォン端末の画面サイズは端末により様々です。iPhoneは3.5インチですが、Androidスマートフォンは3インチ前半から4インチ後半まで、幅広く分布しています。
+<p>スマートフォン端末の画面サイズは端末によりばらばらです。iPhoneの画面は3.5インチと同じですが、Androidスマートフォンは3インチ前半から4インチ後半まで、幅広く分布しています。
 <p>画面サイズのばらつきも結構なものですが、解像度はそれよりも相当ばらついています。
 
 <figure id=fig-table-size-resolution>
@@ -74,9 +74,9 @@ if (!!document.addEventListener) {
 <figcaption>各スマートフォンの画面サイズと解像度</figcaption>
 </figure>
 
-<p>iPhone 4はiPhone 3と比べ、縦横それぞれ2倍、計4倍ものピクセル数があります。Galaxy Nexusを始め、2011年秋以降に発売されたハイエンドのAndroidスマートフォンは720 × 1280と、一昔まえのネットブックほどの解像度を備えています。
+<p>iPhone 4はiPhone 3と比べ、縦横それぞれ2倍、計4倍ものピクセル数があります。Galaxy Nexusを始め、2011年秋以降に発売されたハイエンドのAndroidスマートフォンには720 × 1280と、一昔前のネットブックほどもある高い解像度を持った画面を備えています。
 
-<p>これだけ解像度に開きがありながら、端末の大きさは (ばらつきもあるものの) 手でつかめるサイズに収まっています。こうなると、ピクセル密度に大きな違いがでてきます。
+<p>これだけ解像度に開きがありながら、端末の大きさは (ばらつきもあるものの) 手でつかめるサイズに収まっています。このため、画面の「ピクセル密度」に大きな違いがでてきます。
 
 </section>
 
@@ -85,7 +85,8 @@ if (!!document.addEventListener) {
 
 <p>ピクセル密度とは、主に1インチあたりのピクセル数をいうもので、DPI (dot per inch) やPPI (pixel per inch) などと呼ばれています。
 
-<p>ピクセル密度が高いほど、面積あたりの解像度が高くなります。デスクトップではだいたいピクセル密度が同じ (100〜120くらい) なので、一般的に解像度が高くなるにつれ画面も大きくなります。反対に、スマートフォンは画面サイズが (だいたい) 同じなので、解像度が高くなるにつれ1ピクセルの大きさが小さくなり、画面が細密になります。<br>iPhone 4のRetina displayはiPhone 3の4倍の解像度 (縦横2倍) ですが、画面の大きさは同じ3.5インチです。ですので、iPhone 4のピクセル密度はiPhone 3の2倍になります。
+<p>ピクセル密度が高いほど、面積あたりの解像度が高くなります。デスクトップではだいたいピクセル密度が同じ (100〜120くらい) なので、一般的に解像度が高くなるにつれ画面も大きくなります。反対に、スマートフォンは画面サイズが (だいたい) 同じなので、解像度が高くなるにつれ1ピクセルの大きさが小さくなり、画面が細密になります。
+<p>iPhone 4のRetina displayは解像度が640×960と、iPhone 3の解像度 (320×480) の4倍もあります。しかし、画面の大きさは同じ3.5インチです。ですので、iPhone 4のピクセル密度はiPhone 3の2倍になります。
 
 <p>次の表は、いくつかの端末の解像度とピクセル密度を並べたものです。
 
@@ -128,9 +129,9 @@ if (!!document.addEventListener) {
 <span class=note>ピクセル密度は端末の製造/販売企業のWebサイトから、なければ端末のスペックから算出しています。</span>
 </figure>
 
-<p>表を見ていると、ピクセル密度が160前後, 210〜240, 300〜320と、すこしふれ幅はあるものの、おおよそ3つに分かれていることに気づきます。
+<p>表を見ていると、ピクセル密度が 1) 160前後, 2) 210〜240, 3) 300〜320 と、多少の振れ幅があるもののおおよそ3つに分かれていることに気づきます。
 
-<p>Androidでは、<a href="http://developer.android.com/guide/practices/screens_support.html#qualifiers">画面の性質でグループ分け</a>がされており、端末のピクセル密度についてもいくつかのグループに分かれています。
+<p>このグループは「密度グループ」と呼ばれます。Androidでは解像度やピクセル密度など、<a href="http://developer.android.com/guide/practices/screens_support.html#qualifiers">画面の性質でグループ分け</a>がされています。Androidで用意されている密度グループは次のとおりです。
 
 <figure id=fig-table-density-groups>
 <table border>
@@ -139,18 +140,18 @@ if (!!document.addEventListener) {
 <td>mdpi
 <td>hdpi
 <td>xhdpi
-<tr><th>dpi
-<td>120
-<td>160
-<td>240
-<td>320
+<tr><th>ピクセル密度
+<td>120 dpi
+<td>160 dpi
+<td>240 dpi
+<td>320 dpi
 </table>
 <figcaption>Androidの密度グループ</figure>
 </figure>
 
-<p>iPhoneを当てはめると、iPhone 3までがmdpiで、iPhone 4からはxhdpiに相当します。日本で流通しているAndroidスマートフォンの多くはhdpiに属するでしょうが、最近のHD解像度の端末はxhdpiに属しそうです。
+<p>iPhoneを当てはめると、iPhone 3までがmdpi、iPhone 4からはxhdpiに区分けされそうです。日本で流通しているAndroidスマートフォンの多くはhdpiに属するでしょうが、最近のHD解像度の端末はxhdpiに属しそうです。
 
-<p class=note>IS05やXperia ray, INFOBAR A01/C01など、グループ上はhdpiに属していますが、画面サイズが小さいためピクセル密度が300dpi近くと、xhdpiに近いピクセル密度となっています。こういった小型の端末が増えると、所属するグループだけでは画面の精細さやピクセルの大きさを判断するのは難しくなるでしょう。
+<p class=note>IS05やXperia ray, INFOBAR A01/C01などはグループ上hdpiに属しています。しかし、画面サイズが小さいことからピクセル密度が300dpi前後と、xhdpiに近くなっています。小型で高解像度な端末が増えると、所属するグループだけでは画面の精細さを判断するのは難しくなるでしょう。
 </section>
 
 <section id=websites-in-high-dpi-screen>
@@ -158,32 +159,36 @@ if (!!document.addEventListener) {
 
 <p>さて、ピクセル密度のばらつきによって、すこし困ったことが起こります。密度の低い環境に合わせて作られたコンテンツの見た目が、密度の高い環境で良く見えない可能性が出てくるのです。
 
-<p>iPhone 4やAndroidスマートフォンでWebサイトを表示すると、画像がぼやけて見えることがあります。iPhone 4の場合は、古いアプリケーションのアイコンがぼやけることもあるでしょう。
+<p>iPhone 4以降のiPhoneや、AndroidスマートフォンでWebサイトを表示すると、画像がぼやけて見えることがあります。
 
 <figure>
 <img src=density/asahicom_retina.png style="border-radius: 6px">
-<figcaption>mini.asahi.comをRetina displayで表示した例 (シミュレータ利用)。ロゴや「トップ」「写真」といった画像の文字が、その下にある「ニュース」などのテキストと比べて荒く表示されているのがわかる。</figcaption>
+<figcaption>asahi.com miniをiPhone 4で表示したもの。ロゴや「トップ」「写真」といった画像の文字が、その下にある「ニュース」などのテキストと比べて荒く表示されているのがわかる。</figcaption>
 </figure>
 
 <p>iPhone 4のRetina displayでは文字の綺麗さなどをうたっていますが、画像が綺麗に見えないのはどうしてでしょうか。ここで出てくるのが、デバイスピクセルとCSSピクセルという、2種類の「ピクセル」です。
 </section>
 
-<section id=device-pixels-and-css-pixels>
+<section id=device-and-css-pixels>
 <h2>「デバイスピクセル」と「CSSピクセル」</h2>
 
 <p>Webデザインにおける「ピクセル」は、ほとんどの場合「CSSピクセル」を指します。一方、画面のピクセルは「デバイスピクセル」と呼ばれたりします。
 
-<p class=note>以下に出てくる「csspx」はCSSピクセルを、「dpx」はデバイスピクセルを表します。
+<p class=note>以下、CSSピクセルを「csspx」、デバイスピクセルを「dpx」と表記することがあります。
 
-<p>iPhone 4の画面は640dpx × 960dpxです。iPhone 3が320dpx × 480dpxなので、iPhone 4はiPhone 3に比べて縦横2倍、計4倍のデバイスピクセルを持ちます。解像度が高く今までより広い範囲を表示できますが、実際にそう表示してしまうと、画面に表示される多くのものがこれまでの半分の大きさで表示されてしまいます。iPhoneの物理的な大きさを考えると、半分の大きさで表示されたWebサイトは読めたものではないでしょう。また、アプリケーションなども操作できたものではないでしょう。
+<p>iPhone 4はiPhone 3に比べて縦横2倍、計4倍のデバイスピクセルを持ちます。今までより広い範囲を表示できるようになったわけですが、実際にそう表示してしまうと困ります。画面の大きさが同じだからです。たとえば、320×480ピクセルの画像をそのまま表示すると、iPhone 3では画面いっぱいになりますが、iPhone 4では画面の1/4しか表示されません。Webページでも同様なことが起こると、読めたものではなくなります。
 
-<p>これを解決するために、iPhone 4のSafariではひとつのCSSピクセルをふたつのデバイスピクセルで表しています。1csspx = 2dpxですから、<code>border-width: 2px</code>は4dpxの線で描画されることになりますし、「100px × 100px」な画像は200dpx × 200dpxの領域に描画されます。<br>一方、ベクターで計算されるもの (アウトラインフォント、SVGのパスなど) は描画される箇所のデバイスピクセルが細かいので、精細に表示されます。画像がぼやける一方でフォントが綺麗なのはこのためです。
+<p>これを解決するために、iPhone 4では、ひとつのCSSピクセルをふたつのデバイスピクセルで表しています。1csspx = 2dpxですから、<code>border-width: 2px</code>は4dpxの線で描画されることになりますし、「100px × 100px」な画像は200dpx × 200dpxで描画されます。
 
-<p>Androidスマートフォンは、端末の密度グループによってデバイスピクセルとCSSピクセルのマッピングが異なります。ひとつのデバイスピクセルをひとつのCSSピクセルで表示するのは、iPhoneにあわせてmdpi (160dpi) の端末です。このmdpiにおける1ピクセルは“density-independent pixel (dp, dip)” と呼ばれています。さて、hdpi (240dpi) は160dpiの1.5倍ですから、1csspx = 1.5dpxとなります。
+<p>画像編集ソフトで、画像を100％以上に引き伸ばすと、画像がぼけて見えます。高解像度のディスプレイで画像がぼける理由は、これと同じ事です。一方、ベクターで計算されるもの (アウトラインフォント、SVGのパスなど) は描画される箇所のデバイスピクセルが細かいので、精細に表示されます。画像がぼやける一方でフォントが綺麗なのはこのためです。
 
-<p>現在使われているAndroidスマートフォンの多くはhdpiに属すので、<code>border-width: 2px</code>は3dpxで表されることになります。そして、1csspxは1.5dpxと整数値で割り切れないため値が丸められ、1csspxで指定された線が消える・細く見えることがあります。
+<p>Androidスマートフォンでは端末の属する密度グループごとに、デバイスピクセルとCSSピクセルのマッピングが異なります。ひとつのデバイスピクセルをひとつのCSSピクセルで表示するのは、mdpi (160dpi) に属する端末です。このmdpiにおける「1ピクセル」は「解像度非依存ピクセル (“density-independent pixel”)」と呼ばれ、“dp”などと表記されます。
 
-<p>デバイスピクセルとCSSピクセルの対応比は、「デバイスピクセル比」(“device pixel ratio”) などと呼ばれています。Chrome, Safari, Operaでは、<code>window.devicePixelRatio</code>というプロパティからこの値を取得できます。
+<p>mdpiを基準にすると、hdpi (240dpi) は160dpiの1.5倍ですから、1csspx = 1.5dpxとなります。xhdpi (320dpi) は2倍なので、1csspx = 2dpxとなります。
+
+<p>現在使われているAndroidスマートフォンの多くはhdpiに属すので、<code>border-width: 2px</code>は3dpxで表されることになります。1csspxは1.5dpxと整数値で割り切れないため値が丸められます。1csspxで指定された線が消える・細く見えることがあるのは、このためです。
+
+<p>この、デバイスピクセルとCSSピクセルの対応は、「デバイスピクセル比」(“device pixel ratio”) などと呼ばれています。Chrome, Safari, Operaでは、<code>window.devicePixelRatio</code>というプロパティからこの値を取得できます。
 
 <figure id=fig-table-dpxratio>
 <table border style="text-align: center">
@@ -203,7 +208,7 @@ if (!!document.addEventListener) {
 <td>560 × 960
 <td>640 × 960
 <td>720 × 1280
-<tr><th>密度のカテゴリ
+<tr><th>密度グループ
 <td>160
 <td>240
 <td>240
@@ -220,14 +225,20 @@ if (!!document.addEventListener) {
 <td>2
 <td>2
 </table>
-<figcaption>各スマートフォン端末の画面解像度、ピクセル密度、デバイスピクセル比</figcaption>
+<figcaption>各スマートフォン端末の画面解像度、ピクセル密度、密度のカテゴリとデバイスピクセル比</figcaption>
 </figure>
 
-<aside>
-<h3>デバイスピクセル比はスマートフォンだけの問題でもない</h3>
-<p>デバイスピクセルとCSSピクセルが1:1でマッチしないのはモバイル固有ではなく、デスクトップでも起こりうる話です。たとえば、WindowsではディスプレイのDPI設定から「125％ (120dpi)」を選択すると、Internet Explorer上で1csspxが1.25dpxとして扱われます。DPI設定は通常96dpiになっているはずなのですが、まれに120dpiが出荷時に設定されているPCが存在します……
+<p>長々と書きましたが、スマートフォンで画像がぼやけて見えるのは「デバイスピクセル比が1以上の端末があるから」というのが答えになります。
+</section>
+
+<section id=dpxratio-on-tablet-desktop>
+<h2>デバイスピクセル比のばらつきはスマートフォンに限らない</h2>
+<p>さて、デバイスピクセルとCSSピクセルが1:1でマッチしないのはスマートフォンに限りません。
+<p>2012年に発表されたiPadには、Retina Displayが搭載されました。iPhone 4と同じくデバイスピクセル比が2であることから、Safariで表示する画像や新しいiPadに未対応のアプリケーションでは、画像がぼやけて見えます。Androidタブレットでも、高密度のディスプレイを備えた端末が出る可能性はありますし、スマートフォンに限った話ではありません。
+
+<p>デスクトップでも、たとえばWindowsではディスプレイのDPI設定を変更できます。通常は96dpiなのですが、「125％ (120dpi)」を選択すると、Internet Explorer上で1csspxが1.25dpxとして扱われます。そして、ごくまれに120dpiが出荷時に設定されているPCが存在します。
 <p>Macでも高解像度モードにすることでデバイスピクセル比を変更できます。ちなみに先ほど紹介した<code>window.devicePixelRatio</code>はこの高解像度モードのために実装されています。実装されたのは2006年と今から5年前、iPhone4の登場よりだいぶ前です。
-</aside>
+<p>iPhone, iPadがRetina Display化したことにより、MacでもRetina Display搭載の噂が絶えません。Retina Display搭載Macが発売されると、デスクトップでも画像がぼやけて見えることがあるでしょう。
 </section>
 <!--
 <section id=>
@@ -281,5 +292,5 @@ if (!!document.addEventListener) {
 
 <footer>
 <address>by <a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: April 27, 2012
+<p class=update>Update: June 2, 2012
 </footer>
