@@ -3,6 +3,34 @@
 <title>スマートフォンと画面解像度・ピクセル密度</title>
 <link rel=stylesheet href="lilium.css">
 <link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
+<link rel=alternate href="https://github.com/myakura/n/commits/gh-pages.atom" type="application/atom+xml">
+<script>
+if (!!document.addEventListener) {
+  document.addEventListener('DOMContentLoaded', function () {
+    var sec = document.querySelectorAll('body > section[id]');
+    var h = document.querySelectorAll('body > section[id] > h2:first-of-type');
+    var toc = '';
+    var l = sec.length;
+    while (l--) {
+      toc = '<li><a href="#' + sec[l].id + '">' + h[l].innerHTML + '</a>' + toc;
+    }
+    var nav = document.createElement('nav');
+    nav.innerHTML = '<h2>目次</h2><ol>' + toc + '</ol>';
+    document.body.insertBefore(nav, sec[0]);
+  }, false);
+}
+</script>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26017405-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 <body>
 
 <h1>スマートフォンと画面解像度・ピクセル密度</h1>
