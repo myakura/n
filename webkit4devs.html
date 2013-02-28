@@ -1,0 +1,341 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>開発者のための WebKit (“WebKit for Developers” 日本語訳)</title>
+<meta name=description content="Paul Irishの“WebKit for Developers”日本語訳です。WebKitと呼んでいるものは何か。異なるWebKit portで共通なもの、違うものについて紹介しています。">
+<link rel=stylesheet href="lilium.css">
+<link rel=license href="http://creativecommons.org/publicdomain/zero/1.0/">
+<link rel=alternate href="https://github.com/myakura/n/commits/gh-pages.atom" type="application/atom+xml">
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26017405-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<body>
+
+<h1>開発者のための WebKit</h1>
+
+<p class="note">このノートは、Paul Irishによる記事<a href="http://paulirish.com/2013/webkit-for-developers/">“WebKit for Developers”</a>の日本語訳です。
+
+<hr>
+
+<p><img src="http://paulirish.com/assets/xwebkit-box.png.pagespeed.ic.hSgdM7e64A.png" alt="WebKit box logo" style="border: 0;
+margin: 0;
+box-shadow: none;
+float: right;
+vertical-align: top;">
+僕ら開発者の多くにとって、<strong>WebKit はブラックボックスだ</strong>。HTML, CSS, JS, その他のアセットを投げると、WebKit は魔法でもかけたかのように、綺麗な Web ページを返してくれるからだ。しかし、僕の同僚 <a href="http://www.youtube.com/watch?v=kiPe7DPmEgE">Ilya Grigorik は本当の WebKit はこうだと言っている</a>。
+<blockquote><p>WebKit はブラックボックス<strong>ではない</strong>。ホワイトボックスなんだ。さらにそれだけではなく、<strong>オープンな</strong>ホワイトボックスなんだ。</p></blockquote>
+<p>じゃあ、これから次のことについて理解していこう。</p>
+<center>WebKit って？
+<br>なにが WebKit じゃないの？
+<br>WebKit ベースのブラウザで WebKit はどう使われているの？
+<br>なんですべての WebKit が同じじゃないの？
+</center>
+
+<!--
+
+There are a few things all called, WebKit, so let's enumerate them first..
+
+1. **WebKit the project**, where a bunch of hugely talented developers build one
+   of the leading implementations of the web platform
+2. **WebKit the embedding API**, available for ports to embed the rendering
+   engine in their application
+3. **WebCore**, which is what people think of when they say WebKit. (more on
+   that later…)
+4. **WebKit the repository,** where code for the WebKit API, WebCore,
+   JavaScriptCore and more live.
+5. and **WebKit, the perception**
+
+Below I'll hop between a few of these definitions in my use of the word. It'll
+work, trust me. :)
+
+-->
+
+<p>さて、特に <a href="http://my.opera.com/ODIN/blog/300-million-users-and-move-to-webkit">Opera が WebKit に移行した</a> というニュースもあり、WebKit ブラウザの数はとても増加している。ただ、それぞれの WebKit のどこが共通で、どこが違うのかを知るのはとても難しい。これからする説明で、それ少し分かるようになるだろう。そうなれば、ブラウザの違いについて今まで以上によく分かるし、適切なバグトラッカーに報告できるようになるし、さらに特定のブラウザに対しどうより効果的に開発するのかを理解できるだろう。</p>
+
+<section>
+<h2>標準的な Web ブラウザのコンポーネント</h2>
+
+<p>今日のブラウザは、いくつかのコンポーネントから成り立っている。</p>
+<ul>
+<li>パース（HTML, XML, CSS, JavaScript）</li>
+<li>レイアウト</li>
+<li>テキスト、グラフィックの描画</li>
+<li>画像のデコード</li>
+<li>GPU インタラクション</li>
+<li>ネットワークアクセス</li>
+<li>ハードウェアアクセラレーション</li>
+</ul>
+
+<p>WebKit ベースのブラウザ間で、このうちどれが共通なんだろう？<strong>ほとんどの場合において、最初の2つだけだ</strong>。</p>
+<p>他のコンポーネントは、個々の WebKit port 側で扱われる。</p>
+</section>
+
+<section>
+<h2 id="webkit-ports-explained">WebKit port とは</h2>
+<p>WebKit には異なる “port” がある。Sencha の エンジニアリングディレクターで WebKit ハッカーの Ariya Hidayat に<a href="http://ariya.ofilabs.com/2011/06/your-webkit-port-is-special-just-like-every-other-port.html">説明してもらおう</a>。</p>
+
+<blockquote>
+<p>WebKit としてよく紹介されるのが、Mac OS X 上で動作する、Apple の WebKit だ (これは <a href="http://lists.kde.org/?l=kfm-devel&amp;m=104197092318639&amp;w=2">最初の、つまりオリジナルな</a> WebKit ライブラリだ)。そこから想像できる通り、この WebKit 上の様々なインターフェースは、Mac OS X 上の異なるネイティブライブラリを利用し実装されている (ほとんどの場合 <a href="http://developer.apple.com/corefoundation/%3Cbr%20/%3E">CoreFoundation</a> が中心だ)。たとえば、色のついたフラットなボタンに角丸を指定したとしよう。WebKit はどこから、そしてどのようにボタンを描画するかを知っている。しかし、最後のボタンの描画作業 (ユーザのモニタ上に pixel でボタンを描く) は <a href="http://developer.apple.com/library/ios/#documentation/CoreGraphics/Reference/CoreGraphics_Framework/_index.html">CoreGraphics</a> の仕事になる。</p>
+</blockquote>
+
+<p>上で書かれている通り、CG は Mac port 特有の例だ。Mac の Chrome はこの場合 <a href="http://www.chromium.org/developers/design-documents/graphics-and-skia">Skia</a> を使う。</p>
+
+<blockquote>
+<p>時が経ち、WebKit はデスクトップ、モバイル含め異なるプラットフォームに “port”（移植）された。これらは多くの場合 “WebKit port” と呼ばれる。Windows の Safari の開発にあたり、Apple 自身も WebKit を移植し、Windows 上で動作するようにした。ここでは CoreFoundation ライブラリの <a href="http://developer.apple.com/opensource/internet/webkit_sptlib_agree.html">Windows 版</a>（限定的な実装）を利用した。</p>
+</blockquote>
+
+<p>…とはいえ、Windows 版 Safari は <a href="http://www.macworld.com/article/1167904/safari_6_available_for_mountain_lion_and_lion_but_not_windows.html">終了した</a>けれど。</p>
+
+<blockquote>
+<p>それ以外にも、多くの “port” が存在している（<a href="http://trac.webkit.org/wiki#WebKitPorts">一覧</a>）。Google は Chromium port をつくり運用している。Gtk+ を元にした WebKitGtk というものもある。Nokia (が買収した Trolltech) は WebKit の Qt port を運用しており、とくに <a href="http://doc.qt.nokia.com/qtwebkit.html">QtWebKit module</a> として知られている。</p>
+</blockquote>
+</section>
+
+<section>
+<h2 id="webkit-ports">代表的な WebKit port</h2>
+
+<ul>
+<li><strong>Safari</strong>
+<ul>
+<li>OS X と Windows の Safari は2つの異なる port だ</li>
+<li>WebKit nightly は Mac port の最新ビルドで、Safari に使われる。後でもう少し詳しく取り上げよう</li>
+</ul>
+</li>
+<li><strong>Mobile Safari</strong>
+<ul>
+<li>プライベートブランチとして運用されているが、最近 upstream され始めた <a href="http://trac.webkit.org/changeset/142163">[1]</a> <a href="http://trac.webkit.org/changeset/142373">[2]</a></li>
+<li>iOS の Chrome (Apple の WebView を利用。違いについては後ほど)</li>
+</ul>
+</li>
+<li><strong>Chrome (Chromium)</strong>
+<ul>
+<li>Android 版 Chrome (Chromium port を直接利用)</li>
+<li>Chromium は <a href="http://browser.yandex.ru/">Yandex Browser</a>, <a href="http://se.360.cn/">360 Browser</a>, <a href="http://ie.sogou.com/">Sogou Browser</a>, それに（もうすぐ） Opera でも使われている</li>
+</ul>
+</li>
+<li><strong>Android Browser</strong>
+<ul>
+<li>その時点で最新の WebKit ソースを使っている</li>
+</ul>
+</li>
+<li><strong><a href="http://trac.webkit.org/wiki#WebKitPorts">他の port</a></strong>: Amazon Silk, Dolphin, Blackberry, QtWebKit, WebKitGTK+, EFL port (Tizen), wxWebKit, WebKitWinCE, etc</li>
+</ul>
+
+<p>それぞれの port が、異なる目的を持っていることもある。Mac port はブラウザと OS の分離にフォーカスし、そこに Obj-C と C++ バインディングを用意することで、レンダラをネイティブアプリに埋め込むことを可能にしている。Chromium のフォーカスは純粋にブラウザだ。QtWebKit はクロスプラットフォームな GUI アプリケーションアーキテクチャの中で、そのランタイム、もしくはレンダリングエンジンを提供するために port を提供している。</p>
+</section>
+
+<section>
+<h2 id="whats-shared">すべての WebKit ブラウザで共通なもの</h2>
+
+<p>まず、すべての WebKit port で共有されている機能をおさらいしよう。</p>
+
+<aside>これ、書くのに何回もかかっちゃって。なんせ書くたびに Chrome team から指摘が入るんで。それでこんな感じに、はは……</aside>
+
+<ol>
+<li>まず、WebKit は HTML を同じやり方でパースする。<em>※ ただし <a href="https://bugs.webkit.org/showdependencytree.cgi?id=106127&amp;hide_resolved=0">threaded HTML parsing</a> を有効にした WebKit port （現時点では Chromium のみ）を除く</em></li>
+<li>うん……。で、パースが終わったら、DOM ツリーは同じように構築される。<em>※ ただし Shadow DOM が <a href="http://goo.gl/dsXQf" title="Code Search for ENABLE(SHADOW_DOM) package:^chromium$ file:^src/third_party/WebKit/LayoutTests/platform/">有効にされた</a> port （現時点では Chromium のみ）を除く。なので DOM 構築も異なる。カスタム要素についても、同じことになる。</em></li>
+<li>ええと……。あ、WebKit はどの port でも <code>window</code> オブジェクトと <code>document</code> オブジェクトを生成する。<em>※ ただしそれらのプロパティやコンストラクタは <a href="https://trac.webkit.org/wiki/FeatureFlags">feature flag</a> の有効度合いによって異なる。</em></li>
+<li>そうだね……。でも CSS パースは同じだ。CSS コードをズズッとすすって CSSOM にする。この方法はもうスタンダードだ。<em>※ ただし Chrome は <code>-webkit-</code> 接頭辞のみをサポートするが、Apple や他の port は古い <code>-khtml-</code>, <code>-apple-</code> もサポートするという違いがある。</em></li>
+<li>……。レイアウトとか…ポジショニングはどうかな？パンにバターみたいな組み合わせなんだし、どこでも同じでしょ？ね！<em>※ ただしサブピクセルレイアウト、飽和レイアウト演算は WebKit の一部にもかかわらず port ごとに違う。</em></li>
+<li>だって。すごい。</li>
+</ol>
+
+<p>というわけで、とても複雑だ。</p>
+
+<p><a href="http://code.flickr.net/2009/12/02/flipping-out/">Flickr</a> や <a href="https://github.com/blog/677-how-we-deploy-new-features">Github</a> が機能を有効フラグ付きで実装しているように、WebKit でも同じ事をしている。これによって port が <a href="https://trac.webkit.org/wiki/FeatureFlags">WebKit のコンパイルタイム Feature Flag</a> を使い、機能を有効・無効にできるようになっている。機能はランタイム flag として現れることもある。この場合は <a href="http://peter.sh/experiments/chromium-command-line-switches/">コマンドラインスイッチ (これは Chromium のもの)</a> や <a href="http://blogs.adobe.com/cantrell/archives/2012/07/all-about-chrome-flags.html">about:flags</a> みたいな設定から有効・無効にできる。</p>
+
+<p>じゃあ、今度こそ WebKit で何が共通なのかまとめてみよう……</p>  
+
+<section>
+<h3 id="webkit-common">WebKit port 間で共通なもの</h3>
+<ul>
+<li>DOM, <code>window</code>, <code>document</code>
+<ul>
+<li>ほとんどの場合</li>
+</ul>
+</li>
+<li>CSSOM</li>
+<li>CSS のパース、プロパティ・値の処理
+<ul>
+<li>ベンダー接頭辞の扱いを除いて</li>
+</ul>
+</li>
+<li>HTML のパース DOM の構築
+<ul>
+<li>ちょっと Web Components のことを忘れれば同じ</li>
+</ul>
+</li>
+<li>レイアウトとポジショニング
+<ul>
+<li>Flexbox, float, ブロック整形コンテクスト…は共通</li>
+</ul>
+</li>
+<li>Chrome DevTools もとい WebKit Inspector の UI や中身
+<ul>
+<li>ただし、昨年4月から Safari は非 WebKit なクローズドソースな UI を Safari Inspector で使っている</li>
+</ul>
+</li>
+<li>contenteditable, pushState, File API, SVG の大部分, CSS Transform の計算, Web Audio API, localStorage などの機能
+<ul>
+<li>ただしバックエンドが異なる。各 port は localStorage のストレージレイヤーで異なるものを使うことがあるだろうし、Web Audio API でも異なるオーディオ API を使うことがあるだろう</li>
+</ul>
+</li>
+<li><a href="http://trac.webkit.org/browser/trunk/Source/WebCore">その他多くの機能</a></li>
+</ul>
+<p>すこしぼやけてきたので、共通でないものを挙げてみよう。こっちはそれほどぼやけていない。</p>  
+</section>
+
+<section>
+<h3>WebKit port 間で<em>共通ではない</em>もの</h3>
+<ul>
+<li>GPU 上のものすべて
+<ul>
+<li>3D Transforms</li>
+<li>WebGL</li>
+<li>ビデオのデコード</li>
+</ul>
+</li>
+<li>スクリーンへの 2D 描画
+<ul>
+<li>アンチエイリアシングの方法</li>
+<li>SVG &amp; CSS グラデーションの描画</li>
+</ul>
+</li>
+<li>テキストレンダリングとハイフネーション</li>
+<li>ネットワークスタック (SPDY, prerendering, WebSocket transport)</li>
+<li>JavaScript エンジン
+<ul>
+<li>JavaScriptCore は WebKit レポジトリにある。そして、WebKit には JavaScriptCore と V8 のバインディングが用意されている。</li>
+</ul>
+</li>
+<li>フォームコントロールの描画</li>
+<li><code>&lt;video&gt;</code> &amp; <code>&lt;audio&gt;</code> 要素の挙動（とサポートしているコーデック）</li>
+<li>画像のデコード</li>
+<li>戻る・進むのナビゲーション
+<ul>
+<li>pushState() のナビゲーションに関わるところ</li>
+</ul>
+</li>
+<li>Strict Transport Security や Public Key Pins などの SSL 機能</li>
+</ul>
+
+<p>ひとつ紹介しよう。<strong>2D 描画</strong> では、port ごとにまったく異なるライブラリを使用し、スクリーンへの描画処理を行なっている。</p>
+<p><img src="https://lh6.googleusercontent.com/--WfQB-Tr1sQ/TfHQSfY38FI/AAAAAAAAB8s/DSNAn8F71i8/s800/graphicscontext.png" alt="WebKit のグラフィックスレイヤー" style="display:block; margin: 0 auto;"></p>
+<p>細かいところで言えば、最近実装された機能 <code>CSS.supports()</code> は win port と wincairo port 以外で<a href="http://trac.webkit.org/changeset/142739">有効</a>にされている。これは、これら2つの port では CSS3 Conditional の機能が有効にされていないからだ。</p>
+
+<p>ちょっと技術的な感じになってきたから、すこし解説的になろうか。いま説明したことも、まったく正しいわけではない。共有されているもの、これは実際には WebCore のことだ。WebCore はレイアウト、レンダリング、HTML と SVG の DOM ライブラリで、みんなが WebKit WebKit と呼んでるものは基本的にこいつのことだ。では実際の “WebKit” は何かというと、WebCore と port のバインディングレイヤーを指す。まあ、ふつうの会話であればこの違いなんて、ほとんどどうでもいいんだけれど。</p>
+<p>図で説明すると分かるかな。</p>
+<p><img src="http://paulirish.com/assets/webkit-diagram.png.pagespeed.ce.6jynYojf8j.png" alt="WebKit Diagram" style="display:block; margin: 0 auto;"> <!-- style="border: 0; margin: 0; box-shadow: none;"  --></p>
+<p>WebKit 中の多くのコンポーネントが交換できるようになっている（灰色で示されたところだ）。</p>
+<p>たとえば、WebKit の JavaScript エンジン JavaScriptCore。これは WebKit のデフォルトだ（WebKit が KHTML を fork しスタートした際は、KDE の KJS をベースにしていた）。いっぽう、Chromium port では V8 に置き換わっており、さらに固有の DOM バインディングでマップしている。</p>
+<p>フォント・テキスト描画はプラットフォームのとても大きな部分だ。WebKit では Fast path, Complex path という2つの text path を持っている。どちらもプラットフォーム固有（ポート側の）サポートを必要とするけれど、Fast path はただどのようにグリフをブリットするかを知るだけでよい（WebKit はそれをプラットフォームのためにキャッシュする）のに対して、Complex path は実際に全文字列をプラットフォームレイヤーに渡して「描画してくれ」と伝える。</p>
+<blockquote id="dimitri-taco">
+WebKit はサンドウィッチのようなものだ。しかし Chromium においてはタコスに近い。そう、美味しい Web プラットフォームのタコスなのだ。 <cite>Dimitri Glazkov, Chrome WebKit hacker. Champion of Web Components and Shadow DOM</cite>
+</blockquote>
+
+<p>じゃあ、すこし広いところ、いくつかの port とサブシステムを見てみよう。次の表は5つの WebKit port についてまとめたものだ。WebCore の多くを共有していても、スタックが多種多様なことが分かるだろう。N</p>
+<table id="wk-matrix">
+<tr>
+<td></td>
+<th>Chrome (OS X)</td>
+<th>Safari (OS X)</td>
+<th>QtWebKit</td>
+<th>Android Browser</td>
+<th>Chrome for iOS</td>
+</tr>
+<tr>
+<th>レンダリング</td>
+<td>Skia</td>
+<td>CoreGraphics</td>
+<td>QtGui</td>
+<td>Android stack/Skia</td>
+<td>CoreGraphics</td>
+</tr>
+<tr>
+<th>ネットワーク</td>
+<td>Chromium network stack</td>
+<td>CFNetwork</td>
+<td>QtNetwork</td>
+<td>Chromium network stack の fork</td>
+<td>Chromium stack</td>
+</tr>
+<tr>
+<th>フォント</td>
+<td>Skia</td>
+<td>CoreText</td>
+<td>Qt 内部のもの</td>
+<td>Android stack</td>
+<td>CoreText</td>
+</tr>
+<tr>
+<th>JavaScript</td>
+<td>V8</td>
+<td>JavaScriptCore</td>
+<td>JSC (V8 はその他の Qt の部分で使われている)</td>
+<td>V8</td>
+<td>JavaScriptCore (JIT 無し) *</td>
+</tr>
+</table>
+<p><small>* Chrome for iOS についての補足をしよう。分かっていると思うけれど、UIWebView を使っている。このため、UIWebView が提供するもの、つまりは Mobile Safari と同じレンダリングレイヤー、V8 ではなく JavaScriptCore, そしてシングルプロセスモデルしか利用できない。しかし、ネットワークプレイヤー、同期やブックマークのインフラ、Omnibox, メトリクスやクラッシュレポートなど、Chromium 側のコードもかなり<a href="https://groups.google.com/a/chromium.org/forum/?fromgroups#!topic/chromium-dev/vYGxPx-tVKE">利用している</a>。（また、個人的な意見だが、JavaScript がモバイルにおいてボトルネックとなることは非常に稀なため、JIT コンパイラが無いことのインパクトは限りなく小さいだろう。）</small></p>
+</section>
+
+</section>
+
+<section>
+<h2>オーケー。それでどうなるの？</h2>
+
+<section>
+<h3>WebKit がそれぞれ違うのは分かった。怖いよー</h3>
+<p>大丈夫！<a href="http://trac.webkit.org/browser/trunk/LayoutTests">WebKit の layoutTest がカバーする範囲</a>はとても広い（最後に見た時点で 28,000 以上）。テストは既存の機能に関するものだけじゃなくて、見つかったリグレッションについても用意されている。新しい、もしくは難解な DOM/CSS/HTML5 系の機能について調べるとき、layoutTest が小さくまとまったすばらしいデモになってることが多いんだ。</p>
+<p>さらに、<a href="http://www.w3.org/QA/2013/02/testing_the_open_web_platform.html">W3C は適合性テストへの取り組みを推し進めようとしている</a>。つまり、異なる WebKit port やすべてのブラウザが同じテストスイートでテストされ、結果として変なバグ<!-- fewer quirks -->の少ない、相互運用性が確保された Web になっていくんだ。この取り組みに関わるべく <a href="http://testthewebforward.org/">Test The Web Forward</a> に参加したみんな、ありがとう。</p>
+</section>
+
+<section>
+<h3>Opera が WebKit に移行したけど、これからどうなるの？<!-- How does that play out? --></h3>
+<p>Robert Nyman と Rob Hawkes が <a href="http://robertnyman.com/2013/02/14/webkit-an-objective-view/">触れている</a>けど、Opera の発表で重要だったことのひとつに、<strong>Opera は Chromium を採用した</strong>ことがあると思う。つまり、WebGL, Canvas, HTML5 フォーム、2D グラフィックス実装、これらすべてが Chrome と Opera で同じように動作することになる。これは同じ API で, 同じバックエンド実装だから。Opera が Chromium ベースになるので、君がつくった最新技術のデモもすぐ Chrome と Opera で使えるようになる。</p>
+<p>もうひとつ。<a href="http://twatlr.com/thread/301603979257856000"><strong>すべての</strong> Opera ブラウザ</a>が Chromium を採用する。だから Windows 版 Opera, Mac 版 Opera, Linux 版 Opera, Opera Mobile が Chromium ベースになる。さらにはシンクライアントの Opera Mini も、いまの Presto ベースなサーバサイドレンダリングファームを Chromium ベースに変更するんだ。</p>
+</section>
+
+<section>
+<h3>んーと、WebKit Nightly ってなに？</h3>
+<p>WebKit Nightly は <a href="http://trac.webkit.org/browser/trunk/Source/WebKit/mac">Mac port</a> の WebKit で、Safari が使うバイナリの中で動作する（ただ、内部のライブラリがいくつか差し替わってはいる）。だから WebKit Nightly の挙動や搭載している機能は将来の Safari と一緒だ。ざっくりと言えば、WebKit Nightly と Safari の関係は、Chromium と Chrome のそれみたいなものかな。</p>
+<p><a href="http://paulirish.com/2012/chrome-canary-for-developers/">Chrome Canary</a> も、ここ1, 2日の最新の WebKit ソースを使っている。</p>
+</section>
+
+<section>
+<h3>WebKit の中身についてもっと教えてよ！</h3>
+<p>ほーらよ、相棒！</p>
+<iframe src="https://docs.google.com/presentation/d/1ZRIQbUKw9Tf077odCh66OrrwRIVNLvI_nhLm2Gi__F0/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="660" height="450" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</section>
+
+</section>
+
+<section>
+<h2>あわせて読みたい</h2>
+<ul>
+<li><a href="http://www.webkit.org/coding/technical-articles.html">WebKit internals technical articles | webkit.org</a></li>
+<li><a href="http://robertnyman.com/2013/02/14/webkit-an-objective-view/">WebKit: An Objective View | Robert Nyman &amp; Rob Hawkes</a></li>
+<li><a href="http://ariya.ofilabs.com/2011/06/your-webkit-port-is-special-just-like-every-other-port.html">your webkit port is special (just like every other port) | Ariya Hidayat</a></li>
+<li><a href="http://blogs.adobe.com/webplatform/2013/01/21/getting-started-with-the-webkit-layout-code/">Getting Started With the WebKit Layout Code | Adobe Web Platform Blog</a></li>
+<li><a href="http://arunpatole.com/blog/2011/webkit-documentation/">WebKit Documentation Overview | Arun Patole</a></li>
+<li><a href="http://www.youtube.com/watch?v=RVnARGhhs9w">Rendering in WebKit, by Eric Seidel | YouTube</a></li>
+<li><a href="http://www.igvita.com/slides/2012/web-performance-for-the-curious/">web performance for the curious | Ilya Grigorik</a></li>
+</ul>
+</section>
+
+<p>この記事で WebKit ブラウザの内部について説明でき、またどこからどこまでを WebKit, どこからどこまでが WebKit port なのかを伝えられたら幸いだ。</p>
+<hr>
+<p>Reviewed by Peter Beverloo (Chrome), Eric Seidel (WebKit). <br/>
+I&#8217;ll update with any corrections or modifications.</p>
+
+<footer>
+<address>by <a rel=author href="http://profiles.google.com/117261322300109492957">Masataka Yakura</a></address>
+<p class=update>Published: March 1, 2013
+</footer>
