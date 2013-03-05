@@ -38,7 +38,7 @@ th, td {
   border: none;
 }
 
-td {
+td:not(:empty) {
   border-left: 1px dashed #ccc;
 }
 
