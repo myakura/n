@@ -1,12 +1,12 @@
 <!doctype html>
-<meta charset=utf-8>
+<meta charset="utf-8">
 <title>HTML5とインラインSVG</title>
-<meta name=description content="HTML5から、HTML文書に直接SVGの要素を記述できるようになりました。「インラインSVG」などと呼ばれているこの機能について簡単に紹介します。">
-<link rel=stylesheet href="lilium.css">
-<link rel=license href="http://creativecommons.org/licenses/by-nc/3.0/">
+<meta name="description" content="HTML5から、HTML文書に直接SVGの要素を記述できるようになりました。「インラインSVG」などと呼ばれているこの機能について簡単に紹介します。">
+<link rel="stylesheet" href="lilium.css">
+<link rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">
 <script>
-if (!!window.addEventListener) {
-  window.addEventListener('DOMContentLoaded', function () {
+if (!!document.addEventListener) {
+  document.addEventListener('DOMContentLoaded', function () {
     var sec = document.querySelectorAll('body > section[id]');
     var h = document.querySelectorAll('body > section[id] > h2:first-of-type');    
     var toc = '';
@@ -20,48 +20,58 @@ if (!!window.addEventListener) {
   }, false);
 }
 </script>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26017405-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 <body>
 
 <h1>HTML5とインラインSVG</h1>
 
 <p>HTML5では、HTML文書中に直接SVGを書けるようになりました。これは「インラインSVG」や“SVG in HTML”, “SVG in text/html”などと呼ばれています。
 
-<section id=sample>
+<section id="sample">
 <h2>インラインSVGのサンプル</h2>
 <p>ここでは、<a href="inlinesvg/hinomaru.svg">日の丸 (hinomaru.svg)</a>と<a href="inlinesvg/tricolour.svg">トリコロール (tricolour.svg)</a>を直接HTML文書に書き込んでいます。インラインSVGに対応するブラウザであれば、ソースコードの後にSVGが表示されます。
 
 <figure>
-<pre><code>&lt;svg width=270 height=180 style="border: 1px solid #eee; background: #fff">
-  &lt;circle cx=135 cy=90 r=54 style="fill: #b22">&lt;/circle>
+<pre><code>&lt;svg width="270" height="180" style="border: 1px solid #ddd; background: #fff">
+  &lt;circle cx="135" cy="90" r="54" style="fill: #b22">&lt;/circle>
 &lt;/svg></code></pre>
-<pre><code>&lt;svg width=270 height=180 style="border: 1px solid #eee; background: #fff">
-  &lt;rect x=0 y=0 width=90 height=180 style="fill: #33b">&lt;/rect>
-  &lt;rect x=180 y=0 width=90 height=180 style="fill: #d33">&lt;/rect>
+<pre><code>&lt;svg width="270" height="180" style="border: 1px solid #ddd; background: #fff">
+  &lt;rect x="0" y="0" width="90" height="180" style="fill: #33b">&lt;/rect>
+  &lt;rect x="180" y="0" width="90" height="180" style="fill: #d33">&lt;/rect>
 &lt;/svg></code></pre>
 </figure>
 
 <figure>
-<svg width=270 height=180 style="border: 1px solid #eee; background: #fff">
-<circle cx=135 cy=90 r=54 style="fill: #b22"></circle>
+<svg width="270" height="180" style="border: 1px solid #ddd; background: #fff">
+  <circle cx="135" cy="90" r="54" style="fill: #b22"></circle>
 </svg>
-<svg width=270 height=180 style="border: 1px solid #eee; background: #fff">
-<rect x=0 y=0 width=90 height=180 style="fill: #33b"></rect>
-<rect x=180 y=0 width=90 height=180 style="fill: #d33"></rect>
+<svg width="270" height="180" style="border: 1px solid #ddd; background: #fff">
+  <rect x="0" y="0" width="90" height="180" style="fill: #33b"></rect>
+  <rect x="180" y="0" width="90" height="180" style="fill: #d33"></rect>
 </svg>
 </figure>
 </section>
 
-<section id=browser-support>
+<section id="browser-support">
 <h2>ブラウザの対応状況</h2>
-<p>インラインSVGはHTML5パーサを搭載するブラウザで表示できます。HTML5パーサは、<a href="http://www.google.com/chrome">Chrome 7</a>、<a href="http://mozilla.com/firefox/">Firefox 4</a>、<a href="http://www.apple.com/safari/">Safari 5.1</a>、<a href="http://www.opera.com/browser/">Opera 11.60</a>以降のバージョンで対応しています。
-<p><a href="http://www.microsoft.com/ie9">IE9</a>はHTML5パーサを搭載していないものの、インラインSVGの表示に対応しています。なお現在開発中のIE10では、<a href="http://msdn.microsoft.com/library/ie/hh673554">HTML5パーサを搭載予定</a>のようです。
+<p>インラインSVGはHTML5パーサを搭載するブラウザで表示できます。HTML5パーサは、<a href="http://www.google.com/chrome">Chrome 7</a>、<a href="http://mozilla.com/firefox/">Firefox 4</a>、<a href="http://www.apple.com/safari/">Safari 5.1</a>、<a href="http://www.opera.com/browser/">Opera 11.60</a>、<a href="http://microsoft.com/ie">Internet Explorer 10</a>以降のバージョンで搭載されています。また、<a href="http://www.microsoft.com/ie9">IE9</a>はHTML5パーサを搭載していないものの、インラインSVGの表示に対応しています。
 
-<p>モバイルについては、Android 3.0以降のブラウザ、iOS5 SafariがHTML5パーサを搭載しています。Windows Phone 7.5以降も、IE9ベースのエンジンを搭載しているので、インラインSVGに対応しているものと考えられます。
+<p>モバイル端末のブラウザについては、Android 3.0以降のAndroid標準ブラウザ、iOS 5以降のSafari、Chrome for Android, Firefox for Android, OperaがHTML5パーサを搭載しているため、インラインSVGを表示可能です。Windows Phone 7.5以降もIE9ベースのエンジンを搭載しているので、インラインSVGに対応しているものと考えられます。
 </section>
 
-<p class=XXX>issue: xlink:hrefと書かないとダメとか、IE9ではなぜかOKとか、SVG2では可能になるはずとか、そういうのは書く？
+<!-- <p class="XXX">issue: xlink:hrefと書かないとダメとか、IE9ではなぜかOKとか、SVG2では可能になるはずとか、そういうのは書く？ -->
 
 <footer>
-<address><a rel=author href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
-<p class=update>Update: April 27, 2012
+<address><a rel="author" href="http://profiles.google.com/masataka.yakura">Masataka Yakura</a></address>
+<p class=update>Update: October 27, 2013
 </footer>

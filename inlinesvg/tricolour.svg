@@ -1,6 +1,6 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg"
      width="270" height="180" style="border: 1px solid #eee; background: #fff">
+  <title>Tricolour</title>
   <rect x="0" y="0" width="90" height="180" style="fill: #33b"></rect>
   <rect x="180" y="0" width="90" height="180" style="fill: #d33"></rect>
 </svg>
